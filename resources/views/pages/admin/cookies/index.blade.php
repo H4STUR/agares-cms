@@ -211,7 +211,7 @@
                                         </button>
                                     @else
                                         {{-- Fallback: direct legacy scan when SaaS not configured --}}
-                                        <form action="{{ route('admin.cookies.scan') }}" method="POST">
+                                        <form action="{{ route('admin.cookies.scan.async') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="url" x-bind:value="scanUrl">
                                             <button type="submit" class="btn btn-outline-secondary w-100">

@@ -24,7 +24,7 @@
                     {{ __('Back') }}
                 </a>
 
-                <form action="{{ route('admin.cookies.scan') }}" method="POST">
+                <form action="{{ route('admin.cookies.scan.async') }}" method="POST">
                     @csrf
                     <button class="btn btn-primary">
                         <i class="material-icons-outlined align-middle me-1">search</i>

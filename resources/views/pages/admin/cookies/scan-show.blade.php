@@ -27,7 +27,7 @@
                     {{ __('Back') }}
                 </a>
 
-                <form action="{{ route('admin.cookies.scan') }}" method="POST">
+                <form action="{{ route('admin.cookies.scan.async') }}" method="POST">
                     @csrf
                     <input type="hidden" name="url" value="{{ $scan->url }}">
                     <button class="btn btn-primary">
