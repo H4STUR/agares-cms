@@ -141,10 +141,8 @@ class CookieController extends Controller
             return response()->json(['error' => 'Agares SaaS not configured.'], 422);
         }
 
-        $url    = $request->input('url') ?: config('app.url');
-        $domain = parse_url($url, PHP_URL_HOST)
-               ?: parse_url(config('app.url'), PHP_URL_HOST)
-               ?: 'unknown-domain';
+        $url    = $request->input('url') ?: $request->getSchemeAndHttpHost();
+        $domain = parse_url($url, PHP_URL_HOST) ?: $request->getHost();
 
         try {
             $saasId = $saas->requestScan($url);
