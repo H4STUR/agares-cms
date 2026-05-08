@@ -54,9 +54,4 @@ return [
             : null,
     ],
     
-    'cookie_scanner' => [
-    'base' => env('COOKIE_SCANNER_API', 'https://cookie-scanner.fly.dev'),
-    'key'  => env('COOKIE_SCANNER_API_KEY'),
-],
-
 ];

@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\FetchSaasCookieScanJob;
 use App\Models\CookieScan;
 use App\Models\CookieScanCookie;
 use App\Models\CookieConsentSetting;
 use App\Models\Setting;
 use App\Services\AgaresSaasService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CookieController extends Controller
 {
@@ -147,29 +146,118 @@ class CookieController extends Controller
                ?: parse_url(config('app.url'), PHP_URL_HOST)
                ?: 'unknown-domain';
 
-        $scan = CookieScan::create([
-            'status'     => 'pending',
-            'domain'     => $domain,
-            'url'        => $url,
-            'scanned_at' => now(),
-            'created_by' => auth()->id(),
-        ]);
+        try {
+            $saasId = $saas->requestScan($url);
+        } catch (\Throwable $e) {
+            return response()->json(['error' => 'Failed to submit scan: ' . $e->getMessage()], 500);
+        }
 
-        FetchSaasCookieScanJob::dispatch($scan, $url);
+        $scan = CookieScan::create([
+            'status'       => 'scanning',
+            'domain'       => $domain,
+            'url'          => $url,
+            'scanned_at'   => now(),
+            'saas_scan_id' => $saasId,
+            'created_by'   => auth()->id(),
+        ]);
 
         return response()->json([
             'scan_id' => $scan->id,
-            'status'  => 'pending',
+            'status'  => 'scanning',
         ]);
     }
 
-    public function scanProgress(CookieScan $scan)
+    public function scanProgress(CookieScan $scan, AgaresSaasService $saas)
     {
+        if (in_array($scan->status, ['completed', 'failed', 'cancelled'])) {
+            return response()->json([
+                'scan_id'       => $scan->id,
+                'status'        => $scan->status,
+                'error_message' => $scan->error_message,
+            ]);
+        }
+
+        $data = $saas->fetchScan($scan->saas_scan_id);
+
+        if (! $data) {
+            return response()->json(['scan_id' => $scan->id, 'status' => $scan->status]);
+        }
+
+        $saasStatus = data_get($data, 'status', 'pending');
+
+        if ($saasStatus === 'completed') {
+            $this->persistScanResult($scan, $data);
+            $scan->refresh();
+        } elseif ($saasStatus === 'failed') {
+            $scan->update([
+                'status'        => 'failed',
+                'error_message' => data_get($data, 'error_message', 'Scan failed.'),
+            ]);
+        }
+
         return response()->json([
             'scan_id'       => $scan->id,
             'status'        => $scan->status,
             'error_message' => $scan->error_message,
         ]);
+    }
+
+    private function persistScanResult(CookieScan $scan, array $data): void
+    {
+        DB::beginTransaction();
+        try {
+            $scan->update([
+                'status'     => 'completed',
+                'url'        => data_get($data, 'url', $scan->url),
+                'scanned_at' => data_get($data, 'scanned_at') ?? data_get($data, 'scannedAt') ?? now(),
+
+                'total'       => data_get($data, 'stats.total') ?? data_get($data, 'total', 0),
+                'first_party' => data_get($data, 'stats.firstParty') ?? data_get($data, 'stats.first_party') ?? data_get($data, 'first_party', 0),
+                'third_party' => data_get($data, 'stats.thirdParty') ?? data_get($data, 'stats.third_party') ?? data_get($data, 'third_party', 0),
+                'secure'      => data_get($data, 'stats.secure') ?? data_get($data, 'secure', 0),
+                'http_only'   => data_get($data, 'stats.httpOnly') ?? data_get($data, 'stats.http_only') ?? data_get($data, 'http_only', 0),
+
+                'essential'  => data_get($data, 'stats.byType.essential') ?? data_get($data, 'essential', 0),
+                'functional' => data_get($data, 'stats.byType.functional') ?? data_get($data, 'functional', 0),
+                'analytics'  => data_get($data, 'stats.byType.analytics') ?? data_get($data, 'analytics', 0),
+                'marketing'  => data_get($data, 'stats.byType.marketing') ?? data_get($data, 'marketing', 0),
+
+                'privacy_score' => data_get($data, 'privacy_analysis.score') ?? data_get($data, 'privacyAnalysis.score') ?? data_get($data, 'privacy_score'),
+                'privacy_grade' => data_get($data, 'privacy_analysis.grade') ?? data_get($data, 'privacyAnalysis.grade') ?? data_get($data, 'privacy_grade'),
+
+                'requested_domains'   => data_get($data, 'requested_domains') ?? data_get($data, 'requestedDomains'),
+                'third_party_domains' => data_get($data, 'third_party_domains') ?? data_get($data, 'thirdPartyDomains'),
+                'ga_detected'         => data_get($data, 'ga_detected') ?? data_get($data, 'gaDetected'),
+
+                'raw_payload' => $data,
+            ]);
+
+            foreach (data_get($data, 'cookies', []) as $c) {
+                CookieScanCookie::create([
+                    'cookie_scan_id'    => $scan->id,
+                    'name'              => data_get($c, 'name', ''),
+                    'value'             => data_get($c, 'value'),
+                    'domain'            => data_get($c, 'domain', ''),
+                    'path'              => data_get($c, 'path', '/'),
+                    'expires'           => data_get($c, 'expires'),
+                    'expires_timestamp' => data_get($c, 'expiresTimestamp') ?? data_get($c, 'expires_timestamp'),
+                    'size'              => data_get($c, 'size', 0),
+                    'http_only'         => (bool) (data_get($c, 'httpOnly') ?? data_get($c, 'http_only', false)),
+                    'secure'            => (bool) data_get($c, 'secure', false),
+                    'same_site'         => data_get($c, 'sameSite') ?? data_get($c, 'same_site'),
+                    'session'           => (bool) data_get($c, 'session', false),
+                    'type'              => data_get($c, 'type', 'functional'),
+                    'is_first_party'    => (bool) (data_get($c, 'isFirstParty') ?? data_get($c, 'is_first_party', true)),
+                    'description'       => data_get($c, 'description'),
+                ]);
+            }
+
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            Log::error('Cookie scan persist failed', ['scan_id' => $scan->id, 'error' => $e->getMessage()]);
+            $scan->update(['status' => 'failed', 'error_message' => 'Failed to save scan data.']);
+        }
     }
 
     public function cancelScan(CookieScan $scan)
@@ -185,82 +273,6 @@ class CookieController extends Controller
 
         return response()->json(['status' => 'cancelled']);
     }
-
-    // ── Legacy direct scan (kept as fallback when SaaS not configured) ───────
-
-    public function scan(Request $request)
-    {
-        $url    = $request->input('url') ?: config('app.url');
-        $domain = parse_url($url, PHP_URL_HOST) ?: parse_url(config('app.url'), PHP_URL_HOST) ?: 'unknown-domain';
-
-        $api  = rtrim(config('services.cookie_scanner.base', 'https://cookie-scanner.fly.dev'), '/');
-
-        DB::beginTransaction();
-        try {
-            $resp = Http::timeout(120)->post($api . '/api/scan', ['url' => $url]);
-
-            if (!$resp->ok()) {
-                throw new \RuntimeException('Scanner API error: ' . $resp->status() . ' ' . $resp->body());
-            }
-
-            $data = $resp->json();
-
-            $scan = CookieScan::create([
-                'status'      => 'completed',
-                'domain'      => $domain,
-                'url'         => $data['url'] ?? $url,
-                'scanned_at'  => $data['scannedAt'] ?? now(),
-
-                'total'       => data_get($data, 'stats.total', 0),
-                'first_party' => data_get($data, 'stats.firstParty', 0),
-                'third_party' => data_get($data, 'stats.thirdParty', 0),
-                'secure'      => data_get($data, 'stats.secure', 0),
-                'http_only'   => data_get($data, 'stats.httpOnly', 0),
-
-                'essential'  => data_get($data, 'stats.byType.essential', 0),
-                'functional' => data_get($data, 'stats.byType.functional', 0),
-                'analytics'  => data_get($data, 'stats.byType.analytics', 0),
-                'marketing'  => data_get($data, 'stats.byType.marketing', 0),
-
-                'privacy_score' => data_get($data, 'privacyAnalysis.score'),
-                'privacy_grade' => data_get($data, 'privacyAnalysis.grade'),
-
-                'requested_domains'  => $data['requestedDomains'] ?? null,
-                'third_party_domains'=> $data['thirdPartyDomains'] ?? null,
-                'ga_detected'        => $data['gaDetected'] ?? null,
-                'raw_payload'        => $data,
-                'created_by'         => auth()->id(),
-            ]);
-
-            foreach ($data['cookies'] ?? [] as $c) {
-                CookieScanCookie::create([
-                    'cookie_scan_id'  => $scan->id,
-                    'name'            => $c['name'] ?? '',
-                    'value'           => $c['value'] ?? null,
-                    'domain'          => $c['domain'] ?? '',
-                    'path'            => $c['path'] ?? '/',
-                    'expires'         => $c['expires'] ?? null,
-                    'expires_timestamp' => $c['expiresTimestamp'] ?? null,
-                    'size'            => $c['size'] ?? 0,
-                    'http_only'       => (bool)($c['httpOnly'] ?? false),
-                    'secure'          => (bool)($c['secure'] ?? false),
-                    'same_site'       => $c['sameSite'] ?? null,
-                    'session'         => (bool)($c['session'] ?? false),
-                    'type'            => $c['type'] ?? 'functional',
-                    'is_first_party'  => (bool)($c['isFirstParty'] ?? true),
-                    'description'     => $c['description'] ?? null,
-                ]);
-            }
-
-            DB::commit();
-            return redirect()->route('admin.cookies.scans.show', $scan)->with('success', __('Scan saved.'));
-        } catch (\Throwable $e) {
-            DB::rollBack();
-            return back()->with('error', $e->getMessage());
-        }
-    }
-
-    // ─────────────────────────────────────────────────────────────────────────
 
     private function upsertSetting(string $key, string $value): void
     {

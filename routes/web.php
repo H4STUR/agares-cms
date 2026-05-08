@@ -266,7 +266,6 @@ Route::middleware(['auth', 'verified', 'can:view admin panel'])->prefix('admin')
      * cookies
      * ========================= */
     Route::get('/cookies', [CookieController::class, 'index'])->name('cookies');
-    Route::post('/cookies/scan', [CookieController::class, 'scan'])->name('cookies.scan');
 
     Route::get('/cookies/scans', [CookieController::class, 'scans'])->name('cookies.scans');
     Route::get('/cookies/scans/{scan}', [CookieController::class, 'showScan'])->name('cookies.scans.show');

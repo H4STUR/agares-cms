@@ -51,6 +51,29 @@ php artisan api-key:create "My Key" --abilities="content:read" --abilities="prev
 php artisan api-key:create "Full Access" --abilities="*" --site_id=1 --expires=2026-12-31
 ```
 
+## Deployment
+
+GitHub Actions workflow at `.github/workflows/deploy.yml`. Triggered on push to branch-specific branches — each branch deploys to its own domain on the Cyberfolks server (`/home/agares/domains/<domain>/public_html/`).
+
+| Branch | Domain | Server path |
+|--------|--------|-------------|
+| `demo` | `demo.agares.co.uk` | `/home/agares/domains/demo.agares.co.uk/public_html/` |
+
+**What the workflow does:**
+1. Runs `npm ci && npm run build` in CI (both `vendor/` and `public/build/` are gitignored)
+2. Packages source via `rsync`, excluding `.env`, `vendor`, `node_modules`, `public/uploads`, `storage/logs`, `storage/framework/{cache,sessions,views}`
+3. Deploys via SFTP (port 222) using `FTP_SERVER` / `FTP_USERNAME` / `FTP_PASSWORD` secrets
+4. SSH post-deploy: `php84 artisan optimize:clear` → `migrate --force` → `config:cache` → `route:cache` → `view:cache`
+
+**Protected paths (never touched by deploy):**
+- `public/uploads/` — all user-uploaded files (media, galleries, input instance files, product images). Controllers write here via `public_path()` directly, not the Storage facade.
+- `.env` — must exist on the server manually before first deploy
+- `vendor/` — must be installed manually on the server (or uncomment the Composer line in the workflow once Composer is available at `/home/agares/bin/composer`)
+
+**Adding a new environment:** add the branch to `on.push.branches` and add a matching `case` block in the "Resolve deployment target" step, or duplicate the workflow file.
+
+**Server PHP binary:** `php84` (PHP 8.4, satisfies the 8.3 requirement).
+
 ## Architecture
 
 ### Content Hierarchy
