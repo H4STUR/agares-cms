@@ -253,7 +253,6 @@ Route::middleware(['auth', 'verified', 'can:view admin panel'])->prefix('admin')
     Route::delete('/permissions/{permission}', [PermissionController::class, 'delete'])->name('permissions.delete');
     Route::post('/roles/create', [PermissionController::class, 'createRole'])->name('roles.create');
     Route::delete('/roles/{role}', [PermissionController::class, 'deleteRole'])->name('roles.delete');
-    Route::post('/permissions/roles/{role}', [PermissionController::class, 'updateRole'])->name('permissions.roles.update');
 
     /* =========================
      * robots and sitemap

@@ -16,7 +16,7 @@ class CookieController extends Controller
 {
     private function domain(): string
     {
-        return parse_url(config('app.url'), PHP_URL_HOST) ?: 'unknown-domain';
+        return request()->getHost();
     }
 
     public function index()

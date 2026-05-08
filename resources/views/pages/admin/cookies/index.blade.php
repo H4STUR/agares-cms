@@ -54,7 +54,7 @@
                                 type="url"
                                 name="agares_saas_url"
                                 class="form-control @error('agares_saas_url') is-invalid @enderror"
-                                placeholder="https://saas.agares.app"
+                                placeholder="https://api.agares.co.uk"
                                 value="{{ old('agares_saas_url', \App\Models\Setting::str('agares_saas_url')) }}"
                                 autocomplete="off"
                             >
