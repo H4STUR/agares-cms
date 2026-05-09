@@ -12,7 +12,7 @@ class CookieConsentController extends Controller
 {
     public function show()
     {
-        $domain = parse_url(config('app.url'), PHP_URL_HOST) ?: request()->getHost();
+        $domain = request()->getHost();
 
         $settings = CookieConsentSetting::where('domain', $domain)->first();
 
@@ -59,7 +59,7 @@ class CookieConsentController extends Controller
 
     public function catalog()
     {
-        $domain = parse_url(config('app.url'), PHP_URL_HOST) ?: request()->getHost();
+        $domain = request()->getHost();
 
         $scan = CookieScan::where('domain', $domain)
             ->where('status', 'completed')
