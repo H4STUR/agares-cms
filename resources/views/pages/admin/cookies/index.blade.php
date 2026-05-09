@@ -339,28 +339,28 @@
 
                         <div class="row g-3 mt-2">
                             <div class="col-md-3">
-                                <div class="p-3 rounded-4 border bg-white">
+                                <div class="p-3 rounded-4 border">
                                     <div class="text-muted small">{{ __('Total cookies') }}</div>
                                     <div class="fs-4 fw-bold">{{ $lastScan->total }}</div>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
-                                <div class="p-3 rounded-4 border bg-white">
+                                <div class="p-3 rounded-4 border">
                                     <div class="text-muted small">{{ __('1st party') }}</div>
                                     <div class="fs-4 fw-bold">{{ $lastScan->first_party }}</div>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
-                                <div class="p-3 rounded-4 border bg-white">
+                                <div class="p-3 rounded-4 border">
                                     <div class="text-muted small">{{ __('3rd party') }}</div>
                                     <div class="fs-4 fw-bold">{{ $lastScan->third_party }}</div>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
-                                <div class="p-3 rounded-4 border bg-white">
+                                <div class="p-3 rounded-4 border">
                                     <div class="text-muted small">{{ __('Privacy grade') }}</div>
                                     <div class="fs-4 fw-bold">
                                         {{ $lastScan->privacy_grade ?? '-' }}
@@ -370,7 +370,7 @@
                             </div>
 
                             <div class="col-12">
-                                <div class="p-3 rounded-4 border bg-white">
+                                <div class="p-3 rounded-4 border">
                                     <div class="text-muted small mb-2">{{ __('By category') }}</div>
                                     <div class="d-flex flex-wrap gap-2">
                                         <span class="badge rounded-pill bg-success">

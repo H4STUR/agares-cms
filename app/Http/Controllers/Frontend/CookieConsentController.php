@@ -62,6 +62,7 @@ class CookieConsentController extends Controller
         $domain = parse_url(config('app.url'), PHP_URL_HOST) ?: request()->getHost();
 
         $scan = CookieScan::where('domain', $domain)
+            ->where('status', 'completed')
             ->latest('scanned_at')
             ->with('cookies')
             ->first();
