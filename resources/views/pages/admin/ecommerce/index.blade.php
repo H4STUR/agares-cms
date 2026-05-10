@@ -148,7 +148,7 @@
           @else
             <div class="table-responsive">
               <table class="table align-middle mb-0">
-                <thead class="table-light">
+                <thead class="table">
                   <tr>
                     <th class="ps-3">{{ __('Order') }}</th>
                     <th>{{ __('Status') }}</th>

@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\CookieConsentSetting;
 use App\Models\CookieScan;
-use Illuminate\Support\Str;
+use App\Models\Setting;
 
 class CookieConsentController extends Controller
 {
@@ -26,8 +26,9 @@ class CookieConsentController extends Controller
             'block_until_choice' => $settings->block_until_choice,
             'remember_consent'   => $settings->remember_consent,
 
-            'title'   => $settings->title,
-            'message' => $settings->message,
+            'title'    => $settings->title,
+            'message'  => $settings->message,
+            'logo_url' => Setting::get('logo_url'),
 
             'buttons' => [
                 'accept_all' => $settings->btn_accept_all,
@@ -84,9 +85,11 @@ class CookieConsentController extends Controller
             ->map(function ($items) {
                 return $items->map(function ($c) {
                     return [
-                        'name' => $c->name,
-                        'domain' => $c->domain,
+                        'name'        => $c->name,
+                        'domain'      => $c->domain,
                         'description' => $c->description,
+                        'expires'     => $c->expires,
+                        'session'     => $c->session,
                     ];
                 })->values();
             });

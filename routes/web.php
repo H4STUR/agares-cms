@@ -363,9 +363,9 @@ Route::middleware(['maintenance'])->group(function () {
 
     //form
     Route::post('/forms/{form}/submit', [App\Http\Controllers\Frontend\FormController::class, 'submit'])->name('forms.submit');
-    // cookie consent form
-    Route::get('/api/cookies/consent', [CookieConsentController::class, 'show']);
-    Route::get('/api/cookies/catalog', [CookieConsentController::class, 'catalog']);
+    // cookie consent — paths avoid "cookie" keyword so Brave/EasyList filters don't block them
+    Route::get('/api/cc/cfg', [CookieConsentController::class, 'show']);
+    Route::get('/api/cc/cat', [CookieConsentController::class, 'catalog']);
 
 });
 

@@ -42,7 +42,7 @@
                 @else
                     <div class="table-responsive">
                         <table class="table align-middle mb-0">
-                            <thead class="table-light">
+                            <thead class="table">
                                 <tr>
                                     <th style="width: 190px;">{{ __('Date') }}</th>
                                     <th>{{ __('URL') }}</th>

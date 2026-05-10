@@ -87,6 +87,14 @@
     `;
   }
 
+  function formatExpiry(c) {
+    if (c.session) return 'Session';
+    if (!c.expires) return '';
+    const d = new Date(c.expires);
+    if (!isNaN(d.getTime())) return d.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+    return c.expires;
+  }
+
   function cookieListHtml(items) {
     if (!items || !items.length) {
       return `<div class="cc-muted">No cookies detected in this category (last scan).</div>`;
@@ -94,13 +102,15 @@
 
     return `
       <div class="cc-cookie-list">
-        ${items.map(c => `
+        ${items.map(c => {
+          const expiry = formatExpiry(c);
+          return `
           <div class="cc-cookie-item">
             <div class="cc-cookie-name"><code>${esc(c.name)}</code></div>
-            <div class="cc-cookie-meta">${esc(c.domain || '')}</div>
+            <div class="cc-cookie-meta">${esc(c.domain || '')}${expiry ? ` · <span class="cc-cookie-expires">${esc(expiry)}</span>` : ''}</div>
             <div class="cc-cookie-desc">${esc(c.description || 'No description')}</div>
-          </div>
-        `).join('')}
+          </div>`;
+        }).join('')}
       </div>
     `;
   }
@@ -186,8 +196,8 @@
 
   function openManageModalOnly() {
     Promise.all([
-      fetch('/api/cookies/consent').then(r => r.json()),
-      fetch('/api/cookies/catalog').then(r => r.json()).catch(() => ({ categories: {} })),
+      fetch('/api/cc/cfg').then(r => r.json()),
+      fetch('/api/cc/cat').then(r => r.json()).catch(() => ({ categories: {} })),
     ]).then(([cfg, catalog]) => {
       if (!cfg?.enabled) return;
 
@@ -242,8 +252,8 @@
 
   // Initial boot
   Promise.all([
-    fetch('/api/cookies/consent').then(r => r.json()),
-    fetch('/api/cookies/catalog').then(r => r.json()).catch(() => ({ categories: {} })),
+    fetch('/api/cc/cfg').then(r => r.json()),
+    fetch('/api/cc/cat').then(r => r.json()).catch(() => ({ categories: {} })),
   ]).then(([cfg, catalog]) => {
     if (!cfg?.enabled) return;
 
@@ -263,6 +273,7 @@
 
     root.innerHTML = `
       <div id="cookie-banner" class="cc-banner" role="dialog" aria-label="Cookie consent">
+        ${cfg.logo_url ? `<div class="cc-banner-logo"><img src="${esc(cfg.logo_url)}" alt="Site logo"></div>` : ''}
         <div class="cc-banner-title">${esc(cfg.title)}</div>
         ${cfg.message ? `<div class="cc-banner-msg">${cfg.message}</div>` : ''}
 

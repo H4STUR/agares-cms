@@ -202,7 +202,11 @@
 }
 .cc-cookie-name{ font-weight:700; }
 .cc-cookie-meta{ font-size:12px; opacity:.7; margin-top:2px; }
+.cc-cookie-expires{ opacity:.85; }
 .cc-cookie-desc{ font-size:12px; opacity:.85; margin-top:6px; line-height:1.4; }
+
+.cc-banner-logo{ margin-bottom:10px; }
+.cc-banner-logo img{ height:32px; width:auto; object-fit:contain; display:block; }
 
 .cc-fab{
   position:fixed;
