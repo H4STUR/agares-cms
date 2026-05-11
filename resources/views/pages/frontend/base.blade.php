@@ -132,9 +132,10 @@
   {{-- theme --}}
   <script src="{{ asset('assets/frontend/theme/assets/js/main.js') }}"></script>
 
-  {{-- cookie consent form --}}
-  <div id="cookie-consent-root"></div>
-  <script src="{{ asset('assets/js/cc-ui.js') }}?v={{ config('app.version', '1') }}"></script>
+  {{-- privacy preferences (neutral selectors so Brave/EasyList don't hide them) --}}
+  <link rel="stylesheet" href="{{ asset('assets/css/site-prefs.css') }}?v={{ config('app.version', '1') }}">
+  <div id="site-prefs-root"></div>
+  <script src="{{ asset('assets/js/site-prefs.js') }}?v={{ config('app.version', '1') }}"></script>
 
 
   @stack('scripts')

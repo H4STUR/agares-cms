@@ -309,8 +309,9 @@
     })();
 </script>
 
-<div id="cookie-consent-root"></div>
-<script src="{{ asset('assets/js/cc-ui.js') }}?v={{ config('app.version', '1') }}"></script>
+<link rel="stylesheet" href="{{ asset('assets/css/site-prefs.css') }}?v={{ config('app.version', '1') }}">
+<div id="site-prefs-root"></div>
+<script src="{{ asset('assets/js/site-prefs.js') }}?v={{ config('app.version', '1') }}"></script>
 @stack('scripts')
 {!! $customScript ?? '' !!}
 </body>
