@@ -49,7 +49,7 @@
                                     <th class="text-center">{{ __('Total') }}</th>
                                     <th class="text-center">{{ __('1st') }}</th>
                                     <th class="text-center">{{ __('3rd') }}</th>
-                                    <th class="text-center">{{ __('Grade') }}</th>
+                                    {{-- <th class="text-center">{{ __('Grade') }}</th> --}}
                                     <th style="width: 120px;" class="text-end">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -82,14 +82,14 @@
                                         <td class="text-center">{{ $scan->first_party }}</td>
                                         <td class="text-center">{{ $scan->third_party }}</td>
 
-                                        <td class="text-center">
+                                        {{-- <td class="text-center">
                                             <span class="badge rounded-pill {{ ($scan->privacy_grade ?? '') === 'A' ? 'bg-success' : 'bg-secondary' }}">
                                                 {{ $scan->privacy_grade ?? '-' }}
                                             </span>
                                             <div class="text-muted small">
                                                 {{ $scan->privacy_score ?? '-' }}/100
                                             </div>
-                                        </td>
+                                        </td> --}}
 
                                         <td class="text-end">
                                             <a href="{{ route('admin.cookies.scans.show', $scan->id) }}" class="btn btn-sm btn-outline-secondary">

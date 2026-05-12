@@ -40,7 +40,7 @@
 
         {{-- Summary --}}
         <div class="row g-3 mb-3">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
 
@@ -55,25 +55,25 @@
                         </div>
 
                         <div class="row g-3 mt-2">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="p-3 rounded-4 border bg-body">
                                     <div class="text-muted small">{{ __('Total') }}</div>
                                     <div class="fs-4 fw-bold">{{ $scan->total }}</div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="p-3 rounded-4 border bg-body">
                                     <div class="text-muted small">{{ __('1st Party') }}</div>
                                     <div class="fs-4 fw-bold">{{ $scan->first_party }}</div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="p-3 rounded-4 border bg-body">
                                     <div class="text-muted small">{{ __('3rd Party') }}</div>
                                     <div class="fs-4 fw-bold">{{ $scan->third_party }}</div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            {{-- <div class="col-md-3">
                                 <div class="p-3 rounded-4 border bg-body">
                                     <div class="text-muted small">{{ __('Grade') }}</div>
                                     <div class="fs-4 fw-bold">
@@ -81,7 +81,7 @@
                                         <span class="text-muted fs-6">({{ $scan->privacy_score ?? '-' }}/100)</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         @if(!empty($scan->requested_domains))
@@ -99,7 +99,7 @@
             </div>
 
             {{-- Privacy Issues --}}
-            <div class="col-lg-4">
+            {{-- <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="fw-semibold mb-2">{{ __('Privacy analysis') }}</div>
@@ -137,7 +137,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         {{-- Filters --}}

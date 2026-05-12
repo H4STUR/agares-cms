@@ -338,28 +338,28 @@
                         </div>
 
                         <div class="row g-3 mt-2">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="p-3 rounded-4 border">
                                     <div class="text-muted small">{{ __('Total cookies') }}</div>
                                     <div class="fs-4 fw-bold">{{ $lastScan->total }}</div>
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="p-3 rounded-4 border">
                                     <div class="text-muted small">{{ __('1st party') }}</div>
                                     <div class="fs-4 fw-bold">{{ $lastScan->first_party }}</div>
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="p-3 rounded-4 border">
                                     <div class="text-muted small">{{ __('3rd party') }}</div>
                                     <div class="fs-4 fw-bold">{{ $lastScan->third_party }}</div>
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            {{-- <div class="col-md-3">
                                 <div class="p-3 rounded-4 border">
                                     <div class="text-muted small">{{ __('Privacy grade') }}</div>
                                     <div class="fs-4 fw-bold">
@@ -367,7 +367,7 @@
                                         <span class="text-muted fs-6">({{ $lastScan->privacy_score ?? '-' }}/100)</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-12">
                                 <div class="p-3 rounded-4 border">
