@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\Ga4AnalyticsService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class DashboardController extends Controller
+class DashboardController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:manage dashboard', only: ['index', 'realtimeUsers']),
+            new Middleware('can:view API', only: ['documentationAPI']),
+        ];
+    }
+
     public function index(Ga4AnalyticsService $ga4)
     {
 

@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Admin\Ecommerce;
 use App\Http\Controllers\Controller;
 use App\Models\Ecommerce\Coupon;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class CouponController extends Controller
+class CouponController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view ecommerce', only: ['index', 'show']),
+            new Middleware('can:manage ecommerce', only: ['create', 'store', 'edit', 'update', 'destroy', 'toggleEnabled']),
+        ];
+    }
+
     public function index()
     {
         $coupons = Coupon::withCount('redemptions')->latest()->paginate(25);

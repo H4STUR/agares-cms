@@ -9,9 +9,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class MediaController extends Controller
+class MediaController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view media', only: ['index']),
+            new Middleware('can:manage media', only: ['update', 'upload', 'rename', 'delete']),
+        ];
+    }
+
     private const ALLOWED_EXTENSIONS = [
         'jpg', 'jpeg', 'png', 'gif', 'webp', 'svg',
         'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx',

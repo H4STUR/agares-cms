@@ -6,9 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Ecommerce\Product;
 use Illuminate\Http\Request;
 use App\Models\Ecommerce\ProductVariant;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ProductVariantController extends Controller
+class ProductVariantController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:manage ecommerce', only: ['store', 'edit', 'update', 'destroy']),
+        ];
+    }
+
 
     public function store(Request $request, Product $product)
     {

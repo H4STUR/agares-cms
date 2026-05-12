@@ -11,9 +11,18 @@ use App\Models\InputInstance;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class InputTemplateController extends Controller
+class InputTemplateController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:manage sites', only: ['applyToOwner']),
+        ];
+    }
+
     protected function resolveOwner(string $type, int $id)
     {
         return match ($type) {

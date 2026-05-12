@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -20,6 +21,10 @@ class AuthenticationTest extends TestCase
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
         $user = User::factory()->create();
+        // Post-login redirect goes to /admin only if the user has 'view admin panel'.
+        $user->givePermissionTo(
+            Permission::firstOrCreate(['name' => 'view admin panel', 'guard_name' => 'web'])
+        );
 
         $response = $this->post('/login', [
             'input_type' => $user->email,

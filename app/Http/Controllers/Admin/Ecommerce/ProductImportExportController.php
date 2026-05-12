@@ -6,10 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Ecommerce\Product;
 use App\Services\Ecommerce\ProductImportExportService;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ProductImportExportController extends Controller
+class ProductImportExportController extends Controller implements HasMiddleware
 {
     public function __construct(private ProductImportExportService $service) {}
+
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:manage ecommerce', only: [
+                'export', 'exportSelected', 'importForm', 'importProcess', 'template',
+            ]),
+        ];
+    }
 
     /**
      * Export all products, optionally filtered by current tab/search (mirrors index query).

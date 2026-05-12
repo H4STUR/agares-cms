@@ -46,8 +46,16 @@ trait WithEcommerce
     {
         $user = User::factory()->create(['email_verified_at' => now()]);
 
-        $permission = Permission::firstOrCreate(['name' => 'view admin panel', 'guard_name' => 'web']);
-        $user->givePermissionTo($permission);
+        // Grant all admin permissions needed for ecommerce / order management tests.
+        foreach ([
+            'view admin panel',
+            'manage dashboard',
+            'view ecommerce', 'manage ecommerce',
+            'view orders', 'manage orders',
+        ] as $name) {
+            $permission = Permission::firstOrCreate(['name' => $name, 'guard_name' => 'web']);
+            $user->givePermissionTo($permission);
+        }
 
         return $user;
     }

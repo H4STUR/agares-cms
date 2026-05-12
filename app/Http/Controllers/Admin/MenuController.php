@@ -7,9 +7,19 @@ use App\Models\Menu;
 use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class MenuController extends Controller
+class MenuController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view menus', only: ['index']),
+            new Middleware('can:manage menus', only: ['store', 'destroy']),
+        ];
+    }
+
     public function index()
     {
         $menus = Menu::with(['sites' => function ($q) {

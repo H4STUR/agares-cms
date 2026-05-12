@@ -11,9 +11,18 @@ use App\Models\Ecommerce\ShippingMethod;
 use App\Models\Ecommerce\Coupon;
 use App\Models\Ecommerce\TaxRule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class EcommerceDashboardController extends Controller
+class EcommerceDashboardController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view ecommerce', only: ['index']),
+        ];
+    }
+
     public function index()
     {
         $orderStatusCounts = Order::query()

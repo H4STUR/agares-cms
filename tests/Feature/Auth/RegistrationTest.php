@@ -32,6 +32,9 @@ class RegistrationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('admin.dashboard', absolute: false));
+        // New self-registered users do not have 'view admin panel', so they land on their profile,
+        // not the admin dashboard. See RegisteredUserController::store().
+        $user = \App\Models\User::where('email', 'test@example.com')->first();
+        $response->assertRedirect('/user/'.$user->id);
     }
 }

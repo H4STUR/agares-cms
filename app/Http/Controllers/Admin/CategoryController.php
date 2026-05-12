@@ -14,9 +14,22 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class CategoryController extends Controller
+class CategoryController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view categories', only: ['edit']),
+            new Middleware('can:manage categories', only: [
+                'create', 'store', 'update', 'delete',
+                'storeArticleTemplateItem', 'deleteArticleTemplateItem', 'reorderArticleTemplateItems',
+            ]),
+        ];
+    }
+
     public function create(Site $site)
     {
         return view('pages.admin.categories.create', compact('site'));

@@ -18,11 +18,27 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 
 
-class InputInstanceController extends Controller
+class InputInstanceController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        // Coarse route-level gate. Site-scoped check still runs in authorizeInstance().
+        return [
+            new Middleware('can:manage sites', only: [
+                'store', 'delete', 'move', 'bulkUpdate', 'applyDefaults',
+                'uploadFiles', 'detachFile', 'reorderFiles',
+                'updateValue', 'replaceImage',
+                'faqSaveSettings', 'faqItemStore', 'faqItemsBulkUpdate',
+                'faqItemMove', 'faqItemDestroy',
+            ]),
+        ];
+    }
+
     /**
      * Resolve owner model from route param.
      * type: site|category|article
@@ -58,7 +74,8 @@ class InputInstanceController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->hasRole('super-admin')) {
+        // Owner bypasses everything (Gate::before also handles this globally).
+        if ($user->hasRole('owner')) {
             return;
         }
 

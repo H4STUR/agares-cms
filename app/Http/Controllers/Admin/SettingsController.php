@@ -12,9 +12,22 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class SettingsController extends Controller
+class SettingsController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view settings', only: ['index']),
+            new Middleware('can:manage settings', only: [
+                'update', 'deleteSetting', 'storeCustom', 'clearCache',
+                'saveRobots', 'generateSitemap',
+            ]),
+        ];
+    }
+
     public function index()
     {
         $settings = Setting::all();

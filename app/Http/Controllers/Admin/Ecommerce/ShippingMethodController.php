@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Admin\Ecommerce;
 use App\Http\Controllers\Controller;
 use App\Models\Ecommerce\ShippingMethod;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ShippingMethodController extends Controller
+class ShippingMethodController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view ecommerce', only: ['index', 'show']),
+            new Middleware('can:manage ecommerce', only: ['create', 'store', 'edit', 'update', 'destroy', 'toggleEnabled']),
+        ];
+    }
+
     public function index()
     {
         $methods = ShippingMethod::latest()->paginate(25);

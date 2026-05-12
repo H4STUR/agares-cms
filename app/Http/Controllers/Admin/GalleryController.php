@@ -12,10 +12,21 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 
-class GalleryController extends Controller
+class GalleryController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:manage sites', only: [
+                'ensureForInputInstance', 'uploadToInputInstance', 'reorder', 'removeFromGallery',
+            ]),
+        ];
+    }
+
     /**
      * Ensure the input instance has a gallery_id assigned.
      * POST /admin/input-instances/{inputInstance}/gallery/ensure

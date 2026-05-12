@@ -14,9 +14,22 @@ use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ArticleController extends Controller
+class ArticleController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view articles', only: ['edit']),
+            new Middleware('can:manage articles', only: [
+                'create', 'store', 'update', 'delete', 'reorder',
+                'restore', 'forceDelete', 'duplicate',
+            ]),
+        ];
+    }
+
     public function create(Site $site)
     {
         // for create view (dual list)

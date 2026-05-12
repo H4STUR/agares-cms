@@ -47,10 +47,10 @@
                     {{-- Dashboard --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.dashboard') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.dashboard') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.dashboard')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                            :title="auth()->user()->can('manage ecommerce') ? '' : __('You don\'t have permission to view this page')"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :title="auth()->user()->can('view ecommerce') ? '' : __('You don\'t have permission to view this page')"
                         >
                             <i class="material-icons-outlined">dashboard</i>
                             <span>Dashboard</span>
@@ -60,9 +60,9 @@
                     {{-- Products --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.products.index') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.products.index') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.products.*')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
                         >
                             <i class="material-icons-outlined">inventory_2</i>
                             <span>Products</span>
@@ -72,9 +72,9 @@
                     {{-- Categories --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.categories.index') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.categories.index') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.categories.*')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
                         >
                             <i class="material-icons-outlined">category</i>
                             <span>Categories</span>
@@ -84,9 +84,9 @@
                     {{-- Tags --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.tags.index') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.tags.index') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.tags.*')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
                         >
                             <i class="material-icons-outlined">local_offer</i>
                             <span>Tags</span>
@@ -96,9 +96,9 @@
                     {{-- Orders --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.orders.index') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.orders.index') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.orders.*')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
                         >
                             <i class="material-icons-outlined">shopping_cart</i>
                             <span>Orders</span>
@@ -108,9 +108,9 @@
                     {{-- Coupons --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.coupons.index') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.coupons.index') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.coupons.*')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
                         >
                             <i class="material-icons-outlined">confirmation_number</i>
                             <span>Coupons</span>
@@ -120,9 +120,9 @@
                     {{-- Shipping Methods --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.shipping-methods.index') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.shipping-methods.index') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.shipping-methods.*')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
                         >
                             <i class="material-icons-outlined">local_shipping</i>
                             <span>Shipping</span>
@@ -132,9 +132,9 @@
                     {{-- Tax Rules --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.tax-rules.index') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.tax-rules.index') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.tax-rules.*')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
                         >
                             <i class="material-icons-outlined">percent</i>
                             <span>Tax Rules</span>
@@ -144,9 +144,9 @@
                     {{-- Payments --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.payment-providers.index') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.payment-providers.index') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.payment-providers.*')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
                         >
                             <i class="material-icons-outlined">credit_card</i>
                             <span>Payments</span>
@@ -156,9 +156,9 @@
                     {{-- Settings --}}
                     <li>
                         <x-sidebar-nav-link
-                            :href="auth()->user()->can('manage ecommerce') ? route('admin.ecommerce.settings.index') : 'javascript:void(0);'"
+                            :href="auth()->user()->can('view ecommerce') ? route('admin.ecommerce.settings.index') : 'javascript:void(0);'"
                             :active="request()->routeIs('admin.ecommerce.settings.*')"
-                            :class="!auth()->user()->can('manage ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :class="!auth()->user()->can('view ecommerce') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
                         >
                             <i class="material-icons-outlined">settings</i>
                             <span>Settings</span>
@@ -181,10 +181,10 @@
                 <ul>
                     <li>
                     <x-sidebar-nav-link
-                        :href="auth()->user()->can('manage forum') ? route('admin.forum') : 'javascript:void(0);'"
+                        :href="auth()->user()->can('view forum') ? route('admin.forum') : 'javascript:void(0);'"
                         :active="request()->routeIs('admin.forum')"
-                        :class="!auth()->user()->can('manage forum') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                        :title="auth()->user()->can('manage forum') ? '' : __('You don\'t have permission to view this page')"
+                        :class="!auth()->user()->can('view forum') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                        :title="auth()->user()->can('view forum') ? '' : __('You don\'t have permission to view this page')"
                     >
                         <i class="material-icons-outlined">arrow_right</i>
                         <span>Basic</span>
@@ -193,10 +193,10 @@
 
                     <li>
                     <x-sidebar-nav-link
-                        :href="auth()->user()->can('manage forum') ? route('admin.forum') : 'javascript:void(0);'"
+                        :href="auth()->user()->can('view forum') ? route('admin.forum') : 'javascript:void(0);'"
                         :active="request()->routeIs('admin.forum')"
-                        :class="!auth()->user()->can('manage forum') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                        :title="auth()->user()->can('manage forum') ? '' : __('You don\'t have permission to view this page')"
+                        :class="!auth()->user()->can('view forum') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                        :title="auth()->user()->can('view forum') ? '' : __('You don\'t have permission to view this page')"
                     >
                         <i class="material-icons-outlined">arrow_right</i>
                         <span>Advance</span>
@@ -205,10 +205,10 @@
 
                     <li>
                     <x-sidebar-nav-link
-                        :href="auth()->user()->can('manage forum') ? route('admin.forum') : 'javascript:void(0);'"
+                        :href="auth()->user()->can('view forum') ? route('admin.forum') : 'javascript:void(0);'"
                         :active="request()->routeIs('admin.forum')"
-                        :class="!auth()->user()->can('manage forum') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                        :title="auth()->user()->can('manage forum') ? '' : __('You don\'t have permission to view this page')"
+                        :class="!auth()->user()->can('view forum') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                        :title="auth()->user()->can('view forum') ? '' : __('You don\'t have permission to view this page')"
                     >
                         <i class="material-icons-outlined">settings</i>
                         <span>Settings</span>
@@ -223,10 +223,10 @@
 
         <li>
             <x-sidebar-nav-link
-                :href="auth()->user()->can('manage sites') ? route('admin.sites') : 'javascript:void(0);'"
+                :href="auth()->user()->can('view sites') ? route('admin.sites') : 'javascript:void(0);'"
                 :active="request()->routeIs('admin.sites*')"
-                :class="!auth()->user()->can('manage sites') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                :title="auth()->user()->can('manage sites') ? '' : __('You don\'t have permission to view this page')"
+                :class="!auth()->user()->can('view sites') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                :title="auth()->user()->can('view sites') ? '' : __('You don\'t have permission to view this page')"
             >
                 <i class="fadeIn animated bx bx-window-alt" style="font-size: 24px;"></i>
                 <div class="menu-title">{{ __('Sites') }}</div>
@@ -235,10 +235,10 @@
 
         <li>
           <x-sidebar-nav-link
-              :href="auth()->user()->can('manage menus') ? route('admin.menus') : 'javascript:void(0);'"
+              :href="auth()->user()->can('view menus') ? route('admin.menus') : 'javascript:void(0);'"
               :active="request()->routeIs('admin.menus*')"
-              :class="!auth()->user()->can('manage menus') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-              :title="auth()->user()->can('manage menus') ? '' : __('You don\'t have permission to view this page')"
+              :class="!auth()->user()->can('view menus') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+              :title="auth()->user()->can('view menus') ? '' : __('You don\'t have permission to view this page')"
           >
               <div class="parent-icon"><i class="material-icons-outlined">menu</i></div>
               <div class="menu-title">{{ __('Menus') }}</div>
@@ -247,10 +247,10 @@
 
         <li>
           <x-sidebar-nav-link
-              :href="auth()->user()->can('manage media') ? route('admin.media') : 'javascript:void(0);'"
+              :href="auth()->user()->can('view media') ? route('admin.media') : 'javascript:void(0);'"
               :active="request()->routeIs('admin.media*')"
-              :class="!auth()->user()->can('manage media') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-              :title="auth()->user()->can('manage media') ? '' : __('You don\'t have permission to view this page')"
+              :class="!auth()->user()->can('view media') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+              :title="auth()->user()->can('view media') ? '' : __('You don\'t have permission to view this page')"
           >
               <div class="parent-icon"><i class="material-icons-outlined">collections</i></div>
               <div class="menu-title">{{ __('Media') }}</div>
@@ -261,10 +261,10 @@
 
         <li>
             <x-sidebar-nav-link
-                :href="auth()->user()->can('manage users') ? route('admin.users') : 'javascript:void(0);'"
+                :href="auth()->user()->can('view users') ? route('admin.users') : 'javascript:void(0);'"
                 :active="request()->routeIs('admin.users*')"
-                :class="!auth()->user()->can('manage users') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                :title="auth()->user()->can('manage users') ? '' : __('You don\'t have permission to view this page')"
+                :class="!auth()->user()->can('view users') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                :title="auth()->user()->can('view users') ? '' : __('You don\'t have permission to view this page')"
             >
                 <div class="parent-icon"><i class="material-icons-outlined">people</i></div>
                 <div class="menu-title">{{ __('Users') }}</div>
@@ -273,10 +273,10 @@
     
         <li>
             <x-sidebar-nav-link
-                :href="auth()->user()->can('manage permissions') ? route('admin.permissions') : 'javascript:void(0);'"
+                :href="auth()->user()->can('view permissions') ? route('admin.permissions') : 'javascript:void(0);'"
                 :active="request()->routeIs('admin.permissions*')"
-                :class="!auth()->user()->can('manage permissions') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                :title="auth()->user()->can('manage permissions') ? '' : __('You don\'t have permission to view this page')"
+                :class="!auth()->user()->can('view permissions') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                :title="auth()->user()->can('view permissions') ? '' : __('You don\'t have permission to view this page')"
             >
                 <div class="parent-icon"><i class="material-icons-outlined">vpn_key</i></div>
                 <div class="menu-title">{{ __('Permissions') }}</div>
@@ -287,10 +287,10 @@
 
         <li>
           <x-sidebar-nav-link
-              :href="auth()->user()->can('manage custom') ? route('admin.custom') : 'javascript:void(0);'"
+              :href="auth()->user()->can('view custom') ? route('admin.custom') : 'javascript:void(0);'"
               :active="request()->routeIs('admin.custom*')"
-              :class="!auth()->user()->can('manage custom') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-              :title="auth()->user()->can('manage custom') ? '' : __('You don\'t have permission to view this page')"
+              :class="!auth()->user()->can('view custom') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+              :title="auth()->user()->can('view custom') ? '' : __('You don\'t have permission to view this page')"
           >
               <div class="parent-icon"><i class="material-icons-outlined">extension</i></div>
               <div class="menu-title">{{ __('Custom') }}</div>
@@ -299,10 +299,10 @@
 
         <li>
             <x-sidebar-nav-link
-                :href="auth()->user()->can('manage settings') ? route('admin.cookies') : 'javascript:void(0);'"
+                :href="auth()->user()->can('view cookies') ? route('admin.cookies') : 'javascript:void(0);'"
                 :active="request()->routeIs('admin.cookies*')"
-                :class="!auth()->user()->can('manage settings') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                :title="auth()->user()->can('manage settings') ? '' : __('You don\'t have permission to view this page')"
+                :class="!auth()->user()->can('view cookies') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                :title="auth()->user()->can('view cookies') ? '' : __('You don\'t have permission to view this page')"
             >
                 <div class="parent-icon"><i class="material-icons-outlined">cookie</i></div>
                 <div class="menu-title">{{ __('Cookies') }}</div>
@@ -329,10 +329,10 @@
         @if ($settings['enable_api'] ?? false)
             <li>
                 <x-sidebar-nav-link
-                    :href="auth()->user()->can('manage API') ? route('admin.api.index') : 'javascript:void(0);'"
+                    :href="auth()->user()->can('view API') ? route('admin.api.index') : 'javascript:void(0);'"
                     :active="request()->routeIs('admin.api*')"
-                    :class="!auth()->user()->can('manage API') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                    :title="auth()->user()->can('manage API') ? '' : __('You don\'t have permission to view this page')"
+                    :class="!auth()->user()->can('view API') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                    :title="auth()->user()->can('view API') ? '' : __('You don\'t have permission to view this page')"
                 >
                     <div class="parent-icon"><i class="material-icons-outlined">code</i></div>
                     <div class="menu-title">{{ __('API') }}</div>
@@ -341,10 +341,10 @@
         @endif
         <li>
             <x-sidebar-nav-link
-                :href="auth()->user()->can('manage settings') ? route('admin.settings') : 'javascript:void(0);'"
+                :href="auth()->user()->can('view settings') ? route('admin.settings') : 'javascript:void(0);'"
                 :active="request()->routeIs('admin.settings*')"
-                :class="!auth()->user()->can('manage settings') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
-                :title="auth()->user()->can('manage settings') ? '' : __('You don\'t have permission to view this page')"
+                :class="!auth()->user()->can('view settings') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                :title="auth()->user()->can('view settings') ? '' : __('You don\'t have permission to view this page')"
             >
                 <div class="parent-icon"><i class="material-icons-outlined">settings</i></div>
                 <div class="menu-title">{{ __('Settings') }}</div>

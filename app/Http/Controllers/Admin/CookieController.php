@@ -11,9 +11,21 @@ use App\Services\AgaresSaasService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class CookieController extends Controller
+class CookieController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view cookies', only: ['index', 'scans', 'showScan', 'editSettings', 'scanProgress']),
+            new Middleware('can:manage cookies', only: [
+                'updateSettings', 'saveSaasSettings', 'checkConnection', 'scanAsync', 'cancelScan',
+            ]),
+        ];
+    }
+
     private function domain(): string
     {
         return request()->getHost();

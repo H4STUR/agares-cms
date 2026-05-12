@@ -7,9 +7,19 @@ use App\Models\ApiKey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class APIController extends Controller
+class APIController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view API', only: ['index']),
+            new Middleware('can:manage API', only: ['store', 'revoke']),
+        ];
+    }
+
     /**
      * Admin API dashboard (keys + docs)
      */

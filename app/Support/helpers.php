@@ -1,6 +1,60 @@
 <?php
 
 use App\Models\InputInstance;
+use App\Support\Permissions;
+
+/**
+ * True when the current user has the "view X" permission but lacks the
+ * matching "manage X" permission — i.e. read-only on that module.
+ * Owner always returns false (Gate::before grants everything).
+ */
+if (! function_exists('is_read_only')) {
+    function is_read_only(string $managePermission): bool
+    {
+        $user = auth()->user();
+        if (! $user) return true;
+        if (method_exists($user, 'hasRole') && $user->hasRole('owner')) return false;
+        return ! $user->can($managePermission);
+    }
+}
+
+/**
+ * True if the current user is a pure viewer/demo user
+ * (has admin-panel access but no `manage X` permission of any kind).
+ */
+if (! function_exists('is_viewer')) {
+    function is_viewer(): bool
+    {
+        $user = auth()->user();
+        if (! $user) return false;
+        if (method_exists($user, 'hasRole') && $user->hasRole('owner')) return false;
+
+        // NB: MANAGE_DASHBOARD is excluded here — it gates the read-only dashboard page,
+        // not any mutating action. Viewers legitimately hold it.
+        static $manageNeedles = [
+            Permissions::MANAGE_SITES,
+            Permissions::MANAGE_MENUS,
+            Permissions::MANAGE_MEDIA,
+            Permissions::MANAGE_SETTINGS,
+            Permissions::MANAGE_CUSTOM,
+            Permissions::MANAGE_ARTICLES,
+            Permissions::MANAGE_CATEGORIES,
+            Permissions::MANAGE_USERS,
+            Permissions::MANAGE_PERMISSIONS,
+            Permissions::MANAGE_COOKIES,
+            Permissions::MANAGE_FORUM,
+            Permissions::MANAGE_API,
+            Permissions::MANAGE_TOOLS,
+            Permissions::MANAGE_ECOMMERCE,
+            Permissions::MANAGE_ORDERS,
+        ];
+
+        foreach ($manageNeedles as $perm) {
+            if ($user->can($perm)) return false;
+        }
+        return $user->can(Permissions::VIEW_ADMIN_PANEL);
+    }
+}
 
 /**
  * Sanitize rich-text HTML: strip disallowed tags and dangerous attributes/protocols.

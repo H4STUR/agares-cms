@@ -65,7 +65,7 @@
                         <div class="list-icon"><i class="material-icons-outlined fs-5">perm_media</i></div>
                         <div><h5 class="mb-0 search-list-title">Media Library</h5></div>
                       </a>
-                      @can('manage users')
+                      @can('view users')
                       <a href="{{ route('admin.users') }}" class="search-list-item d-flex align-items-center gap-3 text-decoration-none">
                         <div class="list-icon"><i class="material-icons-outlined fs-5">people</i></div>
                         <div><h5 class="mb-0 search-list-title">Users</h5></div>

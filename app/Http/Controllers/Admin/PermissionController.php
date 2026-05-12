@@ -10,9 +10,21 @@ use App\Models\RoleSitePermission;
 use App\Models\Site;
 use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class PermissionController extends Controller
+class PermissionController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view permissions', only: ['index', 'editRole', 'edit']),
+            new Middleware('can:manage permissions', only: [
+                'updateRole', 'assign', 'create', 'delete', 'createRole', 'deleteRole',
+            ]),
+        ];
+    }
+
 
     public function index()
     {

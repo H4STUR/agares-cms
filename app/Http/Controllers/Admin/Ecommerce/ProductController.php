@@ -10,9 +10,21 @@ use App\Models\Ecommerce\Attribute;
 use App\Models\Ecommerce\ProductVariant;
 use App\Models\Ecommerce\Category;
 use App\Models\Ecommerce\Tag;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ProductController extends Controller
+class ProductController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view ecommerce', only: ['index', 'show']),
+            new Middleware('can:manage ecommerce', only: [
+                'create', 'store', 'edit', 'update', 'destroy', 'generateVariants',
+            ]),
+        ];
+    }
+
     public function index(Request $request)
     {
         $tab = $request->get('tab', 'published'); // published|draft|all|trash

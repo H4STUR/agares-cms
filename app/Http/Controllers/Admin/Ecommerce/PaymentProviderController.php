@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Admin\Ecommerce;
 use App\Http\Controllers\Controller;
 use App\Models\Ecommerce\PaymentProvider;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class PaymentProviderController extends Controller
+class PaymentProviderController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view ecommerce', only: ['index']),
+            new Middleware('can:manage ecommerce', only: ['edit', 'update']),
+        ];
+    }
+
     private const DEFAULTS = [
         [
             'driver'  => 'stripe',

@@ -10,12 +10,22 @@
         <h4 class="mb-0">{{ __('Manage pages') }}</h4>
       </div>
 
-      @can('manage sites')
-      <a href="{{ route('admin.sites.create') }}" class="btn btn-success d-flex align-items-center gap-2">
-        <i class="material-icons-outlined">add</i>
-        <span>{{ __('Add New Site') }}</span>
-      </a>
-      @endcan
+      @php
+        $_canManageSites = auth()->user()?->can('manage sites');
+      @endphp
+      @if($_canManageSites)
+        <a href="{{ route('admin.sites.create') }}" class="btn btn-success d-flex align-items-center gap-2">
+          <i class="material-icons-outlined">add</i>
+          <span>{{ __('Add New Site') }}</span>
+        </a>
+      @else
+        <span class="btn btn-success d-flex align-items-center gap-2 opacity-50 pe-none"
+              aria-disabled="true" tabindex="-1"
+              title="{{ __('Read-only — you don’t have permission for this action') }}">
+          <i class="material-icons-outlined">add</i>
+          <span>{{ __('Add New Site') }}</span>
+        </span>
+      @endif
 
       <form method="GET"
           action="{{ route('admin.sites') }}"
@@ -108,7 +118,7 @@
                         <div class="min-w-0">
                         <div class="fw-semibold text-truncate">
                             <a href="{{ route('admin.sites.show', $site->id) }}" class="fw-semibold text-truncate text-decoration-none text-reset d-flex">
-                                @if ($site->slug == $settings['home_url'])
+                                @if (!empty($settings['home_url']) && $site->slug == $settings['home_url'])
                                   <i class="material-icons-outlined mx-2" height="10">home</i>
                                 @endif
                                 @if (!empty($shopUrl) && $site->slug == $shopUrl)
@@ -159,15 +169,20 @@
                         @endif
                         </div>
 
-                        {{-- Right: compact actions (wrap nicely) --}}
-                        @can('manage sites')
-                        <div class="d-flex flex-wrap justify-content-end gap-2">
+                        {{-- Right: compact actions (wrap nicely). Greyed/disabled for viewer. --}}
+                        @php
+                            $_canManageSites = auth()->user()?->can('manage sites');
+                            $_actionsClass   = 'd-flex flex-wrap justify-content-end gap-2' . ($_canManageSites ? '' : ' opacity-50 pe-none');
+                            $_readOnlyTitle  = __('Read-only — you don’t have permission for this action');
+                        @endphp
+                        <div class="{{ $_actionsClass }}"
+                             @if(!$_canManageSites) aria-disabled="true" title="{{ $_readOnlyTitle }}" @endif>
 
                             <a href="{{ route('admin.sites.show', $site->id) }}" class="btn btn-primary btn-sm">
                             <i class="bi bi-info me-1"></i>{{ __('info') }}
                             </a>
 
-                            <a href="{{ route('admin.sites.edit', $site->id) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ $_canManageSites ? route('admin.sites.edit', $site->id) : 'javascript:void(0)' }}" class="btn btn-primary btn-sm">
                             <i class="bi bi-pencil me-1"></i>{{ __('Edit') }}
                             </a>
 
@@ -240,7 +255,6 @@
                             @endif
 
                         </div>
-                        @endcan
 
                     </div>
                     </div>

@@ -6,9 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Form;
 use App\Models\FormField;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class FormFieldController extends Controller
+class FormFieldController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:manage sites', only: ['store', 'destroy', 'move', 'update', 'bulkUpdate']),
+        ];
+    }
+
+
   public function store(Request $request, Form $form)
   {
     $data = $request->validate([

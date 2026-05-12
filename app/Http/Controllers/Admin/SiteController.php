@@ -21,10 +21,21 @@ use App\Models\Gallery;
 use Illuminate\Support\Facades\Schema;
 use App\Models\RoleSitePermission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 
-class SiteController extends Controller
+class SiteController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view sites', only: ['index', 'show', 'edit', 'getSitesByMenu', 'getInputTemplate']),
+            new Middleware('can:manage sites', only: ['create', 'store', 'update', 'delete', 'restore', 'forceDelete', 'duplicate']),
+            new Middleware('can:manage menus', only: ['moveUp', 'moveDown']),
+        ];
+    }
+
     public function index(Request $request)
     {
         $tab = $request->get('tab', 'published'); // published|draft|all|trash

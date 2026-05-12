@@ -6,9 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Ecommerce\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class TagController extends Controller
+class TagController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view ecommerce', only: ['index', 'show']),
+            new Middleware('can:manage ecommerce', only: ['create', 'store', 'edit', 'update', 'destroy']),
+        ];
+    }
+
     public function index()
     {
         $tags = Tag::withCount('products')->orderBy('name')->paginate(50);

@@ -6,10 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CustomCode;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 
-class CustomController extends Controller
+class CustomController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view custom', only: ['index']),
+            new Middleware('can:manage custom', only: ['update']),
+        ];
+    }
+
     public function index()
     {
         // Fetch the custom script and style from the database

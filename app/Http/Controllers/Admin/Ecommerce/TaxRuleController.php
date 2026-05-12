@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Admin\Ecommerce;
 use App\Http\Controllers\Controller;
 use App\Models\Ecommerce\TaxRule;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class TaxRuleController extends Controller
+class TaxRuleController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('can:view ecommerce', only: ['index', 'show']),
+            new Middleware('can:manage ecommerce', only: ['create', 'store', 'edit', 'update', 'destroy']),
+        ];
+    }
+
     public function index()
     {
         $rules = TaxRule::orderBy('priority', 'desc')->orderBy('country')->paginate(25);
