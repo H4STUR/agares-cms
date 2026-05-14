@@ -55,6 +55,16 @@ class RolesAndPermissionsSeeder extends Seeder
             Permissions::VIEW_ECOMMERCE, Permissions::MANAGE_ECOMMERCE,
             Permissions::VIEW_ORDERS, Permissions::MANAGE_ORDERS,
 
+            Permissions::VIEW_NEWSLETTER, Permissions::MANAGE_NEWSLETTER,
+            Permissions::VIEW_NEWSLETTER_SUBSCRIBERS, Permissions::MANAGE_NEWSLETTER_SUBSCRIBERS,
+            Permissions::VIEW_NEWSLETTER_LISTS, Permissions::MANAGE_NEWSLETTER_LISTS,
+            Permissions::VIEW_NEWSLETTER_TEMPLATES, Permissions::MANAGE_NEWSLETTER_TEMPLATES,
+            Permissions::VIEW_NEWSLETTER_CAMPAIGNS, Permissions::MANAGE_NEWSLETTER_CAMPAIGNS,
+            Permissions::PREVIEW_NEWSLETTER_CAMPAIGNS, Permissions::SEND_TEST_NEWSLETTER_CAMPAIGNS,
+            Permissions::VIEW_NEWSLETTER_SETTINGS, Permissions::EDIT_NEWSLETTER_SETTINGS,
+            Permissions::TEST_NEWSLETTER_INTEGRATION,
+            Permissions::DELEGATE_NEWSLETTER_CAMPAIGNS, Permissions::SYNC_NEWSLETTER_CAMPAIGNS,
+
             Permissions::VIEW_NOTIFICATIONS,
             Permissions::VIEW_UNPUBLISHED,
             Permissions::ADMIN_NAV,

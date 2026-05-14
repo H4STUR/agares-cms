@@ -319,6 +319,7 @@ Route::middleware(['auth', 'verified', 'can:view admin panel'])->prefix('admin')
     });
 
     require base_path('routes/ecommerce.admin.php');
+    require base_path('routes/newsletter.admin.php');
 });
 
 
@@ -376,6 +377,18 @@ Route::middleware(['maintenance'])->group(function () {
 
     //form
     Route::post('/forms/{form}/submit', [App\Http\Controllers\Frontend\FormController::class, 'submit'])->name('forms.submit');
+
+    // Newsletter — public signup is gated by enable_newsletter; unsubscribe stays open so old links keep working.
+    Route::post('/newsletter/subscribe', [App\Http\Controllers\Frontend\NewsletterController::class, 'subscribe'])
+        ->middleware('setting:enable_newsletter,true,abort404')
+        ->name('newsletter.subscribe');
+
+    Route::get('/newsletter/unsubscribe/{token}', [App\Http\Controllers\Frontend\NewsletterController::class, 'unsubscribe'])
+        ->name('newsletter.unsubscribe');
+
+    // External newsletter webhook (Phase 3) — signature-verified inside the controller; CSRF excluded in bootstrap/app.php.
+    Route::post('/newsletter/external/webhook', [App\Http\Controllers\Frontend\NewsletterWebhookController::class, 'handle'])
+        ->name('newsletter.external.webhook');
     // Privacy preferences — neutral paths avoid "cookie/consent" keywords so Brave/EasyList don't block them
     Route::get('/api/site-prefs/config',  [CookieConsentController::class, 'show']);
     Route::get('/api/site-prefs/catalog', [CookieConsentController::class, 'catalog']);

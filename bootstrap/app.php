@@ -21,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Payment gateway webhooks must not be CSRF-verified
         $middleware->validateCsrfTokens(except: [
             'shop/payment/webhook/*',
+            'newsletter/external/webhook',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

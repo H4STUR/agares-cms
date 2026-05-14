@@ -171,6 +171,95 @@
         @endif
 
 
+        @if ($settings['enable_newsletter'] ?? false)
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon">
+                        <i class="material-icons-outlined">mark_email_read</i>
+                    </div>
+                    <div class="menu-title">{{ __('Newsletter') }}</div>
+                </a>
+
+                <ul>
+                    {{-- Dashboard --}}
+                    <li>
+                        <x-sidebar-nav-link
+                            :href="auth()->user()->can('view newsletter') ? route('admin.newsletter.dashboard') : 'javascript:void(0);'"
+                            :active="request()->routeIs('admin.newsletter.dashboard')"
+                            :class="!auth()->user()->can('view newsletter') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                            :title="auth()->user()->can('view newsletter') ? '' : __('You don\'t have permission to view this page')"
+                        >
+                            <i class="material-icons-outlined">dashboard</i>
+                            <span>{{ __('Dashboard') }}</span>
+                        </x-sidebar-nav-link>
+                    </li>
+
+                    {{-- Subscribers --}}
+                    <li>
+                        <x-sidebar-nav-link
+                            :href="auth()->user()->can('view newsletter subscribers') ? route('admin.newsletter.subscribers.index') : 'javascript:void(0);'"
+                            :active="request()->routeIs('admin.newsletter.subscribers.*')"
+                            :class="!auth()->user()->can('view newsletter subscribers') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                        >
+                            <i class="material-icons-outlined">people</i>
+                            <span>{{ __('Subscribers') }}</span>
+                        </x-sidebar-nav-link>
+                    </li>
+
+                    {{-- Lists --}}
+                    <li>
+                        <x-sidebar-nav-link
+                            :href="auth()->user()->can('view newsletter lists') ? route('admin.newsletter.lists.index') : 'javascript:void(0);'"
+                            :active="request()->routeIs('admin.newsletter.lists.*')"
+                            :class="!auth()->user()->can('view newsletter lists') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                        >
+                            <i class="material-icons-outlined">collections_bookmark</i>
+                            <span>{{ __('Lists') }}</span>
+                        </x-sidebar-nav-link>
+                    </li>
+
+                    {{-- Templates --}}
+                    <li>
+                        <x-sidebar-nav-link
+                            :href="auth()->user()->can('view newsletter templates') ? route('admin.newsletter.templates.index') : 'javascript:void(0);'"
+                            :active="request()->routeIs('admin.newsletter.templates.*')"
+                            :class="!auth()->user()->can('view newsletter templates') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                        >
+                            <i class="material-icons-outlined">description</i>
+                            <span>{{ __('Templates') }}</span>
+                        </x-sidebar-nav-link>
+                    </li>
+
+                    {{-- Campaigns --}}
+                    <li>
+                        <x-sidebar-nav-link
+                            :href="auth()->user()->can('view newsletter campaigns') ? route('admin.newsletter.campaigns.index') : 'javascript:void(0);'"
+                            :active="request()->routeIs('admin.newsletter.campaigns.*')"
+                            :class="!auth()->user()->can('view newsletter campaigns') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                        >
+                            <i class="material-icons-outlined">campaign</i>
+                            <span>{{ __('Campaigns') }}</span>
+                        </x-sidebar-nav-link>
+                    </li>
+
+                    {{-- Settings (integration / driver) --}}
+                    <li>
+                        <x-sidebar-nav-link
+                            :href="auth()->user()->can('view newsletter settings') ? route('admin.newsletter.settings.index') : 'javascript:void(0);'"
+                            :active="request()->routeIs('admin.newsletter.settings.*')"
+                            :class="!auth()->user()->can('view newsletter settings') ? 'pointer-events-none opacity-50 cursor-not-allowed' : ''"
+                        >
+                            <i class="material-icons-outlined">settings_input_component</i>
+                            <span>{{ __('Settings') }}</span>
+                        </x-sidebar-nav-link>
+                    </li>
+                </ul>
+            </li>
+
+            <hr>
+        @endif
+
+
         @if ($settings['enable_forum'] ?? false)
             <li>
                 <a href="javascript:;" class="has-arrow">

@@ -67,6 +67,29 @@ final class Permissions
     public const PLACE_ORDERS      = 'place orders';
     public const VIEW_OWN_ORDERS   = 'view own orders';
 
+    // Newsletter
+    public const VIEW_NEWSLETTER              = 'view newsletter';
+    public const MANAGE_NEWSLETTER            = 'manage newsletter';
+    public const VIEW_NEWSLETTER_SUBSCRIBERS  = 'view newsletter subscribers';
+    public const MANAGE_NEWSLETTER_SUBSCRIBERS = 'manage newsletter subscribers';
+    public const VIEW_NEWSLETTER_LISTS        = 'view newsletter lists';
+    public const MANAGE_NEWSLETTER_LISTS      = 'manage newsletter lists';
+
+    // Newsletter — Phase 2 (templates + campaign drafts + test send)
+    public const VIEW_NEWSLETTER_TEMPLATES   = 'view newsletter templates';
+    public const MANAGE_NEWSLETTER_TEMPLATES = 'manage newsletter templates';
+    public const VIEW_NEWSLETTER_CAMPAIGNS   = 'view newsletter campaigns';
+    public const MANAGE_NEWSLETTER_CAMPAIGNS = 'manage newsletter campaigns';
+    public const PREVIEW_NEWSLETTER_CAMPAIGNS = 'preview newsletter campaigns';
+    public const SEND_TEST_NEWSLETTER_CAMPAIGNS = 'send test newsletter campaigns';
+
+    // Newsletter — Phase 3 (external API delegation + sync + integration settings)
+    public const VIEW_NEWSLETTER_SETTINGS       = 'view newsletter settings';
+    public const EDIT_NEWSLETTER_SETTINGS       = 'edit newsletter settings';
+    public const TEST_NEWSLETTER_INTEGRATION    = 'test newsletter integration';
+    public const DELEGATE_NEWSLETTER_CAMPAIGNS  = 'delegate newsletter campaigns';
+    public const SYNC_NEWSLETTER_CAMPAIGNS      = 'sync newsletter campaigns';
+
     /** All permission strings, used by the seeder. */
     public static function all(): array
     {
@@ -129,6 +152,25 @@ final class Permissions
             // Ecommerce customer
             ['name' => self::PLACE_ORDERS,      'category' => 'ecommerce'],
             ['name' => self::VIEW_OWN_ORDERS,   'category' => 'ecommerce'],
+
+            // Newsletter
+            ['name' => self::VIEW_NEWSLETTER,                 'category' => 'newsletter'],
+            ['name' => self::MANAGE_NEWSLETTER,               'category' => 'newsletter'],
+            ['name' => self::VIEW_NEWSLETTER_SUBSCRIBERS,     'category' => 'newsletter'],
+            ['name' => self::MANAGE_NEWSLETTER_SUBSCRIBERS,   'category' => 'newsletter'],
+            ['name' => self::VIEW_NEWSLETTER_LISTS,           'category' => 'newsletter'],
+            ['name' => self::MANAGE_NEWSLETTER_LISTS,         'category' => 'newsletter'],
+            ['name' => self::VIEW_NEWSLETTER_TEMPLATES,       'category' => 'newsletter'],
+            ['name' => self::MANAGE_NEWSLETTER_TEMPLATES,     'category' => 'newsletter'],
+            ['name' => self::VIEW_NEWSLETTER_CAMPAIGNS,       'category' => 'newsletter'],
+            ['name' => self::MANAGE_NEWSLETTER_CAMPAIGNS,     'category' => 'newsletter'],
+            ['name' => self::PREVIEW_NEWSLETTER_CAMPAIGNS,    'category' => 'newsletter'],
+            ['name' => self::SEND_TEST_NEWSLETTER_CAMPAIGNS,  'category' => 'newsletter'],
+            ['name' => self::VIEW_NEWSLETTER_SETTINGS,        'category' => 'newsletter'],
+            ['name' => self::EDIT_NEWSLETTER_SETTINGS,        'category' => 'newsletter'],
+            ['name' => self::TEST_NEWSLETTER_INTEGRATION,     'category' => 'newsletter'],
+            ['name' => self::DELEGATE_NEWSLETTER_CAMPAIGNS,   'category' => 'newsletter'],
+            ['name' => self::SYNC_NEWSLETTER_CAMPAIGNS,       'category' => 'newsletter'],
         ];
     }
 
@@ -154,6 +196,13 @@ final class Permissions
             self::VIEW_NOTIFICATIONS,
             self::VIEW_ECOMMERCE,
             self::VIEW_ORDERS,
+            self::VIEW_NEWSLETTER,
+            self::VIEW_NEWSLETTER_SUBSCRIBERS,
+            self::VIEW_NEWSLETTER_LISTS,
+            self::VIEW_NEWSLETTER_TEMPLATES,
+            self::VIEW_NEWSLETTER_CAMPAIGNS,
+            self::PREVIEW_NEWSLETTER_CAMPAIGNS,
+            self::VIEW_NEWSLETTER_SETTINGS,
             self::VIEW_UNPUBLISHED,
             self::ADMIN_NAV,
         ];
