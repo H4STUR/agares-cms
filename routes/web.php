@@ -39,6 +39,7 @@ use App\Http\Controllers\Admin\{
     FormFieldController,
     SearchController,
     NotificationController,
+    TwoFactorAdminController,
 };
 
 // Forum controllers
@@ -223,6 +224,9 @@ Route::middleware(['auth', 'verified', 'can:view admin panel'])->prefix('admin')
      * ========================= */
     Route::get('/users', [UserController::class, 'index'])->middleware('can:view users')->name('users');
     Route::post('/users/add', [UserController::class, 'store'])->middleware('can:manage users')->name('users.store');
+    Route::post('/users/{user}/two-factor/reset', [TwoFactorAdminController::class, 'reset'])
+        ->middleware('can:manage users')
+        ->name('users.two-factor.reset');
 
     /* =========================
      * MENUS

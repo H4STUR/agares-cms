@@ -32,6 +32,20 @@
                                     <span>
                                         {{ $user->username }} [ {{ $user->name }} ] [ {{ $user->getRoleNames()->first() ?? '-' }} ]
                                     </span>
+                                    <span>
+                                        @if ($user->hasTwoFactorEnabled())
+                                            @php
+                                                $methodLabel = $user->two_factor_method === 'email' ? __('Email') : __('TOTP');
+                                            @endphp
+                                            <span class="badge bg-success" title="{{ __('Two-factor authentication enabled') }} ({{ $methodLabel }})">
+                                                <i class="bi bi-shield-check me-1"></i>2FA · {{ $methodLabel }}
+                                            </span>
+                                        @else
+                                            <span class="badge bg-secondary" title="{{ __('Two-factor authentication not enabled') }}">
+                                                <i class="bi bi-shield me-1"></i>{{ __('No 2FA') }}
+                                            </span>
+                                        @endif
+                                    </span>
                                 </a>
                             </div>
                         @endforeach

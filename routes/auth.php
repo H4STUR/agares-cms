@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,14 @@ Route::middleware('guest')->group(function () {
                 ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
+    /* Two-factor challenge (mid-login, no Auth yet) */
+    Route::get('2fa/challenge', [TwoFactorController::class, 'challenge'])->name('two-factor.challenge');
+    Route::post('2fa/challenge', [TwoFactorController::class, 'verifyChallenge']);
+    Route::post('2fa/challenge/cancel', [TwoFactorController::class, 'cancelChallenge'])
+        ->name('two-factor.challenge.cancel');
+    Route::post('2fa/challenge/resend', [TwoFactorController::class, 'resendEmailCode'])
+        ->name('two-factor.challenge.resend');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');
@@ -56,4 +65,17 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+    /* Two-factor enrolment (authenticated, self-service) */
+    Route::middleware('can:manage own two factor')->group(function () {
+        Route::get('2fa/setup', [TwoFactorController::class, 'setup'])->name('two-factor.setup');
+        Route::post('2fa/setup', [TwoFactorController::class, 'confirm'])->name('two-factor.confirm');
+        Route::post('2fa/setup/email/send', [TwoFactorController::class, 'sendSetupEmail'])
+            ->name('two-factor.setup.email.send');
+        Route::get('2fa/recovery-codes', [TwoFactorController::class, 'showRecoveryCodes'])
+            ->name('two-factor.recovery-codes');
+        Route::post('2fa/recovery-codes', [TwoFactorController::class, 'regenerateCodes'])
+            ->name('two-factor.recovery-codes.regenerate');
+        Route::delete('2fa', [TwoFactorController::class, 'disable'])->name('two-factor.disable');
+    });
 });

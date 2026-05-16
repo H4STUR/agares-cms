@@ -73,6 +73,64 @@
                         <p class="mb-0">Status: <span class="text-success">Active</span></p>
                     </div>
                 </div>
+
+                @if (($canSeeSecurity ?? false) && ($securityEvents ?? collect())->isNotEmpty())
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="mb-3"><i class="bi bi-clock-history me-1"></i>{{ __('Recent security activity') }}</h5>
+                            <ul class="list-unstyled mb-0 small">
+                                @foreach ($securityEvents as $event)
+                                    <li class="mb-2 pb-2 border-bottom">
+                                        <div class="d-flex justify-content-between">
+                                            <span>{{ \App\Services\SecurityAuditService::label($event->event) }}</span>
+                                            <span class="text-muted ms-2" title="{{ $event->created_at?->format('Y-m-d H:i:s') }}">
+                                                {{ $event->created_at?->diffForHumans() }}
+                                            </span>
+                                        </div>
+                                        @if ($event->ip)
+                                            <div class="text-muted" style="font-size:11px;">
+                                                {{ $event->ip }}
+                                                @if ($event->actor_id && $event->actor_id !== $event->user_id)
+                                                    &middot; {{ __('by admin') }}
+                                                @endif
+                                            </div>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+
+                @can('manage users')
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="mb-3"><i class="bi bi-shield-lock me-1"></i>{{ __('Two-Factor Authentication') }}</h5>
+                            @if ($user->hasTwoFactorEnabled())
+                                <p class="mb-2">
+                                    <span class="badge bg-success">
+                                        <i class="bi bi-check-circle me-1"></i>{{ __('Enabled') }}
+                                    </span>
+                                </p>
+                                <p class="text-muted small mb-3">
+                                    {{ __('Confirmed :date', ['date' => optional($user->two_factor_confirmed_at)->format('Y-m-d H:i')]) }}
+                                </p>
+                                <form method="POST"
+                                      action="{{ route('admin.users.two-factor.reset', $user) }}"
+                                      onsubmit="return confirm('{{ __('Reset two-factor authentication for this user? They will be prompted to enrol again on next login if enforcement is on.') }}');">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                                        <i class="bi bi-shield-slash me-1"></i>{{ __('Reset 2FA') }}
+                                    </button>
+                                </form>
+                            @else
+                                <p class="text-muted mb-0 small">
+                                    <i class="bi bi-dash-circle me-1"></i>{{ __('Not enabled') }}
+                                </p>
+                            @endif
+                        </div>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>

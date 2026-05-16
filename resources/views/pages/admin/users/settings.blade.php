@@ -73,6 +73,10 @@
             </div>
             
 
+            @if (auth()->id() === $user->id && auth()->user()->can('manage own two factor'))
+                @include('pages.admin.users._two_factor_card', ['user' => $user])
+            @endif
+
             <!-- Change Password -->
             <div class="col-12 col-xl-6">
                 <div class="card shadow-sm">

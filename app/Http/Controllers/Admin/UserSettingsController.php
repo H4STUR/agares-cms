@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SecurityAuditLog;
 use App\Models\User;
 use App\Models\Setting;
 use Illuminate\Http\RedirectResponse;
@@ -33,7 +34,16 @@ class UserSettingsController extends Controller
 
         // Admins see the admin layout unless they explicitly request the public view
         if ($viewer?->can('view admin panel') && !request()->has('view')) {
-            return view('pages.admin.users.profile', compact('user'));
+            $securityEvents = collect();
+            $canSeeSecurity = $viewer->id === $user->id || $viewer->can('view security audit log');
+            if ($canSeeSecurity) {
+                $securityEvents = SecurityAuditLog::where('user_id', $user->id)
+                    ->orderByDesc('created_at')
+                    ->limit(15)
+                    ->get();
+            }
+
+            return view('pages.admin.users.profile', compact('user', 'securityEvents', 'canSeeSecurity'));
         }
 
         return view('pages.user.profile', compact('user'));

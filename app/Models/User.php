@@ -36,7 +36,22 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'two_factor_secret' => 'encrypted',
+            'two_factor_recovery_codes' => 'encrypted:array',
+            'two_factor_confirmed_at' => 'datetime',
+            'two_factor_email_code_sent_at' => 'datetime',
         ];
+    }
+
+    public function hasTwoFactorEnabled(): bool
+    {
+        if (is_null($this->two_factor_confirmed_at)) {
+            return false;
+        }
+        if ($this->two_factor_method === 'email') {
+            return true;
+        }
+        return !empty($this->two_factor_secret);
     }
 
     /**

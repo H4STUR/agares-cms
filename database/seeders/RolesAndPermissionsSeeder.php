@@ -68,6 +68,8 @@ class RolesAndPermissionsSeeder extends Seeder
             Permissions::VIEW_NOTIFICATIONS,
             Permissions::VIEW_UNPUBLISHED,
             Permissions::ADMIN_NAV,
+            Permissions::MANAGE_OWN_TWO_FACTOR,
+            Permissions::VIEW_SECURITY_AUDIT_LOG,
         ]);
 
         // Moderator: edit content, no system
@@ -85,10 +87,13 @@ class RolesAndPermissionsSeeder extends Seeder
             Permissions::VIEW_NOTIFICATIONS,
             Permissions::VIEW_UNPUBLISHED,
             Permissions::ADMIN_NAV,
+            Permissions::MANAGE_OWN_TWO_FACTOR,
         ]);
 
-        // Regular user: no admin panel access
-        $userRole->syncPermissions([]);
+        // Regular user: no admin panel access, but may still manage own 2FA
+        $userRole->syncPermissions([
+            Permissions::MANAGE_OWN_TWO_FACTOR,
+        ]);
 
         // Viewer/demo: read-only across the whole admin
         $viewerRole->syncPermissions(Permissions::viewerSet());
@@ -97,6 +102,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $customerRole->syncPermissions([
             Permissions::PLACE_ORDERS,
             Permissions::VIEW_OWN_ORDERS,
+            Permissions::MANAGE_OWN_TWO_FACTOR,
         ]);
     }
 }

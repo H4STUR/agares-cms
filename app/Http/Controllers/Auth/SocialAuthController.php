@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\SecurityAuditService;
+use App\Services\TwoFactorService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
@@ -19,7 +21,7 @@ class SocialAuthController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
-    public function callback(string $provider)
+    public function callback(string $provider, TwoFactorService $twoFactor, SecurityAuditService $audit)
     {
         $this->validateProvider($provider);
 
@@ -63,6 +65,20 @@ class SocialAuthController extends Controller
                 'provider_id' => $user->provider_id ?? $providerId,
                 'avatar' => $avatar ?? $user->avatar,
             ])->save();
+        }
+
+        // 2FA enforcement — if the user has 2FA enrolled, route through the standard
+        // challenge instead of logging them in immediately. New users created above
+        // can't have 2FA enrolled yet, so this only applies to returning users.
+        if ($twoFactor->shouldChallenge($user)) {
+            session()->put(TwoFactorService::SESSION_LOGIN_USER_ID, $user->id);
+            session()->put(TwoFactorService::SESSION_LOGIN_REMEMBER, true);
+
+            $audit->log(SecurityAuditService::EVT_2FA_OAUTH_CHALLENGED, $user, [
+                'provider' => $provider,
+            ]);
+
+            return redirect()->route('two-factor.challenge');
         }
 
         Auth::login($user, true);

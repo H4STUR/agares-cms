@@ -90,6 +90,12 @@ final class Permissions
     public const DELEGATE_NEWSLETTER_CAMPAIGNS  = 'delegate newsletter campaigns';
     public const SYNC_NEWSLETTER_CAMPAIGNS      = 'sync newsletter campaigns';
 
+    // Two-Factor Authentication — self-service
+    public const MANAGE_OWN_TWO_FACTOR = 'manage own two factor';
+
+    // Security audit log
+    public const VIEW_SECURITY_AUDIT_LOG = 'view security audit log';
+
     /** All permission strings, used by the seeder. */
     public static function all(): array
     {
@@ -171,6 +177,12 @@ final class Permissions
             ['name' => self::TEST_NEWSLETTER_INTEGRATION,     'category' => 'newsletter'],
             ['name' => self::DELEGATE_NEWSLETTER_CAMPAIGNS,   'category' => 'newsletter'],
             ['name' => self::SYNC_NEWSLETTER_CAMPAIGNS,       'category' => 'newsletter'],
+
+            // Two-Factor Authentication
+            ['name' => self::MANAGE_OWN_TWO_FACTOR,           'category' => 'security'],
+
+            // Security audit log
+            ['name' => self::VIEW_SECURITY_AUDIT_LOG,         'category' => 'security'],
         ];
     }
 
@@ -205,6 +217,8 @@ final class Permissions
             self::VIEW_NEWSLETTER_SETTINGS,
             self::VIEW_UNPUBLISHED,
             self::ADMIN_NAV,
+            self::MANAGE_OWN_TWO_FACTOR,
+            self::VIEW_SECURITY_AUDIT_LOG,
         ];
     }
 }

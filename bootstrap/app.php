@@ -13,9 +13,16 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'maintenance' => \App\Http\Middleware\CheckMaintenanceMode::class,
-            'setting'     => \App\Http\Middleware\EnsureSetting::class,
-            'api.key'     => \App\Http\Middleware\ApiKeyAuth::class,
+            'maintenance'    => \App\Http\Middleware\CheckMaintenanceMode::class,
+            'setting'        => \App\Http\Middleware\EnsureSetting::class,
+            'api.key'        => \App\Http\Middleware\ApiKeyAuth::class,
+            'two-factor.setup' => \App\Http\Middleware\Force2faSetup::class,
+        ]);
+
+        // Enforce 2FA enrolment on every web request that has an authenticated user.
+        // The middleware short-circuits for guests and for users who aren't forced to enrol.
+        $middleware->web(append: [
+            \App\Http\Middleware\Force2faSetup::class,
         ]);
 
         // Payment gateway webhooks must not be CSRF-verified
