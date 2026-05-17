@@ -424,6 +424,17 @@
                 ========================================================== --}}
                 <div id="tab-seo" class="tab-pane fade {{ $activeTab === 'seo' ? 'show active' : '' }}">
 
+                    @if(\App\Models\Setting::bool('ai_seo_enabled'))
+                        <div class="d-flex justify-content-end mb-3">
+                            <button type="button"
+                                    class="btn btn-outline-primary btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#aiSeoModal-site-{{ $data['site']->id }}">
+                                <i class="bi bi-stars me-1"></i> {{ __('Generate SEO') }}
+                            </button>
+                        </div>
+                    @endif
+
                     <div class="mb-3">
                         <label class="form-label" for="title">{{ __('Title') }}</label>
                         <input class="form-control" type="text" name="title" id="title" value="{{ old('title', $data['site']->title) }}">
@@ -443,6 +454,16 @@
             </div>
 
         </form>
+
+        @include('pages.admin.partials.ai-seo-modal', [
+            'contentType' => 'site',
+            'contentId'   => $data['site']->id,
+            'fieldMap'    => [
+                'meta_title'       => 'title',
+                'meta_description' => 'description',
+                'slug'             => 'slug',
+            ],
+        ])
 
         {{-- =========================================================
             CONTENT TAB EXTRAS (synced with tab-content visibility via JS)

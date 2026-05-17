@@ -82,35 +82,19 @@
 
   <!--end breadcrumb-->
 
-@if ($settings['enable_ecommerce'] ?? false)
+@if (($settings['enable_ecommerce'] ?? false) && !empty($ecommerce))
+  @php
+    $cur = $ecommerce['currency'];
+    $money = fn ($v) => number_format((float) $v, 2) . ' ' . $cur;
+    $weekDelta = $ecommerce['weekDelta'];
+    $usersDelta = $ecommerce['usersDelta'];
+    $salesYTDDelta = $ecommerce['salesYTDDelta'];
+  @endphp
   <!--breadcrumb-->
   <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
       <div class="breadcrumb-title pe-3">eCommerce</div>
-      {{-- <div class="ps-3">
-          <nav aria-label="breadcrumb">
-              <ol class="breadcrumb mb-0 p-0">
-                  <li class="breadcrumb-item">
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">eCommerce</li>
-              </ol>
-          </nav>
-      </div> --}}
-      {{-- <div class="ms-auto">
-          <div class="btn-group">
-              <button type="button" class="btn btn-primary">Settings</button>
-              <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
-                  <a class="dropdown-item" href="javascript:;">Another action</a>
-                  <a class="dropdown-item" href="javascript:;">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="javascript:;">Separated link</a>
-              </div>
-          </div>
-      </div> --}}
   </div>
   <!--end breadcrumb-->
-
 
   <div class="row">
     <div class="col-12 col-xl-4 d-flex">
@@ -118,14 +102,23 @@
           <div class="card-body">
             <div class="d-flex align-items-center gap-3 mb-2">
               <div class="">
-                <h2 class="mb-0">$9,568</h2>
+                <h2 class="mb-0">{{ $money($ecommerce['avgWeeklySales']) }}</h2>
               </div>
-              <div class="">
-                <p class="dash-lable d-flex align-items-center gap-1 rounded mb-0 bg-danger text-danger bg-opacity-10"><span class="material-icons-outlined fs-6">arrow_downward</span>8.6%</p>
-              </div>
+              @if (!is_null($weekDelta))
+                @php
+                  $up = $weekDelta >= 0;
+                  $cls = $up ? 'bg-success text-success' : 'bg-danger text-danger';
+                  $arrow = $up ? 'arrow_upward' : 'arrow_downward';
+                @endphp
+                <div class="">
+                  <p class="dash-lable d-flex align-items-center gap-1 rounded mb-0 {{ $cls }} bg-opacity-10">
+                    <span class="material-icons-outlined fs-6">{{ $arrow }}</span>{{ number_format(abs($weekDelta), 1) }}%
+                  </p>
+                </div>
+              @endif
             </div>
-            <p class="mb-0">Average Weekly Sales</p>
-              <div id="chart1"></div>
+            <p class="mb-0">Average Daily Sales (last 7 days)</p>
+            <div id="ecomAvgSales"></div>
           </div>
         </div>
     </div>
@@ -133,37 +126,36 @@
       <div class="card rounded-4 w-100">
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-around flex-wrap gap-4 p-4">
-            <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-              <a href="javascript:;" class="mb-2 wh-48 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center">
+            <a href="{{ route('admin.ecommerce.orders.index') }}" class="d-flex flex-column align-items-center justify-content-center gap-2 text-decoration-none text-reset">
+              <span class="mb-2 wh-48 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center">
                 <i class="material-icons-outlined">shopping_cart</i>
-              </a>
-              <h3 class="mb-0">85,246</h3>
+              </span>
+              <h3 class="mb-0">{{ number_format($ecommerce['totalOrders']) }}</h3>
               <p class="mb-0">Orders</p>
-            </div>
+            </a>
             <div class="vr"></div>
             <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-              <a href="javascript:;" class="mb-2 wh-48 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+              <span class="mb-2 wh-48 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
                 <i class="material-icons-outlined">print</i>
-              </a>
-              <h3 class="mb-0">$96,147</h3>
+              </span>
+              <h3 class="mb-0">{{ $money($ecommerce['totalIncome']) }}</h3>
               <p class="mb-0">Income</p>
             </div>
             <div class="vr"></div>
-            <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-              <a href="javascript:;" class="mb-2 wh-48 bg-danger bg-opacity-10 text-danger rounded-circle d-flex align-items-center justify-content-center">
+            <a href="{{ route('admin.ecommerce.orders.index', ['status' => 'pending_payment']) }}" class="d-flex flex-column align-items-center justify-content-center gap-2 text-decoration-none text-reset">
+              <span class="mb-2 wh-48 bg-danger bg-opacity-10 text-danger rounded-circle d-flex align-items-center justify-content-center">
                 <i class="material-icons-outlined">notifications</i>
-              </a>
-              <h3 class="mb-0">846</h3>
-              <p class="mb-0">Notifications</p>
-            </div>
+              </span>
+              <h3 class="mb-0">{{ number_format($ecommerce['pendingOrders']) }}</h3>
+              <p class="mb-0">Pending Orders</p>
+            </a>
             <div class="vr"></div>
-            
             <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-              <a href="javascript:;" class="mb-2 wh-48 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
+              <span class="mb-2 wh-48 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
                 <i class="material-icons-outlined">payment</i>
-              </a>
-              <h3 class="mb-0">$84,472</h3>
-              <p class="mb-0">Payment</p>
+              </span>
+              <h3 class="mb-0">{{ $money($ecommerce['totalPayments']) }}</h3>
+              <p class="mb-0">Captured Payments</p>
             </div>
           </div>
         </div>
@@ -171,7 +163,7 @@
     </div>
   </div><!--end row-->
   
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-12 col-xl-5 col-xxl-4 d-flex">
       <div class="card rounded-4 w-100 shadow-none bg-transparent border-0">
           <div class="card-body p-0">
@@ -313,9 +305,9 @@
           </div>
       </div>  
     </div> 
-  </div><!--end row-->
+  </div><!--end row--> --}}
 
-  <div class="row">
+  {{-- <div class="row">
       <div class="col-12 col-xl-4 d-flex">
       <div class="card w-100 rounded-4">
           <div class="card-body">
@@ -715,9 +707,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
-    <div class="col-12 col-xl-12 d-flex">
+    {{-- <div class="col-12 col-xl-12 d-flex">
     <div class="card w-100 rounded-4">
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between mb-3">
@@ -811,8 +803,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div><!--end row-->
+  </div> 
+</div><!--end row-->--}}
 @endif
 
 

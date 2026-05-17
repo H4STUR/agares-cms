@@ -95,6 +95,11 @@ class ProductController extends Controller implements HasMiddleware
     }
 
 
+    public function show(Product $product)
+    {
+        return redirect()->route('ecommerce.products.edit', $product);
+    }
+
     public function create()
     {
         $allCategories = Category::orderBy('name')->get();

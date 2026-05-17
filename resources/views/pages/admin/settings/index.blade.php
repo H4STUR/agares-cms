@@ -91,7 +91,7 @@
 
                                 <h5 class="mb-4">{{ ucwords(str_replace('_', ' ', $category)) }} Settings</h5>
 
-                                @foreach($settings->where('category', $category) as $setting)
+                                @foreach($settings->where('category', $category)->filter(fn($s) => !str_starts_with($s->key, 'ai_seo_')) as $setting)
                                     <div class="mb-4">
                                         @if($setting->type === 'boolean')
                                             <input type="hidden" name="settings[{{ $setting->key }}]" value="0">
@@ -204,48 +204,122 @@
                 {{-- SEO tab extras (robots.txt & sitemap) --}}
                 <div id="seo-tab-extras" class="{{ $activeTab !== 'seo' ? 'd-none' : '' }} mt-4">
                     <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="mb-3">robots.txt</h5>
-                            <p class="text-muted mb-3">
-                                {{ __('Edit robots.txt in your public folder. If it does not exist, it will be created when you save.') }}
-                            </p>
+                        <div class="card-header d-flex align-items-center justify-content-between" role="button"
+                             data-bs-toggle="collapse" data-bs-target="#robots-collapse" aria-expanded="false" aria-controls="robots-collapse"
+                             style="cursor:pointer;">
+                            <h5 class="mb-0">robots.txt</h5>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="collapse" id="robots-collapse">
+                            <div class="card-body">
+                                <p class="text-muted mb-3">
+                                    {{ __('Edit robots.txt in your public folder. If it does not exist, it will be created when you save.') }}
+                                </p>
 
-                            <form action="{{ route('admin.settings.robots.save') }}" method="POST">
-                                @csrf
+                                <form action="{{ route('admin.settings.robots.save') }}" method="POST">
+                                    @csrf
 
-                                <div class="mb-3">
-                                    <textarea name="robots" rows="12" class="form-control"
-                                            style="white-space: pre; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono','Courier New', monospace;">{{ $robotsContent ?? '' }}</textarea>
-                                </div>
+                                    <div class="mb-3">
+                                        <textarea name="robots" rows="12" class="form-control"
+                                                style="white-space: pre; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono','Courier New', monospace;">{{ $robotsContent ?? '' }}</textarea>
+                                    </div>
 
-                                <div class="text-end">
-                                    <x-primary-button type="submit">{{ __('Save robots.txt') }}</x-primary-button>
-                                </div>
-                            </form>
+                                    <div class="text-end">
+                                        <x-primary-button type="submit">{{ __('Save robots.txt') }}</x-primary-button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="mb-3">sitemap.xml</h5>
-                            <p class="text-muted mb-3">
-                                {{ __('Generate sitemap.xml into your public folder and preview its content below.') }}
-                            </p>
+                        <div class="card-header d-flex align-items-center justify-content-between" role="button"
+                             data-bs-toggle="collapse" data-bs-target="#sitemap-collapse" aria-expanded="false" aria-controls="sitemap-collapse"
+                             style="cursor:pointer;">
+                            <h5 class="mb-0">sitemap.xml</h5>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="collapse" id="sitemap-collapse">
+                            <div class="card-body">
+                                <p class="text-muted mb-3">
+                                    {{ __('Generate sitemap.xml into your public folder and preview its content below.') }}
+                                </p>
 
-                            <form action="{{ route('admin.settings.sitemap.generate') }}" method="POST" class="mb-4">
+                                <form action="{{ route('admin.settings.sitemap.generate') }}" method="POST" class="mb-4">
+                                    @csrf
+                                    <x-primary-button type="submit">{{ __('Generate sitemap') }}</x-primary-button>
+                                </form>
+
+                                <h6 class="mb-2">{{ __('Current sitemap.xml content') }}</h6>
+
+                                @if(!empty($sitemapContent))
+                                    <p style="white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono','Courier New', monospace;">
+                                        {{ $sitemapContent }}
+                                    </p>
+                                @else
+                                    <p class="text-muted mb-0">{{ __('No sitemap.xml found in public folder.') }}</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- SEO tab extras — AI SEO Generator --}}
+                <div id="ai-seo-tab-extras" class="{{ $activeTab !== 'seo' ? 'd-none' : '' }} mt-4">
+                    <div class="card mb-4">
+                        <div class="card-header d-flex align-items-center gap-2">
+                            <i class="material-icons-outlined text-primary">auto_awesome</i>
+                            <span class="fw-semibold">{{ __('AI SEO Generator') }}</span>
+                            <small class="text-muted ms-2">{{ __('Generate meta titles, descriptions, slugs and OG tags via Agares SaaS.') }}</small>
+                        </div>
+                        <div class="card-body">
+
+                            <form action="{{ route('admin.settings.ai-seo') }}" method="POST">
                                 @csrf
-                                <x-primary-button type="submit">{{ __('Generate sitemap') }}</x-primary-button>
+
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                           id="ai_seo_enabled" name="ai_seo_enabled" value="1"
+                                           {{ \App\Models\Setting::bool('ai_seo_enabled') ? 'checked' : '' }}>
+                                    <label class="form-check-label fw-medium" for="ai_seo_enabled">
+                                        {{ __('Enable AI SEO generator on Article / Product edit pages') }}
+                                    </label>
+                                    <div class="small text-muted">
+                                        {{ __('Requires a SaaS API key with the ai_seo scope.') }}
+                                    </div>
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-medium mb-1">{{ __('Industry / vertical') }}</label>
+                                        <input type="text" name="ai_seo_industry" class="form-control"
+                                               value="{{ old('ai_seo_industry', \App\Models\Setting::str('ai_seo_industry')) }}"
+                                               placeholder="{{ __('e.g. wedding photography') }}">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-medium mb-1">{{ __('Target audience') }}</label>
+                                        <input type="text" name="ai_seo_audience" class="form-control"
+                                               value="{{ old('ai_seo_audience', \App\Models\Setting::str('ai_seo_audience')) }}"
+                                               placeholder="{{ __('e.g. engaged couples') }}">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-medium mb-1">{{ __('Brand tone') }}</label>
+                                        <input type="text" name="ai_seo_tone" class="form-control"
+                                               value="{{ old('ai_seo_tone', \App\Models\Setting::str('ai_seo_tone')) }}"
+                                               placeholder="{{ __('e.g. warm, professional') }}">
+                                    </div>
+                                </div>
+
+                                <div class="text-end mt-3">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="material-icons-outlined align-middle me-1">save</i>
+                                        {{ __('Save AI SEO settings') }}
+                                    </button>
+                                </div>
                             </form>
 
-                            <h6 class="mb-2">{{ __('Current sitemap.xml content') }}</h6>
-
-                            @if(!empty($sitemapContent))
-                                <p style="white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono','Courier New', monospace;">
-                                    {{ $sitemapContent }}
-                                </p>
-                            @else
-                                <p class="text-muted mb-0">{{ __('No sitemap.xml found in public folder.') }}</p>
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -339,6 +413,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         const generalExtras = document.getElementById('general-tab-extras');
         const seoExtras = document.getElementById('seo-tab-extras');
+        const aiSeoExtras = document.getElementById('ai-seo-tab-extras');
         const customExtras = document.getElementById('custom-tab-extras');
 
         document.querySelectorAll('[data-tab][data-url]').forEach(el => {
@@ -353,13 +428,15 @@
                 // Hide all extras first
                 if (generalExtras) generalExtras.classList.add('d-none');
                 if (seoExtras) seoExtras.classList.add('d-none');
+                if (aiSeoExtras) aiSeoExtras.classList.add('d-none');
                 if (customExtras) customExtras.classList.add('d-none');
 
                 // Show the relevant extras
                 if (tab === 'general' && generalExtras) {
                     generalExtras.classList.remove('d-none');
-                } else if (tab === 'seo' && seoExtras) {
-                    seoExtras.classList.remove('d-none');
+                } else if (tab === 'seo') {
+                    if (seoExtras) seoExtras.classList.remove('d-none');
+                    if (aiSeoExtras) aiSeoExtras.classList.remove('d-none');
                 } else if (tab === 'custom' && customExtras) {
                     customExtras.classList.remove('d-none');
                 }

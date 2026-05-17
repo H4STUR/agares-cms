@@ -49,6 +49,11 @@ class CouponController extends Controller implements HasMiddleware
         return redirect()->route('admin.ecommerce.coupons.index')->with('success', 'Coupon created.');
     }
 
+    public function show(Coupon $coupon)
+    {
+        return redirect()->route('ecommerce.coupons.edit', $coupon);
+    }
+
     public function edit(Coupon $coupon)
     {
         $coupon->loadCount('redemptions');

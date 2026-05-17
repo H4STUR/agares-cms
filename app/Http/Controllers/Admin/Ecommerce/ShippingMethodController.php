@@ -43,6 +43,11 @@ class ShippingMethodController extends Controller implements HasMiddleware
         return redirect()->route('admin.ecommerce.shipping-methods.index')->with('success', 'Shipping method created.');
     }
 
+    public function show(ShippingMethod $shippingMethod)
+    {
+        return redirect()->route('ecommerce.shipping-methods.edit', $shippingMethod);
+    }
+
     public function edit(ShippingMethod $shippingMethod)
     {
         return view('pages.admin.ecommerce.shipping-methods.edit', ['method' => $shippingMethod]);

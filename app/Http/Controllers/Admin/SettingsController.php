@@ -23,7 +23,7 @@ class SettingsController extends Controller implements HasMiddleware
             new Middleware('can:view settings', only: ['index']),
             new Middleware('can:manage settings', only: [
                 'update', 'deleteSetting', 'storeCustom', 'clearCache',
-                'saveRobots', 'generateSitemap',
+                'saveRobots', 'generateSitemap', 'saveAiSeoSettings',
             ]),
         ];
     }
@@ -192,7 +192,32 @@ class SettingsController extends Controller implements HasMiddleware
         return implode("\n", $out) . "\n";
     }
 
-    
+    public function saveAiSeoSettings(Request $request)
+    {
+        $request->validate([
+            'ai_seo_enabled'  => 'nullable',
+            'ai_seo_industry' => 'nullable|string|max:255',
+            'ai_seo_audience' => 'nullable|string|max:255',
+            'ai_seo_tone'     => 'nullable|string|max:255',
+        ]);
+
+        Setting::updateOrCreate(['key' => 'ai_seo_enabled'], [
+            'value'    => $request->boolean('ai_seo_enabled') ? '1' : '0',
+            'category' => 'seo',
+            'type'     => 'boolean',
+        ]);
+
+        foreach (['ai_seo_industry', 'ai_seo_audience', 'ai_seo_tone'] as $key) {
+            Setting::updateOrCreate(['key' => $key], [
+                'value'    => (string) $request->input($key, ''),
+                'category' => 'seo',
+                'type'     => 'string',
+            ]);
+        }
+
+        return back()->with('success', __('AI SEO settings saved.'));
+    }
+
     public function clearCache()
     {
         try {

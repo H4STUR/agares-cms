@@ -46,6 +46,11 @@ class TagController extends Controller implements HasMiddleware
             ->with('success', __('Tag created.'));
     }
 
+    public function show(Tag $tag)
+    {
+        return redirect()->route('ecommerce.tags.edit', $tag);
+    }
+
     public function edit(Tag $tag)
     {
         return view('pages.admin.ecommerce.tags.edit', compact('tag'));

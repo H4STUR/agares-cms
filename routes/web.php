@@ -57,6 +57,8 @@ use App\Http\Controllers\Admin\API\{
     APIController,
 };
 
+use App\Http\Controllers\Admin\AiSeoController;
+
 Route::middleware(['auth', 'verified', 'can:view admin panel'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->middleware('can:manage dashboard')->name('dashboard');
     Route::get('/dashboard/realtime-users', [DashboardController::class, 'realtimeUsers'])->middleware('can:manage dashboard')->name('dashboard.realtime-users');
@@ -217,6 +219,7 @@ Route::middleware(['auth', 'verified', 'can:view admin panel'])->prefix('admin')
         Route::post('/cache/clear', [SettingsController::class, 'clearCache'])->name('cache.clear');
         Route::post('/settings/robots', [SettingsController::class, 'saveRobots'])->name('settings.robots.save');
         Route::post('/settings/sitemap/generate', [SettingsController::class, 'generateSitemap'])->name('settings.sitemap.generate');
+        Route::post('/settings/ai-seo', [SettingsController::class, 'saveAiSeoSettings'])->name('settings.ai-seo');
     });
 
     /* =========================
@@ -321,6 +324,14 @@ Route::middleware(['auth', 'verified', 'can:view admin panel'])->prefix('admin')
         Route::post('/api/keys', [APIController::class, 'store'])->name('api.keys.store');
         Route::post('/api/keys/{apiKey}/revoke', [APIController::class, 'revoke'])->name('api.keys.revoke');
     });
+
+    /* =========================
+    * AI SEO (Agares SaaS-backed)
+    * — gated by ai_seo_enabled setting; per-content-type permission checks live in the controller
+    * ========================= */
+    Route::post('/ai-seo/generate', [AiSeoController::class, 'generate'])
+        ->middleware('setting:ai_seo_enabled,true,json403')
+        ->name('ai-seo.generate');
 
     require base_path('routes/ecommerce.admin.php');
     require base_path('routes/newsletter.admin.php');

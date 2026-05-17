@@ -292,4 +292,5 @@ class CookieController extends Controller implements HasMiddleware
             'type'     => 'string',
         ]);
     }
+
 }

@@ -461,6 +461,44 @@ class SettingsTableSeeder extends Seeder
                 'updated_by' => null,
             ],
 
+            // AI SEO (Agares SaaS-backed)
+            [
+                'key' => 'ai_seo_enabled',
+                'value' => '0',
+                'category' => 'seo',
+                'type' => 'boolean',
+                'description' => 'Enable the Agares SaaS-backed AI SEO generator on content edit pages',
+                'created_by' => null,
+                'updated_by' => null,
+            ],
+            [
+                'key' => 'ai_seo_industry',
+                'value' => '',
+                'category' => 'seo',
+                'type' => 'string',
+                'description' => 'Site industry / vertical, used as brand context for AI SEO (e.g. "wedding photography")',
+                'created_by' => null,
+                'updated_by' => null,
+            ],
+            [
+                'key' => 'ai_seo_audience',
+                'value' => '',
+                'category' => 'seo',
+                'type' => 'string',
+                'description' => 'Target audience, used as brand context for AI SEO (e.g. "engaged couples")',
+                'created_by' => null,
+                'updated_by' => null,
+            ],
+            [
+                'key' => 'ai_seo_tone',
+                'value' => '',
+                'category' => 'seo',
+                'type' => 'string',
+                'description' => 'Brand tone / voice, used as brand context for AI SEO (e.g. "warm, personal, professional")',
+                'created_by' => null,
+                'updated_by' => null,
+            ],
+
             //CUSTOM
         ];
 

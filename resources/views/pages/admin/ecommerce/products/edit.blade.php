@@ -554,6 +554,18 @@
 
         {{-- SEO --}}
         <div id="tab-seo" class="tab-pane fade {{ $activeTab === 'seo' ? 'show active' : '' }}">
+
+          @if(\App\Models\Setting::bool('ai_seo_enabled'))
+            <div class="d-flex justify-content-end mb-3">
+              <button type="button"
+                      class="btn btn-outline-primary btn-sm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#aiSeoModal-product-{{ $product->id }}">
+                <i class="bi bi-stars me-1"></i> {{ __('Generate SEO') }}
+              </button>
+            </div>
+          @endif
+
           <div class="row g-3">
             <div class="col-md-8">
               <label class="form-label">{{ __('Meta title') }}</label>
@@ -579,6 +591,11 @@
 
       </div>
     </form>
+
+    @include('pages.admin.partials.ai-seo-modal', [
+        'contentType' => 'product',
+        'contentId'   => $product->id,
+    ])
 
   </div>
 </div>

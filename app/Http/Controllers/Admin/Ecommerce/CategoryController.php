@@ -47,6 +47,11 @@ class CategoryController extends Controller implements HasMiddleware
         return redirect()->route('admin.ecommerce.categories.index')->with('success', __('Category created.'));
     }
 
+    public function show(Category $category)
+    {
+        return redirect()->route('ecommerce.categories.edit', $category);
+    }
+
     public function edit(Category $category)
     {
         $parents = Category::where('id', '!=', $category->id)->orderBy('name')->get();

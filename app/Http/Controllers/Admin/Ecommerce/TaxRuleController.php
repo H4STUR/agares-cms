@@ -49,6 +49,11 @@ class TaxRuleController extends Controller implements HasMiddleware
         return redirect()->route('admin.ecommerce.tax-rules.index')->with('success', 'Tax rule created.');
     }
 
+    public function show(TaxRule $taxRule)
+    {
+        return redirect()->route('ecommerce.tax-rules.edit', $taxRule);
+    }
+
     public function edit(TaxRule $taxRule)
     {
         return view('pages.admin.ecommerce.tax-rules.edit', ['rule' => $taxRule]);

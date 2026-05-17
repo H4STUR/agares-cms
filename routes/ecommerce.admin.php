@@ -31,32 +31,33 @@ Route::middleware(['setting:enable_ecommerce,true,abort404', 'can:view ecommerce
         Route::get('/', [EcommerceDashboardController::class, 'index'])->name('dashboard');
 
         // GET-only resource indices/show pages
+        // whereNumber() prevents literal segments like "create"/"export"/"import" from being captured by the wildcard
         Route::get('products', [ProductController::class, 'index'])->name('products.index');
-        Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
+        Route::get('products/{product}', [ProductController::class, 'show'])->whereNumber('product')->name('products.show');
 
         Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
-        Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+        Route::get('categories/{category}', [CategoryController::class, 'show'])->whereNumber('category')->name('categories.show');
 
         Route::get('tags', [TagController::class, 'index'])->name('tags.index');
-        Route::get('tags/{tag}', [TagController::class, 'show'])->name('tags.show');
+        Route::get('tags/{tag}', [TagController::class, 'show'])->whereNumber('tag')->name('tags.show');
 
         Route::get('attributes', [AttributeController::class, 'index'])->name('attributes.index');
-        Route::get('attributes/{attribute}', [AttributeController::class, 'show'])->name('attributes.show');
-        Route::get('attributes/{attribute}/values', [AttributeValueController::class, 'index'])->name('attributes.values.index');
+        Route::get('attributes/{attribute}', [AttributeController::class, 'show'])->whereNumber('attribute')->name('attributes.show');
+        Route::get('attributes/{attribute}/values', [AttributeValueController::class, 'index'])->whereNumber('attribute')->name('attributes.values.index');
 
         Route::middleware('can:view orders')->group(function () {
             Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
-            Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+            Route::get('orders/{order}', [OrderController::class, 'show'])->whereNumber('order')->name('orders.show');
         });
 
         Route::get('coupons', [CouponController::class, 'index'])->name('coupons.index');
-        Route::get('coupons/{coupon}', [CouponController::class, 'show'])->name('coupons.show');
+        Route::get('coupons/{coupon}', [CouponController::class, 'show'])->whereNumber('coupon')->name('coupons.show');
 
         Route::get('shipping-methods', [ShippingMethodController::class, 'index'])->name('shipping-methods.index');
-        Route::get('shipping-methods/{shipping_method}', [ShippingMethodController::class, 'show'])->name('shipping-methods.show');
+        Route::get('shipping-methods/{shipping_method}', [ShippingMethodController::class, 'show'])->whereNumber('shipping_method')->name('shipping-methods.show');
 
         Route::get('tax-rules', [TaxRuleController::class, 'index'])->name('tax-rules.index');
-        Route::get('tax-rules/{tax_rule}', [TaxRuleController::class, 'show'])->name('tax-rules.show');
+        Route::get('tax-rules/{tax_rule}', [TaxRuleController::class, 'show'])->whereNumber('tax_rule')->name('tax-rules.show');
 
         Route::get('payment-providers', [PaymentProviderController::class, 'index'])->name('payment-providers.index');
 
