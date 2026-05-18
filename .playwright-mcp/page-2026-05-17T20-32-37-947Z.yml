@@ -1,0 +1,213 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - navigation [ref=e2]:
+      - link "menu" [ref=e4] [cursor=pointer]:
+        - /url: javascript:;
+        - generic [ref=e5]: menu
+      - generic [ref=e7] [cursor=pointer]:
+        - textbox "Search pages, articles, media..." [ref=e8]
+        - generic [ref=e9]: search
+      - list [ref=e10]:
+        - listitem [ref=e11]:
+          - link "apps" [ref=e12] [cursor=pointer]:
+            - /url: javascript:;
+            - generic [ref=e13]: apps
+        - listitem [ref=e14]:
+          - link "notifications" [ref=e15] [cursor=pointer]:
+            - /url: javascript:;
+            - generic [ref=e16]: notifications
+        - listitem [ref=e17]:
+          - link "User avatar" [ref=e18] [cursor=pointer]:
+            - /url: javascript:;
+            - img "User avatar" [ref=e19]
+  - complementary [ref=e20]:
+    - heading "Admin Panel" [level=5] [ref=e24]
+    - list [ref=e31]:
+      - listitem [ref=e32]:
+        - link "home Home Page" [ref=e33] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk
+          - generic [ref=e35]: home
+          - generic [ref=e36]: Home Page
+      - listitem [ref=e37]:
+        - link "dashboard Dashboard" [ref=e38] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk/admin
+          - generic [ref=e40]: dashboard
+          - generic [ref=e41]: Dashboard
+      - separator [ref=e42]
+      - listitem [ref=e43]:
+        - link "store eCommerce" [ref=e44] [cursor=pointer]:
+          - /url: javascript:;
+          - generic [ref=e46]: store
+          - generic [ref=e47]: eCommerce
+      - separator [ref=e48]
+      - listitem [ref=e49]:
+        - link "mark_email_read Newsletter" [ref=e50] [cursor=pointer]:
+          - /url: javascript:;
+          - generic [ref=e52]: mark_email_read
+          - generic [ref=e53]: Newsletter
+      - separator [ref=e54]
+      - listitem [ref=e55]:
+        - link " Sites" [ref=e56] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk/admin/sites
+          - generic [ref=e57]: 
+          - generic [ref=e58]: Sites
+      - listitem [ref=e59]:
+        - link "menu Menus" [ref=e60] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk/admin/menus
+          - generic [ref=e62]: menu
+          - generic [ref=e63]: Menus
+      - listitem [ref=e64]:
+        - link "collections Media" [ref=e65] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk/admin/media
+          - generic [ref=e67]: collections
+          - generic [ref=e68]: Media
+      - separator [ref=e69]
+      - listitem [ref=e70]:
+        - link "people Users" [ref=e71] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk/admin/users
+          - generic [ref=e73]: people
+          - generic [ref=e74]: Users
+      - listitem [ref=e75]:
+        - link "vpn_key Permissions" [ref=e76] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk/admin/permissions
+          - generic [ref=e78]: vpn_key
+          - generic [ref=e79]: Permissions
+      - separator [ref=e80]
+      - listitem [ref=e81]:
+        - link "extension Custom" [ref=e82] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk/admin/custom
+          - generic [ref=e84]: extension
+          - generic [ref=e85]: Custom
+      - listitem [ref=e86]:
+        - link "cookie Cookies" [ref=e87] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk/admin/cookies
+          - generic [ref=e89]: cookie
+          - generic [ref=e90]: Cookies
+      - listitem [ref=e91]:
+        - link "settings Settings" [ref=e92] [cursor=pointer]:
+          - /url: https://www.demo.agares.co.uk/admin/settings
+          - generic [ref=e94]: settings
+          - generic [ref=e95]: Settings
+    - generic [ref=e96] [cursor=pointer]:
+      - link "light_mode" [ref=e98]:
+        - /url: javascript:;
+        - generic [ref=e99]: light_mode
+      - generic [ref=e100]:
+        - link "info" [ref=e101]:
+          - /url: javascript:;
+          - generic [ref=e102]: info
+        - text:  
+  - main [ref=e103]:
+    - generic [ref=e104]:
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - 'heading "Edit site: Page Editor" [level=4] [ref=e110]'
+            - generic [ref=e111]: Published
+            - generic [ref=e112]: /page-editor
+          - generic [ref=e113]:
+            - generic [ref=e115]:
+              - switch "Published" [checked] [ref=e116]
+              - generic [ref=e117]: Published
+            - link " Preview" [ref=e118] [cursor=pointer]:
+              - /url: https://www.demo.agares.co.uk/page-editor
+              - generic [ref=e119]: 
+              - text: Preview
+        - tablist [ref=e120]:
+          - tab " Content" [ref=e121] [cursor=pointer]:
+            - generic [ref=e122]: 
+            - generic [ref=e123]: Content
+          - tab " Settings" [selected] [ref=e124] [cursor=pointer]:
+            - generic [ref=e125]: 
+            - generic [ref=e126]: Settings
+          - tab " SEO" [ref=e127] [cursor=pointer]:
+            - generic [ref=e128]: 
+            - generic [ref=e129]: SEO
+        - generic [ref=e131]:
+          - text:                     
+          - tabpanel " Settings" [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e134]: Name
+              - textbox "Name" [ref=e135]: Page Editor
+            - generic [ref=e136]:
+              - generic [ref=e137]: Slug
+              - generic [ref=e138]:
+                - textbox "Slug" [ref=e139]: page-editor
+                - button "" [ref=e140] [cursor=pointer]:
+                  - generic [ref=e141]: 
+            - generic [ref=e142]:
+              - generic [ref=e143]: Page template
+              - combobox "Page template" [ref=e144]:
+                - option "blog"
+                - option "contact"
+                - option "documentation"
+                - option "features-blog"
+                - option "features-page-editor" [selected]
+                - option "home"
+                - option "index"
+              - generic [ref=e145]: Template file from resources/views/pages/frontend/sites/
+            - generic [ref=e146]:
+              - generic [ref=e147]: Menu
+              - combobox "Menu" [ref=e148]:
+                - option "Main Menu" [selected]
+                - option "Static Pages"
+            - generic [ref=e149]:
+              - generic [ref=e150]: Parent Site
+              - combobox "Parent Site" [ref=e151]:
+                - option "No Parent"
+                - option "Home Page"
+                - option "Features" [selected]
+                - option "Projects"
+                - option "Blog"
+                - option "Documentation"
+                - option "Contact"
+            - separator [ref=e152]
+            - generic [ref=e153]:
+              - generic [ref=e154]: Publish status
+              - combobox [ref=e155]:
+                - option "Draft"
+                - option "Published" [selected]
+                - option "Scheduled"
+                - option "Private"
+              - generic [ref=e156]: Scheduled requires a publish date. Published sets publish date to now.
+            - generic [ref=e157]:
+              - generic [ref=e158]: Publish date (for scheduled)
+              - textbox "Publish date (for scheduled)" [ref=e159]: 2026-01-24T12:05
+            - separator [ref=e160]
+            - heading "Forward / Redirect" [level=6] [ref=e161]
+            - paragraph [ref=e162]: If enabled, this page will redirect visitors to another URL instead of rendering content.
+            - generic [ref=e163]:
+              - switch "This page is a forward" [ref=e164]
+              - generic [ref=e165]: This page is a forward
+            - generic [ref=e166]:
+              - generic [ref=e167]:
+                - generic [ref=e168]: Target URL
+                - textbox "Target URL" [disabled] [ref=e169]:
+                  - /placeholder: https://example.com or /kontakt
+              - generic [ref=e170]:
+                - generic [ref=e171]: Redirect type
+                - combobox "Redirect type" [disabled] [ref=e172]:
+                  - option "302 (Temporary)" [selected]
+                  - option "301 (Permanent)"
+              - generic [ref=e174]:
+                - checkbox "New tab" [disabled]
+                - generic [ref=e175]: New tab
+            - generic [ref=e176]:
+              - link " Test target":
+                - /url: javascript:void(0);
+                - generic: 
+                - text: Test target
+            - separator [ref=e177]
+            - generic [ref=e178]:
+              - generic [ref=e179]: Inputs template
+              - generic [ref=e180]:
+                - combobox [ref=e181]:
+                  - option "Default Site Template" [selected]
+                - button "Apply" [ref=e182] [cursor=pointer]
+              - generic [ref=e183]: Apply a predefined set of input fields to this site.
+      - button " Save All Changes" [ref=e187] [cursor=pointer]:
+        - generic [ref=e188]: 
+        - text: Save All Changes
+  - contentinfo [ref=e189]:
+    - paragraph [ref=e190]: Copyright © Agares 2026. All right reserved.
+  - img

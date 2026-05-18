@@ -74,7 +74,8 @@ or
   @endif
 @endforeach
 
-@if ($settings['enable_ecommerce'] ?? false)
+{{-- Cart + account icons only on shop routes; marketing pages stay clean --}}
+@if (($settings['enable_ecommerce'] ?? false) && (request()->is('shop*') || request()->is('user/*')))
     <div class="navbar-actions d-flex align-items-center gap-2 ms-3">
 
       {{-- Account icon --}}

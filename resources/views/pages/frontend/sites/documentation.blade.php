@@ -1,260 +1,383 @@
 @extends('pages.frontend.base')
 
+@push('styles')
+<style>
+  /* ============ Docs hub extras ============ */
+
+  .docs-search {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .docs-search input {
+    width: 100%;
+    padding: 1rem 1.25rem 1rem 3.25rem;
+    background: rgba(7, 8, 13, 0.6);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-full);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: all var(--transition-base);
+  }
+  .docs-search input:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+    background: rgba(7, 8, 13, 0.8);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+  }
+  .docs-search svg {
+    position: absolute;
+    top: 50%; left: 1.15rem;
+    transform: translateY(-50%);
+    color: var(--color-text-tertiary);
+  }
+  .docs-search .kbd {
+    position: absolute;
+    top: 50%; right: 0.85rem;
+    transform: translateY(-50%);
+    padding: 0.25rem 0.55rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary);
+  }
+
+  .docs-hub {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+  @media (max-width: 1000px) { .docs-hub { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .docs-hub { grid-template-columns: 1fr; } }
+
+  .docs-section {
+    padding: var(--space-2xl);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-base);
+    display: flex; flex-direction: column;
+  }
+  .docs-section:hover { border-color: var(--color-border-hover); transform: translateY(-3px); }
+  .docs-section-ico {
+    width: 44px; height: 44px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    color: #c4b5fd;
+  }
+  .docs-section.cyan  .docs-section-ico { background: rgba(34, 211, 238, 0.12); border-color: rgba(34, 211, 238, 0.3); color: #67e8f9; }
+  .docs-section.green .docs-section-ico { background: rgba(52, 211, 153, 0.12); border-color: rgba(52, 211, 153, 0.3); color: #6ee7b7; }
+  .docs-section.amber .docs-section-ico { background: rgba(251, 191, 36, 0.12); border-color: rgba(251, 191, 36, 0.3); color: #fde68a; }
+  .docs-section.pink  .docs-section-ico { background: rgba(244, 114, 182, 0.12); border-color: rgba(244, 114, 182, 0.3); color: #f9a8d4; }
+
+  .docs-section h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .docs-section p {
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--space-md);
+    line-height: 1.65;
+  }
+  .docs-link-list {
+    list-style: none; padding: 0; margin: 0;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-md);
+    flex: 1;
+  }
+  .docs-link-list li { margin: 0; }
+  .docs-link-list a {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.55rem 0;
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+  .docs-link-list a:hover { color: var(--color-text-primary); }
+  .docs-link-list a svg { opacity: 0; transition: opacity var(--transition-base), transform var(--transition-base); }
+  .docs-link-list a:hover svg { opacity: 1; transform: translateX(2px); }
+
+  .quickstart-strip {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    padding: clamp(2rem, 3vw, 2.5rem);
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(34, 211, 238, 0.12), transparent 70%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-2xl);
+  }
+  .quickstart-strip > * { min-width: 0; }
+  @media (max-width: 900px) { .quickstart-strip { grid-template-columns: 1fr; } }
+  .quickstart-strip h2 {
+    font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.025em;
+  }
+  .quickstart-strip p { color: var(--color-text-secondary); margin-bottom: var(--space-lg); line-height: 1.65; }
+
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+  @media (max-width: 800px) { .status-grid { grid-template-columns: 1fr; } }
+
+  .status-card {
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    display: flex; align-items: center; gap: var(--space-md);
+  }
+  .status-card .pulse {
+    flex-shrink: 0;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .status-card .pulse.green {
+    background: #34d399;
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+    animation: pulse-green 2s ease infinite;
+  }
+  @keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+  }
+  .status-card strong { display: block; font-family: var(--font-display); font-size: 0.95rem; color: var(--color-text-primary); letter-spacing: -0.01em; }
+  .status-card span { display: block; font-size: 0.78rem; color: var(--color-text-tertiary); }
+</style>
+@endpush
+
 @section('content')
-@once
-    @push('styles')
-        <link rel="stylesheet" href="{{ asset('/assets/admin/css/docs.css') }}">
-        <style>
-            .docs-layout { display: grid; grid-template-columns: 280px 1fr; gap: var(--space-3xl); align-items: start; }
-            .docs-sidebar { position: sticky; top: 100px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-lg); max-height: calc(100vh - 120px); overflow-y: auto; }
-            .docs-nav { list-style: none; }
-            .docs-nav a { display: block; padding: var(--space-sm) var(--space-md); border-radius: var(--radius-md); color: var(--color-text-secondary); transition: all var(--transition-base); font-size: var(--text-sm); }
-            .docs-nav a:hover { background: var(--color-surface-hover); color: var(--color-text-primary); }
-            .docs-nav a.active { background: var(--color-accent-primary); color: white; }
-            .docs-section { margin-bottom: var(--space-4xl); scroll-margin-top: 100px; }
 
-            .pill { display:inline-flex; align-items:center; gap:.35rem; padding:.15rem .5rem; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-surface); font-size: var(--text-xs); color: var(--color-text-secondary); }
-            .pill-primary { background: var(--color-accent-primary); color: white; border-color: var(--color-accent-primary); }
-            .pill-success { background: #10b981; color: white; border-color: #10b981; }
-            .pill-warning { background: #f59e0b; color: white; border-color: #f59e0b; }
-
-            .kvs { display:grid; grid-template-columns: 220px 1fr; gap: var(--space-sm) var(--space-lg); }
-            .kvs > div { padding: var(--space-sm) 0; border-bottom: 1px dashed var(--color-border); }
-            .kvs > div:nth-child(odd) { color: var(--color-text-secondary); font-size: var(--text-sm); }
-            .kvs > div:nth-child(even) { font-size: var(--text-sm); }
-
-            .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin: var(--space-xl) 0; }
-            .feature-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-lg); }
-            .feature-card h4 { margin-bottom: var(--space-sm); color: var(--color-text-primary); }
-            .feature-card p { color: var(--color-text-secondary); font-size: var(--text-sm); margin: 0; }
-
-            .hierarchy-tree { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-lg); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-            .hierarchy-tree .level-0 { color: var(--color-accent-primary); font-weight: 700; }
-            .hierarchy-tree .level-1 { margin-left: 2rem; color: #10b981; }
-            .hierarchy-tree .level-2 { margin-left: 4rem; color: #f59e0b; }
-            .hierarchy-tree .arrow { color: var(--color-text-secondary); }
-
-            @media (max-width: 968px) {
-                .docs-layout { grid-template-columns: 1fr; }
-                .docs-sidebar { position: static; max-height: none; }
-                .kvs { grid-template-columns: 1fr; }
-            }
-        </style>
-    @endpush
-@endonce
-
-<section class="section-sm" style="background: var(--color-bg-secondary);">
-    <div class="container text-center">
-        @if(!empty($data['header']->value))
-            <h1 class="cms-title">{{ $data['header']->value }}</h1>
-        @endif
-
-        <p style="font-size: var(--text-lg); max-width: 760px; margin: 0 auto;">
-            {!! safe_html($data['content']->value ?? 'A quick overview of how Agares CMS structures content and what you can build with it.') !!}
-        </p>
-    </div>
-</section>
-
-<section>
+  {{-- ============ HERO ============ --}}
+  <section class="hero" style="padding-bottom: var(--space-2xl);">
     <div class="container">
-        <div class="docs-layout">
+      <div class="hero-eyebrow">
+        <span class="pill">DOCS</span>
+        <span>Everything you need to ship · v2.0</span>
+      </div>
 
-            {{-- Sidebar Navigation --}}
-            <aside class="docs-sidebar">
-                <h3 style="margin-bottom: var(--space-lg); font-size: var(--text-lg);">Contents</h3>
-                <ul class="docs-nav">
-                    <li><a href="#overview" data-scroll-spy>Overview</a></li>
-                    <li><a href="#content-model" data-scroll-spy>Content model</a></li>
-                    <li><a href="#custom-fields" data-scroll-spy>Custom fields</a></li>
-                    <li><a href="#media" data-scroll-spy>Media</a></li>
-                    <li><a href="#permissions" data-scroll-spy>Users & permissions</a></li>
-                    <li><a href="#seo" data-scroll-spy>SEO</a></li>
-                    <li><a href="#api" data-scroll-spy>API</a></li>
-                </ul>
-            </aside>
+      <h1 class="hero-title">
+        Documentation.<br>
+        <span class="text-gradient-magic">For builders, not browsers.</span>
+      </h1>
 
-            {{-- Main Content --}}
-            <div class="docs-content">
+      <p class="hero-subtitle">
+        Pick a path: install in 10 minutes, dive into the API, build a custom module,
+        or read the architecture notes that explain every weird design decision.
+      </p>
 
-                {{-- Overview --}}
-                <div class="docs-section" id="overview" data-section>
-                    <h2>Overview</h2>
-                    <p>
-                        Agares CMS is a modern, flexible CMS built on Laravel. It supports multi-site content, hierarchical pages,
-                        reusable templates, custom fields, and permissions — all from one admin panel.
-                    </p>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h4>Multi-site & hierarchy</h4>
-                            <p>Manage many websites (or sections) with parent/child page structures and menu navigation.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>Custom fields</h4>
-                            <p>Attach text, rich content, galleries, files, FAQs and forms to any page or post.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>Publishing workflow</h4>
-                            <p>Draft, publish, schedule, or keep content private — without rebuilding the site.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>Headless-ready</h4>
-                            <p>Optional REST API for React / Next.js / mobile apps.</p>
-                        </div>
-                    </div>
-
-                    <div class="alert alert-info">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
-                        </svg>
-                        <div>
-                            <strong>Admin demo links:</strong><br>
-                            <a href="{{ route('admin.sites') }}">Sites</a> ·
-                            <a href="{{ route('admin.menus') }}">Menus</a> ·
-                            <a href="{{ route('admin.media') }}">Media</a> ·
-                            <a href="{{ route('admin.settings') }}">Settings</a> ·
-                            <a href="{{ route('admin.api.documentation') }}">API</a>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Content model --}}
-                <div class="docs-section" id="content-model" data-section>
-                    <h2>Content model</h2>
-                    <p>
-                        Content is organized in a simple hierarchy that works for websites, blogs, news sections, portfolios, or product catalogs.
-                    </p>
-
-                    <div class="hierarchy-tree">
-                        <div class="level-0">Menu</div>
-                        <div class="level-1"><span class="arrow">└─</span> Site (Page)</div>
-                        <div class="level-2"><span class="arrow">   └─</span> Category</div>
-                        <div class="level-2"><span class="arrow">      └─</span> Article</div>
-                    </div>
-
-                    <div class="kvs" style="margin-top: var(--space-xl);">
-                        <div>Sites (Pages)</div><div>Main pages/sections with templates, URL slugs, and custom fields.</div>
-                        <div>Categories</div><div>Groups for posts inside a site (e.g., News / Blog / Projects).</div>
-                        <div>Articles</div><div>Posts/items that can belong to one or multiple categories.</div>
-                        <div>Menus</div><div>Navigation containers (main menu, footer menu, etc.).</div>
-                    </div>
-
-                    <h3 style="margin-top: var(--space-xl);">Publishing states</h3>
-                    <p style="margin-bottom: var(--space-md);">Control visibility without changing templates:</p>
-                    <div style="display:flex; flex-wrap:wrap; gap:.5rem;">
-                        <span class="pill">Draft</span>
-                        <span class="pill pill-success">Published</span>
-                        <span class="pill pill-warning">Scheduled</span>
-                        <span class="pill pill-primary">Private</span>
-                    </div>
-                </div>
-
-                {{-- Custom fields --}}
-                <div class="docs-section" id="custom-fields" data-section>
-                    <h2>Custom fields</h2>
-                    <p>
-                        Agares CMS uses a flexible “Input System” to build pages without hardcoding layouts.
-                        You can add reusable field sets (templates) and attach them to sites, categories, or articles.
-                    </p>
-
-                    <div class="kvs">
-                        <div>Field types</div>
-                        <div>Text, rich editor, galleries, files, FAQs, contact forms and more.</div>
-
-                        <div>Templates</div>
-                        <div>Create reusable groups of fields for consistent pages (e.g., landing pages, blog posts).</div>
-
-                        <div>Variables</div>
-                        <div>Each field has a variable key, so frontend templates can render it safely.</div>
-                    </div>
-
-                    <h3 style="margin-top: var(--space-xl);">Example use cases</h3>
-                    <ul style="color: var(--color-text-secondary); padding-left: var(--space-xl);">
-                        <li>Landing page: hero title, subtitle, CTA buttons, feature blocks, gallery</li>
-                        <li>Blog post: cover image, excerpt, rich content, author, attachments</li>
-                        <li>Contact page: content + configurable contact form + GDPR consent</li>
-                    </ul>
-                </div>
-
-                {{-- Media --}}
-                <div class="docs-section" id="media" data-section>
-                    <h2>Media</h2>
-                    <p>
-                        The Media Library keeps all uploads in one place and lets you reuse assets across pages and content types.
-                    </p>
-
-                    <div class="kvs">
-                        <div>Upload</div><div>Images and files can be uploaded from the Media Library and selected in fields.</div>
-                        <div>Galleries</div><div>Multi-image fields with sorting and per-image metadata (alt/description).</div>
-                        <div>Safe reuse</div><div>Assets can be reused across the site without duplicating files.</div>
-                    </div>
-                </div>
-
-                {{-- Users & permissions --}}
-                <div class="docs-section" id="permissions" data-section>
-                    <h2>Users & permissions</h2>
-                    <p>
-                        Built-in role and permission control lets you manage editors, moderators, and admins safely.
-                        Permissions can be global and (optionally) limited per-site.
-                    </p>
-
-                    <div class="kvs">
-                        <div>Roles</div><div>Assign roles like owner/admin/editor and control what each role can do.</div>
-                        <div>Granular access</div><div>Limit access to specific modules (sites, media, users, settings, etc.).</div>
-                        <div>Site-level access</div><div>Optionally allow a role to edit only selected sites/pages.</div>
-                    </div>
-                </div>
-
-                {{-- SEO --}}
-                <div class="docs-section" id="seo" data-section>
-                    <h2>SEO</h2>
-                    <p>
-                        Basic SEO controls are built in to help your content perform well in search engines.
-                    </p>
-
-                    <div class="kvs">
-                        <div>Meta tags</div><div>Set page title and description per site/category/article.</div>
-                        <div>Sitemap & robots</div><div>Generate sitemap and control crawler rules from settings.</div>
-                        <div>Clean URLs</div><div>Slug-based routing for readable, shareable links.</div>
-                    </div>
-                </div>
-
-                {{-- API --}}
-                <div class="docs-section" id="api" data-section>
-                    <h2>API</h2>
-                    <p>
-                        Agares CMS can run as a headless backend. Use API keys to securely fetch content for external apps.
-                    </p>
-
-                    <div class="alert alert-info">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
-                        </svg>
-                        <div>
-                            <strong>Want details?</strong>
-                            <a href="{{ route('admin.api.documentation') }}">Open full API documentation</a>
-                        </div>
-                    </div>
-
-                    <div class="kvs">
-                        <div>Authentication</div><div>Send your key in the <code>X-API-Key</code> header.</div>
-                        <div>Typical endpoints</div><div>Sites, menus, articles, and public settings.</div>
-                    </div>
-
-                    <div class="code-block" style="margin-top: var(--space-lg);">
-                        <div class="code-header"><span class="code-language">Example</span><button class="code-copy">Copy</button></div>
-<pre><code>curl -H "X-API-Key: ak_your_key" "{{ url('/api/v1/sites/home') }}"</code></pre>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+      <div class="docs-search" style="margin-top: var(--space-2xl);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" placeholder="Search the docs… (coming soon)" disabled>
+        <span class="kbd">⌘ K</span>
+      </div>
     </div>
-</section>
+  </section>
 
-@once
-    @push('scripts')
-        <script src="{{ asset('/assets/admin/js/docs.js') }}"></script>
-    @endpush
-@endonce
-@endsection
+  {{-- ============ QUICKSTART STRIP ============ --}}
+  <section style="padding-top: var(--space-md);">
+    <div class="container-wide">
+      <div class="quickstart-strip reveal">
+        <div>
+          <span class="badge badge-cyan mb-md">Get started in 10 minutes</span>
+          <h2>Install Agares locally.<br>First page live before lunch.</h2>
+          <p>Docker Compose dev environment, sample data seeder, and a walk-through covering sites, categories, articles and your first custom Blade template.</p>
+          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+            <a href="https://github.com/H4STUR" target="_blank" rel="noopener" class="btn btn-primary btn-lg btn-icon-after">
+              Clone on GitHub
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <button type="button" class="btn btn-secondary btn-lg" data-demo-open>Try the live demo</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="code-window">
+            <div class="code-window-header">
+              <span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span>
+              <span class="code-window-title">Terminal</span>
+            </div>
+<pre><span class="com"># Clone &amp; spin up</span>
+<span class="kw">git</span> clone https://github.com/H4STUR/agares-cms
+<span class="kw">cd</span> agares-cms
+<span class="kw">docker-compose</span> up -d
+
+<span class="com"># Install &amp; seed</span>
+<span class="kw">docker</span> exec agares composer install
+<span class="kw">docker</span> exec agares <span class="kw">php</span> artisan migrate --seed
+
+<span class="com"># Open the admin</span>
+<span class="fn">open</span> http://localhost:8006/admin</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{-- ============ DOCS HUB GRID ============ --}}
+  <section>
+    <div class="container-wide">
+      <div class="section-header">
+        <span class="eyebrow">Pick your path</span>
+        <h2>Six sections,<br><span class="text-gradient">every angle covered</span>.</h2>
+        <p>The same docs power our internal onboarding. If something's missing, open an issue — we'll add it.</p>
+      </div>
+
+      <div class="docs-hub">
+
+        <div class="docs-section cyan reveal">
+          <div class="docs-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>Getting started</h3>
+          <p>From <code style="font-family:var(--font-mono);color:#67e8f9;">git clone</code> to your first published article.</p>
+          <ul class="docs-link-list">
+            <li><a href="#">Installation &amp; Docker setup <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Configuration &amp; .env <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Creating your first site <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Your first Blade template <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          </ul>
+        </div>
+
+        <div class="docs-section reveal">
+          <div class="docs-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <h3>Architecture</h3>
+          <p>Sites → Categories → Articles. Polymorphic custom fields. The whole mental model.</p>
+          <ul class="docs-link-list">
+            <li><a href="#">Content hierarchy &amp; status states <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">The Input System (custom fields) <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Feature flags &amp; EnsureSetting middleware <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Helpers: input_value(), safe_html() <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          </ul>
+        </div>
+
+        <div class="docs-section green reveal">
+          <div class="docs-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
+          </div>
+          <h3>REST API</h3>
+          <p>Scoped keys, ability scopes, every endpoint, every error code.</p>
+          <ul class="docs-link-list">
+            <li><a href="/api">Quickstart &amp; key issuing <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Ability scopes reference <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Endpoint catalog — v1 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Rate limits &amp; pagination <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          </ul>
+        </div>
+
+        <div class="docs-section amber reveal">
+          <div class="docs-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </div>
+          <h3>Modules</h3>
+          <p>Toggle on per project: ecommerce, newsletter, RBAC, 2FA, cookies, forms.</p>
+          <ul class="docs-link-list">
+            <li><a href="#">Ecommerce: products, orders, payments <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Newsletter: lists, campaigns, webhooks <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Forms: builder &amp; submission storage <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Cookies: scanner &amp; consent UI <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          </ul>
+        </div>
+
+        <div class="docs-section pink reveal">
+          <div class="docs-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Security &amp; RBAC</h3>
+          <p>Roles, permissions, 2FA flows, audit log, and the defense-in-depth doctrine.</p>
+          <ul class="docs-link-list">
+            <li><a href="/security">Architecture overview <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Spatie permissions setup <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">2FA enrolment &amp; recovery <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Reading the security audit log <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          </ul>
+        </div>
+
+        <div class="docs-section reveal">
+          <div class="docs-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h3>Deployment</h3>
+          <p>GitHub Actions to Cyber-Folks SFTP. Or roll your own — it's just Laravel.</p>
+          <ul class="docs-link-list">
+            <li><a href="#">CI/CD with GitHub Actions <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Cyber-Folks first-time setup <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Database migrations on deploy <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+            <li><a href="#">Zero-downtime rollouts <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{-- ============ STATUS / VERSIONS ============ --}}
+  <section>
+    <div class="container-wide">
+      <div class="section-header">
+        <span class="eyebrow">Current state of play</span>
+        <h2>Live versions, live status,<br><span class="text-gradient">no surprises</span>.</h2>
+      </div>
+
+      <div class="status-grid">
+        <div class="status-card reveal">
+          <span class="pulse green"></span>
+          <div>
+            <strong>Docs build · v2.0</strong>
+            <span>Updated 2026-05-18 — current shipping release</span>
+          </div>
+        </div>
+        <div class="status-card reveal">
+          <span class="pulse green"></span>
+          <div>
+            <strong>Demo · operational</strong>
+            <span>demo.agares.co.uk — all modules enabled</span>
+          </div>
+        </div>
+        <div class="status-card reveal">
+          <span class="pulse green"></span>
+          <div>
+            <strong>API v1 · stable</strong>
+            <span>Backwards-compatible additions only</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{-- ============ STILL CONFUSED CTA ============ --}}
+  <section>
+    <div class="container">
+      <div class="cta-banner reveal">
+        <span class="badge badge-warning mb-md">Still stuck?</span>
+        <h2>Docs aren't always enough.<br>That's <span class="text-gradient">what we're for</span>.</h2>
+        <p>Open an issue on GitHub, or just email us. We treat documentation gaps as bugs — bring us yours.</p>
+        <div class="hero-buttons">
+          <a href="https://github.com/H4STUR" target="_blank" rel="noopener" class="btn btn-primary btn-lg btn-icon-after">
+            Open a GitHub issue
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <a href="/contact" class="btn btn-secondary btn-lg">Email us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+@stop

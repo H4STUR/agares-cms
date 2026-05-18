@@ -1,0 +1,2 @@
+[   10810ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8006/admin/sites/11/sounds/sound2.ogg:0
+[   10811ms] Failed to load because no supported source was found.

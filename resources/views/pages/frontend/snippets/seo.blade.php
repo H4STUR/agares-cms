@@ -1,3 +1,17 @@
+@php
+    // Defensive defaults so static (non-CMS) pages don't crash on missing $data
+    $seoSite        = $data['site'] ?? null;
+    $seoTitle       = ($seoSite && $seoSite->title)
+                        ? $seoSite->title
+                        : ($settings['meta_title'] ?? 'Agares CMS');
+    $seoDescription = ($seoSite && $seoSite->description)
+                        ? $seoSite->description
+                        : ($settings['meta_description'] ?? '');
+    $seoKeywords    = ($seoSite && $seoSite->keywords)
+                        ? $seoSite->keywords
+                        : ($settings['meta_keywords'] ?? '');
+@endphp
+
 <!-- Required Meta Tags -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -5,9 +19,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- SEO Meta Tags -->
-        <title>{{ $data['site']->title ?? $settings['meta_title'] }}</title> <!-- Unique title for each page, under 60 characters -->
-        <meta name="description" content="{{ $data['site']->description ?: ($settings['meta_description'] ?? '') }}">
-        <meta name="keywords" content="{{ $data['site']->keywords ?: ($settings['meta_keywords'] ?? '') }}"> <!-- Optional: Use relevant keywords -->
+        <title>{{ $seoTitle }}</title> <!-- Unique title for each page, under 60 characters -->
+        <meta name="description" content="{{ $seoDescription }}">
+        <meta name="keywords" content="{{ $seoKeywords }}">
         {{-- <meta name="author" content=""> --}}
     
         <!-- Canonical URL -->

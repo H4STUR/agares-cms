@@ -1,0 +1,7 @@
+[    9427ms] Error: Element not found
+    at https://www.demo.agares.co.uk/assets/admin/theme/assets/plugins/apexchart/apexcharts.min.js:14:36439
+    at new Promise (<anonymous>)
+    at t.value (https://www.demo.agares.co.uk/assets/admin/theme/assets/plugins/apexchart/apexcharts.min.js:14:21677)
+    at HTMLDocument.<anonymous> (https://www.demo.agares.co.uk/assets/admin/theme/assets/js/index.js:403:9)
+    at e (https://www.demo.agares.co.uk/assets/admin/theme/assets/js/jquery.min.js:2:30038)
+    at t (https://www.demo.agares.co.uk/assets/admin/theme/assets/js/jquery.min.js:2:30340)

@@ -1,0 +1,270 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - navigation [ref=e2]:
+      - link "menu" [ref=e4] [cursor=pointer]:
+        - /url: javascript:;
+        - generic [ref=e5]: menu
+      - generic [ref=e7] [cursor=pointer]:
+        - textbox "Search pages, articles, media..." [ref=e8]
+        - generic [ref=e9]: search
+      - list [ref=e10]:
+        - listitem [ref=e11]:
+          - link "apps" [ref=e12] [cursor=pointer]:
+            - /url: javascript:;
+            - generic [ref=e13]: apps
+        - listitem [ref=e14]:
+          - link "notifications" [ref=e15] [cursor=pointer]:
+            - /url: javascript:;
+            - generic [ref=e16]: notifications
+        - listitem [ref=e17]:
+          - link "User avatar" [ref=e18] [cursor=pointer]:
+            - /url: javascript:;
+            - img "User avatar" [ref=e19]
+  - complementary [ref=e20]:
+    - heading "Admin Panel" [level=5] [ref=e24]
+    - list [ref=e31]:
+      - listitem [ref=e32]:
+        - link "home Home Page" [ref=e33] [cursor=pointer]:
+          - /url: http://localhost:8006
+          - generic [ref=e35]: home
+          - generic [ref=e36]: Home Page
+      - listitem [ref=e37]:
+        - link "dashboard Dashboard" [ref=e38] [cursor=pointer]:
+          - /url: http://localhost:8006/admin
+          - generic [ref=e40]: dashboard
+          - generic [ref=e41]: Dashboard
+      - separator [ref=e42]
+      - listitem [ref=e43]:
+        - link "store eCommerce" [ref=e44] [cursor=pointer]:
+          - /url: javascript:;
+          - generic [ref=e46]: store
+          - generic [ref=e47]: eCommerce
+      - separator [ref=e48]
+      - listitem [ref=e49]:
+        - link "mark_email_read Newsletter" [ref=e50] [cursor=pointer]:
+          - /url: javascript:;
+          - generic [ref=e52]: mark_email_read
+          - generic [ref=e53]: Newsletter
+      - separator [ref=e54]
+      - listitem [ref=e55]:
+        - link " Sites" [ref=e56] [cursor=pointer]:
+          - /url: http://localhost:8006/admin/sites
+          - generic [ref=e57]: 
+          - generic [ref=e58]: Sites
+      - listitem [ref=e59]:
+        - link "menu Menus" [ref=e60] [cursor=pointer]:
+          - /url: http://localhost:8006/admin/menus
+          - generic [ref=e62]: menu
+          - generic [ref=e63]: Menus
+      - listitem [ref=e64]:
+        - link "collections Media" [ref=e65] [cursor=pointer]:
+          - /url: http://localhost:8006/admin/media
+          - generic [ref=e67]: collections
+          - generic [ref=e68]: Media
+      - separator [ref=e69]
+      - listitem [ref=e70]:
+        - link "people Users" [ref=e71] [cursor=pointer]:
+          - /url: http://localhost:8006/admin/users
+          - generic [ref=e73]: people
+          - generic [ref=e74]: Users
+      - listitem [ref=e75]:
+        - link "vpn_key Permissions" [ref=e76] [cursor=pointer]:
+          - /url: http://localhost:8006/admin/permissions
+          - generic [ref=e78]: vpn_key
+          - generic [ref=e79]: Permissions
+      - separator [ref=e80]
+      - listitem [ref=e81]:
+        - link "extension Custom" [ref=e82] [cursor=pointer]:
+          - /url: http://localhost:8006/admin/custom
+          - generic [ref=e84]: extension
+          - generic [ref=e85]: Custom
+      - listitem [ref=e86]:
+        - link "cookie Cookies" [ref=e87] [cursor=pointer]:
+          - /url: http://localhost:8006/admin/cookies
+          - generic [ref=e89]: cookie
+          - generic [ref=e90]: Cookies
+      - listitem [ref=e91]:
+        - link "code API" [ref=e92] [cursor=pointer]:
+          - /url: http://localhost:8006/admin/api
+          - generic [ref=e94]: code
+          - generic [ref=e95]: API
+      - listitem [ref=e96]:
+        - link "settings Settings" [ref=e97] [cursor=pointer]:
+          - /url: http://localhost:8006/admin/settings
+          - generic [ref=e99]: settings
+          - generic [ref=e100]: Settings
+    - generic [ref=e101] [cursor=pointer]:
+      - link "light_mode" [ref=e103]:
+        - /url: javascript:;
+        - generic [ref=e104]: light_mode
+      - generic [ref=e105]:
+        - link "info" [ref=e106]:
+          - /url: javascript:;
+          - generic [ref=e107]: info
+        - text:  
+  - main [ref=e108]:
+    - generic [ref=e109]:
+      - generic [ref=e111]: Sites
+      - generic [ref=e112]:
+        - generic [ref=e113]:
+          - heading "Manage pages" [level=4] [ref=e115]
+          - link "add Add New Site" [ref=e116] [cursor=pointer]:
+            - /url: http://localhost:8006/admin/sites/create
+            - generic [ref=e117]: add
+            - generic [ref=e118]: Add New Site
+          - generic [ref=e120]:
+            - textbox "Search pages…" [ref=e121]
+            - generic: search
+            - generic: close
+        - list [ref=e122]:
+          - listitem [ref=e123]:
+            - link "Published 4" [ref=e124] [cursor=pointer]:
+              - /url: http://localhost:8006/admin/sites?tab=published
+              - text: Published
+              - generic [ref=e125]: "4"
+          - listitem [ref=e126]:
+            - link "Drafts 0" [ref=e127] [cursor=pointer]:
+              - /url: http://localhost:8006/admin/sites?tab=draft
+              - text: Drafts
+              - generic [ref=e128]: "0"
+          - listitem [ref=e129]:
+            - link "All 4" [ref=e130] [cursor=pointer]:
+              - /url: http://localhost:8006/admin/sites?tab=all
+              - text: All
+              - generic [ref=e131]: "4"
+          - listitem [ref=e132]:
+            - link "Bin 0" [ref=e133] [cursor=pointer]:
+              - /url: http://localhost:8006/admin/sites?tab=trash
+              - text: Bin
+              - generic [ref=e134]: "0"
+        - generic [ref=e136]:
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - generic [ref=e140]:
+                - link "Privacy Policy" [ref=e142] [cursor=pointer]:
+                  - /url: http://localhost:8006/admin/sites/5
+                  - generic [ref=e143]: Privacy Policy
+                - generic [ref=e144]:
+                  - generic [ref=e145]: /privacy-policy
+                  - generic [ref=e146]: • Updated 2026-05-12 14:56
+              - generic [ref=e147]: Published
+            - generic [ref=e148]:
+              - link " Preview" [ref=e150] [cursor=pointer]:
+                - /url: http://localhost:8006/privacy-policy
+                - generic [ref=e151]: 
+                - text: Preview
+              - generic [ref=e152]:
+                - link " info" [ref=e153] [cursor=pointer]:
+                  - /url: http://localhost:8006/admin/sites/5
+                  - generic [ref=e154]: 
+                  - text: info
+                - link " Edit" [ref=e155] [cursor=pointer]:
+                  - /url: http://localhost:8006/admin/sites/5/edit
+                  - generic [ref=e156]: 
+                  - text: Edit
+                - button " Duplicate" [ref=e158] [cursor=pointer]:
+                  - generic [ref=e159]: 
+                  - text: Duplicate
+                - button "Draft" [ref=e161] [cursor=pointer]
+                - button " Bin" [ref=e162] [cursor=pointer]:
+                  - generic [ref=e163]: 
+                  - text: Bin
+          - generic [ref=e164]:
+            - generic [ref=e166]:
+              - generic [ref=e167]:
+                - generic [ref=e168]:
+                  - link "Terms of Service" [ref=e170] [cursor=pointer]:
+                    - /url: http://localhost:8006/admin/sites/6
+                    - generic [ref=e171]: Terms of Service
+                  - generic [ref=e172]:
+                    - generic [ref=e173]: /terms-of-service
+                    - generic [ref=e174]: • Updated 2026-05-12 14:56
+                - generic [ref=e175]: Published
+              - generic [ref=e176]:
+                - link " Preview" [ref=e178] [cursor=pointer]:
+                  - /url: http://localhost:8006/terms-of-service
+                  - generic [ref=e179]: 
+                  - text: Preview
+                - generic [ref=e180]:
+                  - link " info" [ref=e181] [cursor=pointer]:
+                    - /url: http://localhost:8006/admin/sites/6
+                    - generic [ref=e182]: 
+                    - text: info
+                  - link " Edit" [ref=e183] [cursor=pointer]:
+                    - /url: http://localhost:8006/admin/sites/6/edit
+                    - generic [ref=e184]: 
+                    - text: Edit
+                  - button " Duplicate" [ref=e186] [cursor=pointer]:
+                    - generic [ref=e187]: 
+                    - text: Duplicate
+                  - button "Draft" [ref=e189] [cursor=pointer]
+                  - button " Bin" [ref=e190] [cursor=pointer]:
+                    - generic [ref=e191]: 
+                    - text: Bin
+            - generic [ref=e192]:
+              - generic [ref=e194]:
+                - generic [ref=e195]:
+                  - generic [ref=e196]:
+                    - link "Cookie Policy" [ref=e198] [cursor=pointer]:
+                      - /url: http://localhost:8006/admin/sites/7
+                      - generic [ref=e199]: Cookie Policy
+                    - generic [ref=e200]:
+                      - generic [ref=e201]: /cookie-policy
+                      - generic [ref=e202]: • Updated 2026-05-12 14:56
+                  - generic [ref=e203]: Published
+                - generic [ref=e204]:
+                  - link " Preview" [ref=e206] [cursor=pointer]:
+                    - /url: http://localhost:8006/cookie-policy
+                    - generic [ref=e207]: 
+                    - text: Preview
+                  - generic [ref=e208]:
+                    - link " info" [ref=e209] [cursor=pointer]:
+                      - /url: http://localhost:8006/admin/sites/7
+                      - generic [ref=e210]: 
+                      - text: info
+                    - link " Edit" [ref=e211] [cursor=pointer]:
+                      - /url: http://localhost:8006/admin/sites/7/edit
+                      - generic [ref=e212]: 
+                      - text: Edit
+                    - button " Duplicate" [ref=e214] [cursor=pointer]:
+                      - generic [ref=e215]: 
+                      - text: Duplicate
+                    - button "Draft" [ref=e217] [cursor=pointer]
+                    - button " Bin" [ref=e218] [cursor=pointer]:
+                      - generic [ref=e219]: 
+                      - text: Bin
+              - generic [ref=e222]:
+                - generic [ref=e223]:
+                  - generic [ref=e224]:
+                    - link "home Home Page" [ref=e226] [cursor=pointer]:
+                      - /url: http://localhost:8006/admin/sites/4
+                      - generic [ref=e227]: home
+                      - generic [ref=e228]: Home Page
+                    - generic [ref=e229]:
+                      - generic [ref=e230]: /home
+                      - generic [ref=e231]: • Updated 2026-05-12 14:56
+                  - generic [ref=e232]: Published
+                - generic [ref=e233]:
+                  - link " Preview" [ref=e235] [cursor=pointer]:
+                    - /url: http://localhost:8006/home
+                    - generic [ref=e236]: 
+                    - text: Preview
+                  - generic [ref=e237]:
+                    - link " info" [ref=e238] [cursor=pointer]:
+                      - /url: http://localhost:8006/admin/sites/4
+                      - generic [ref=e239]: 
+                      - text: info
+                    - link " Edit" [ref=e240] [cursor=pointer]:
+                      - /url: http://localhost:8006/admin/sites/4/edit
+                      - generic [ref=e241]: 
+                      - text: Edit
+                    - button " Duplicate" [ref=e243] [cursor=pointer]:
+                      - generic [ref=e244]: 
+                      - text: Duplicate
+                    - button "Draft" [ref=e246] [cursor=pointer]
+                    - button " Bin" [ref=e247] [cursor=pointer]:
+                      - generic [ref=e248]: 
+                      - text: Bin
+  - contentinfo [ref=e249]:
+    - paragraph [ref=e250]: Copyright © Agares 2026. All right reserved.
+  - img
