@@ -473,42 +473,6 @@
     </div>
   </section>
 
-  {{-- ============ TESTIMONIAL / CASE STUDY TEASER ============ --}}
-  <section>
-    <div class="container">
-      <div class="split">
-        <div>
-          <div class="quote-card">
-            <blockquote>
-              Agares runs three of our production sites — the editor team owns content,
-              we own the code, nobody fights about it. Best decision we made this year.
-            </blockquote>
-            <div class="quote-author">
-              <div class="avatar">PCM</div>
-              <div>
-                <div style="font-weight: 600; color: var(--color-text-primary);">PiesCiMordeLizal</div>
-                <div style="color: var(--color-text-tertiary); font-size: var(--text-sm);">Hospitality &amp; pet hotel · live on Agares CMS</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <span class="eyebrow">Real sites, real owners</span>
-          <h2 style="margin-bottom: var(--space-md);">See the platform doing <span class="text-gradient">actual work</span>.</h2>
-          <p style="color: var(--color-text-secondary); font-size: var(--text-lg); margin-bottom: var(--space-xl);">
-            A growing roster of agencies and SaaS products run on Agares — from hospitality
-            booking pages to multi-tenant SaaS dashboards.
-          </p>
-          <a href="/projects" class="btn btn-secondary btn-icon-after">
-            Explore the showcase
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   {{-- ============ CTA BANNER ============ --}}
   <section>
     <div class="container">

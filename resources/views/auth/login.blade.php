@@ -2,8 +2,20 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-3" :status="session('status')" />
 
+    @php $isDemo = request()->boolean('demo'); @endphp
+
     <h4 class="fw-bold">{{ __('Get Started Now') }}</h4>
     <p class="mb-0">{{ __('Enter your credentials to login your account') }}</p>
+
+    @if($isDemo)
+        <div class="alert alert-info mt-3 mb-0 d-flex align-items-start gap-2" role="status">
+            <i class="bi bi-info-circle-fill"></i>
+            <div>
+                <strong>{{ __('Demo credentials prefilled.') }}</strong>
+                {{ __('Click the Login button below to enter the admin panel as the demo user.') }}
+            </div>
+        </div>
+    @endif
 
     {{-- Social login --}}
     @php
@@ -71,7 +83,7 @@
                 id="input_type"
                 type="text"
                 name="input_type"
-                value="{{ old('input_type') }}"
+                value="{{ old('input_type', $isDemo ? 'demo' : '') }}"
                 class="form-control @error('email') is-invalid @enderror @error('username') is-invalid @enderror"
                 autofocus
                 autocomplete="username"
@@ -94,6 +106,7 @@
                     id="password"
                     type="password"
                     name="password"
+                    value="{{ $isDemo ? 'password' : '' }}"
                     class="form-control @error('password') is-invalid @enderror"
                     required
                     autocomplete="current-password"

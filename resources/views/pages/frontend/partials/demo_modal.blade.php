@@ -12,17 +12,40 @@
 
     <div class="demo-modal__eyebrow">
       <span class="pulse-dot"></span>
-      <span>Read-only tour</span>
+      <span>Live demo access</span>
     </div>
 
     <h2 id="demo-modal-title" class="demo-modal__title">
-      The live demo is being polished
+      Step inside the admin panel
     </h2>
 
     <p class="demo-modal__lead">
-      In a few days you'll get full access to the admin panel as a read-only viewer — walk through every screen,
-      every module, click every button. Nothing you do will affect the demo content.
+      Sign in with the shared demo account to explore every screen and module — sites, articles,
+      media, forms, ecommerce, payments, the lot. Use the credentials below or click the button to log in instantly.
     </p>
+
+    <div class="demo-modal__creds" aria-label="Demo credentials">
+      <div class="demo-modal__cred-row">
+        <span class="demo-modal__cred-label">Login</span>
+        <code class="demo-modal__cred-value" data-copy="demo">demo</code>
+        <button type="button" class="demo-modal__copy" data-copy-btn="demo" aria-label="Copy login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </div>
+      <div class="demo-modal__cred-row">
+        <span class="demo-modal__cred-label">Password</span>
+        <code class="demo-modal__cred-value" data-copy="password">password</code>
+        <button type="button" class="demo-modal__copy" data-copy-btn="password" aria-label="Copy password">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </div>
+    </div>
 
     <div class="demo-modal__cards">
       <div class="demo-modal__card">
@@ -66,11 +89,14 @@
     </div>
 
     <div class="demo-modal__actions">
-      <button type="button" class="btn btn-primary" disabled aria-disabled="true" title="Demo user being prepared">
-        <span class="pulse-dot pulse-dot--inline"></span>
+      <a href="{{ route('login') }}?demo=1" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+          <polyline points="10 17 15 12 10 7"/>
+          <line x1="15" y1="12" x2="3" y2="12"/>
+        </svg>
         Log in as demo user
-        <span class="demo-modal__soon">coming soon</span>
-      </button>
+      </a>
       <a href="/contact" class="btn btn-secondary">
         Talk to us instead
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -80,7 +106,8 @@
     </div>
 
     <p class="demo-modal__foot">
-      Want the source? <a href="https://github.com/H4STUR" target="_blank" rel="noopener">It's on GitHub →</a>
+      Read-only-ish account — content resets nightly. Want the source?
+      <a href="https://github.com/H4STUR" target="_blank" rel="noopener">It's on GitHub →</a>
     </p>
   </div>
 </div>
@@ -200,27 +227,50 @@
   color: var(--color-accent-primary);
 }
 
-.demo-modal__actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: var(--space-lg); }
-.demo-modal__actions .btn[disabled] {
-  background: var(--color-surface-strong);
-  color: var(--color-text-secondary);
-  cursor: not-allowed;
-  box-shadow: none;
-  border: 1px solid var(--color-border-hover);
+.demo-modal__creds {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: var(--space-lg);
+  background: rgba(8, 11, 18, 0.6);
+  border: 1px dashed rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius-md);
 }
-.demo-modal__actions .btn[disabled]:hover { transform: none; }
-.demo-modal__soon {
-  margin-left: 0.4rem;
-  padding: 0.15rem 0.45rem;
-  background: rgba(251, 191, 36, 0.15);
-  border: 1px solid rgba(251, 191, 36, 0.3);
-  color: #fde68a;
+.demo-modal__cred-row {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+.demo-modal__cred-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border-radius: var(--radius-full);
+  letter-spacing: 0.12em;
+  color: var(--color-text-tertiary);
 }
+.demo-modal__cred-value {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: #c4b5fd;
+  background: transparent;
+  padding: 0;
+  user-select: all;
+}
+.demo-modal__copy {
+  width: 30px; height: 30px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+.demo-modal__copy:hover { color: var(--color-text-primary); border-color: var(--color-border-hover); background: var(--color-surface-hover); }
+.demo-modal__copy.is-copied { color: #34d399; border-color: rgba(52, 211, 153, 0.4); }
+
+.demo-modal__actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: var(--space-lg); }
 
 .demo-modal__foot { font-size: var(--text-sm); color: var(--color-text-tertiary); margin: 0; text-align: center; }
 .demo-modal__foot a { color: var(--color-accent-secondary); font-weight: 500; }
@@ -249,7 +299,16 @@
   document.addEventListener('click', (e) => {
     const opener = e.target.closest('[data-demo-open]');
     if (opener) { e.preventDefault(); open(opener); return; }
-    if (e.target.closest('[data-demo-close]')) { e.preventDefault(); close(); }
+    if (e.target.closest('[data-demo-close]')) { e.preventDefault(); close(); return; }
+    const copyBtn = e.target.closest('[data-copy-btn]');
+    if (copyBtn) {
+      e.preventDefault();
+      const text = copyBtn.getAttribute('data-copy-btn');
+      navigator.clipboard?.writeText(text).then(() => {
+        copyBtn.classList.add('is-copied');
+        setTimeout(() => copyBtn.classList.remove('is-copied'), 1400);
+      });
+    }
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('is-open')) close();

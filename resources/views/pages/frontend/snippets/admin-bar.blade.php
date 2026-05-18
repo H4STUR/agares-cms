@@ -5,9 +5,9 @@
 @if(auth()->check() && auth()->user()->can('admin nav'))
 
 <style>/* Make room so navbar isn't covered */
-  .agares-theme {
+  /* .agares-theme {
     padding-top: 44px;
-  }
+  } */
 
   .adminbar-logo{
     height: 25px;
