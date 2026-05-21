@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Cart — Nexara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown"><a href="category.html">Shop</a><div class="nav-dropdown"><a href="category.html"><span class="nav-dropdown-icon" style="background:rgba(124,58,237,.12);color:#7c3aed;"><i class="bi bi-grid-fill"></i></span>All Products</a><a href="category.html?c=electronics"><span class="nav-dropdown-icon" style="background:rgba(59,130,246,.12);color:#3b82f6;"><i class="bi bi-cpu-fill"></i></span>Electronics</a></div></li>
+        <li><a href="category.html?c=new">New Arrivals</a></li>
+        <li><a href="category.html?c=sale">Sale</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><i class="bi bi-search" style="font-size:18px;"></i></button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"><i class="bi bi-heart" style="font-size:18px;"></i><span class="badge">3</span></a>
+      <a href="account.html" class="icon-btn" aria-label="Account"><i class="bi bi-person" style="font-size:18px;"></i></a>
+      <button class="icon-btn cart-btn" id="cartToggle" aria-label="Cart"><i class="bi bi-bag" style="font-size:18px;"></i><span class="badge">2</span></button>
+      <button class="icon-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Menu"><i class="bi bi-list" style="font-size:22px;"></i></button>
+    </div>
+  </div>
+  <div class="header-search" id="headerSearch"><div class="container"><form class="search-form" role="search"><input type="search" placeholder="Search…" aria-label="Search" /><button type="submit" class="btn btn-primary btn-sm">Search</button><button type="button" class="btn btn-ghost btn-sm" id="closeSearch"><i class="bi bi-x-lg"></i></button></form></div></div>
+  <div class="mini-cart" id="miniCart"><div class="mini-cart-header"><h4>Cart</h4><button class="icon-btn" onclick="document.getElementById('miniCart').classList.remove('open')"><i class="bi bi-x" style="font-size:18px;"></i></button></div><div class="mini-cart-footer"><div class="mini-cart-actions"><a href="cart.html" class="btn btn-secondary btn-full">View Cart</a><a href="checkout.html" class="btn btn-primary btn-full">Checkout</a></div></div></div>
+  <nav class="mobile-nav" id="mobileNav"><ul class="mobile-nav-list"><li><a href="index.html"><i class="bi bi-house"></i> Home</a></li><li><a href="category.html"><i class="bi bi-grid"></i> Shop</a></li></ul><div class="mobile-nav-actions"><a href="login.html" class="btn btn-secondary btn-full">Sign In</a><a href="register.html" class="btn btn-primary btn-full">Register</a></div></nav>
+</header>
+
+<main>
+  <!-- BREADCRUMB -->
+  <div style="background:var(--bg-soft);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <svg class="breadcrumb-sep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="breadcrumb-current">Shopping Cart</span>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+      <h1 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;">Shopping Cart</h1>
+      <span style="color:var(--muted);font-size:0.9rem;">2 items</span>
+    </div>
+
+    <div class="cart-layout">
+      <!-- ===== CART ITEMS ===== -->
+      <div>
+        <!-- Table Header -->
+        <div class="cart-table-header" role="row">
+          <span role="columnheader">Product</span>
+          <span role="columnheader">Price</span>
+          <span role="columnheader">Quantity</span>
+          <span role="columnheader">Subtotal</span>
+          <span role="columnheader"><span class="sr-only">Remove</span></span>
+        </div>
+
+        <!-- Cart Item 1 -->
+        <div class="cart-item" role="row">
+          <div class="cart-item-product">
+            <div class="cart-item-img">
+              <img src="https://picsum.photos/seed/cart1/150/150" alt="Wireless Pro Headphones" loading="lazy" />
+            </div>
+            <div class="cart-item-details">
+              <h4><a href="product.html">Wireless Pro Headphones X1</a></h4>
+              <p class="variant">Color: Midnight Black / Edition: Standard</p>
+              <div style="display:flex;gap:6px;margin-top:8px;">
+                <a href="product.html" class="btn btn-ghost btn-sm" style="padding:4px 10px;font-size:0.75rem;"><i class="bi bi-pencil"></i> Edit</a>
+                <a href="wishlist.html" class="btn btn-ghost btn-sm" style="padding:4px 10px;font-size:0.75rem;"><i class="bi bi-heart"></i> Save for Later</a>
+              </div>
+            </div>
+          </div>
+          <div class="cart-item-price">$97.00</div>
+          <div class="cart-item-qty">
+            <div class="quantity-ctrl">
+              <button class="qty-btn" data-qty="dec" aria-label="Decrease quantity">−</button>
+              <input class="qty-input" type="number" value="1" min="1" max="10" aria-label="Quantity" />
+              <button class="qty-btn" data-qty="inc" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <div class="cart-item-subtotal">$97.00</div>
+          <button class="cart-remove-btn" aria-label="Remove item">
+            <i class="bi bi-trash3"></i>
+          </button>
+        </div>
+
+        <!-- Cart Item 2 -->
+        <div class="cart-item" role="row">
+          <div class="cart-item-product">
+            <div class="cart-item-img">
+              <img src="https://picsum.photos/seed/cart2/150/150" alt="Smart Watch" loading="lazy" />
+            </div>
+            <div class="cart-item-details">
+              <h4><a href="product.html">NX Smart Watch Ultra 44mm</a></h4>
+              <p class="variant">Color: Silver / Size: 44mm</p>
+              <div style="display:flex;gap:6px;margin-top:8px;">
+                <a href="product.html" class="btn btn-ghost btn-sm" style="padding:4px 10px;font-size:0.75rem;"><i class="bi bi-pencil"></i> Edit</a>
+                <a href="wishlist.html" class="btn btn-ghost btn-sm" style="padding:4px 10px;font-size:0.75rem;"><i class="bi bi-heart"></i> Save for Later</a>
+              </div>
+            </div>
+          </div>
+          <div class="cart-item-price">$249.00</div>
+          <div class="cart-item-qty">
+            <div class="quantity-ctrl">
+              <button class="qty-btn" data-qty="dec" aria-label="Decrease quantity">−</button>
+              <input class="qty-input" type="number" value="1" min="1" max="10" aria-label="Quantity" />
+              <button class="qty-btn" data-qty="inc" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <div class="cart-item-subtotal">$249.00</div>
+          <button class="cart-remove-btn" aria-label="Remove item">
+            <i class="bi bi-trash3"></i>
+          </button>
+        </div>
+
+        <!-- Cart Actions -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:10px;">
+          <a href="category.html" class="btn btn-ghost">
+            <i class="bi bi-arrow-left"></i> Continue Shopping
+          </a>
+          <button class="btn btn-secondary">
+            <i class="bi bi-arrow-clockwise"></i> Update Cart
+          </button>
+        </div>
+
+        <!-- Empty Cart State (shown when cart is empty via JS) -->
+        <div class="empty-state" id="emptyCartState" style="display:none;">
+          <div class="empty-state-icon"><i class="bi bi-bag-x"></i></div>
+          <h3>Your cart is empty</h3>
+          <p>Looks like you haven't added anything yet. Start exploring our products to fill it up!</p>
+          <a href="category.html" class="btn btn-primary">
+            <i class="bi bi-grid-fill"></i> Browse Products
+          </a>
+        </div>
+
+        <!-- You May Also Like -->
+        <div style="margin-top:48px;">
+          <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:20px;">You May Also Like</h3>
+          <div class="products-grid products-grid-3" style="grid-template-columns:repeat(3,1fr);">
+            <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/upsell1/400/400" alt="Speaker" loading="lazy" /></div><div class="product-card-body"><span class="product-card-category">Audio</span><a href="product.html" class="product-card-title">BoomBox Pro Bluetooth Speaker</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(76)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$79.99</span></div><button class="product-cart-btn" data-add-cart="BoomBox Pro" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+            <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/upsell2/400/400" alt="Keyboard" loading="lazy" /></div><div class="product-card-body"><span class="product-card-category">Peripherals</span><a href="product.html" class="product-card-title">Apex TKL Mechanical Keyboard</a><div class="product-card-rating rating"><span class="stars">★★★★☆</span><span class="rating-count">(97)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$89.99</span></div><button class="product-cart-btn" data-add-cart="Apex Keyboard" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+            <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/upsell3/400/400" alt="Mouse Pad" loading="lazy" /></div><div class="product-card-body"><span class="product-card-category">Peripherals</span><a href="product.html" class="product-card-title">GlideX XXL RGB Mouse Pad</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(1.2K)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$29.99</span></div><button class="product-cart-btn" data-add-cart="GlideX Mouse Pad" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CART SUMMARY ===== -->
+      <aside class="cart-summary" aria-label="Order summary">
+        <h3>Order Summary</h3>
+
+        <!-- Coupon -->
+        <div>
+          <label class="form-label" for="couponCode">Coupon Code</label>
+          <div class="coupon-form">
+            <input type="text" id="couponCode" placeholder="Enter code…" aria-label="Coupon code" />
+            <button class="btn btn-secondary btn-sm" type="button">Apply</button>
+          </div>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <!-- Totals -->
+        <div>
+          <div class="summary-row">
+            <span>Subtotal (2 items)</span>
+            <span>$346.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span style="color:var(--success);font-weight:600;">Free</span>
+          </div>
+          <div class="summary-row">
+            <span>Estimated Tax</span>
+            <span>$27.68</span>
+          </div>
+          <div class="summary-row" style="background:var(--success-bg);border-radius:var(--radius-sm);padding:8px 10px;">
+            <span style="color:var(--success);font-weight:600;">Discount (SAVE20)</span>
+            <span style="color:var(--success);font-weight:700;">−$69.20</span>
+          </div>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-row summary-total">
+          <span>Total</span>
+          <span style="font-size:1.25rem;background:var(--primary-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$304.48</span>
+        </div>
+
+        <a href="checkout.html" class="btn btn-primary btn-xl btn-full">
+          <i class="bi bi-lock-fill"></i> Proceed to Checkout
+        </a>
+
+        <!-- Accepted Payments -->
+        <div style="text-align:center;">
+          <p style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;">Secure checkout — all payments encrypted</p>
+          <div class="payment-methods" style="justify-content:center;">
+            <span class="payment-method">VISA</span>
+            <span class="payment-method">MC</span>
+            <span class="payment-method">AMEX</span>
+            <span class="payment-method">PayPal</span>
+            <span class="payment-method">Apple Pay</span>
+          </div>
+        </div>
+
+        <!-- Free shipping nudge -->
+        <div style="background:var(--success-bg);border:1px solid rgba(16,185,129,0.25);border-radius:var(--radius-sm);padding:12px;">
+          <p style="font-size:0.82rem;color:var(--success);display:flex;align-items:center;gap:6px;">
+            <i class="bi bi-truck"></i>
+            <span><strong>You qualify for free shipping!</strong></span>
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-col-brand"><a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a><p class="footer-brand-desc">Premium dark eCommerce experience.</p><div class="footer-social"><a href="#" class="footer-social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a href="#" class="footer-social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a></div></div>
+    <div class="footer-col"><h5>Shop</h5><ul class="footer-links"><li><a href="category.html">All Products</a></li><li><a href="category.html?c=new">New Arrivals</a></li><li><a href="category.html?c=sale">Sale</a></li></ul></div>
+    <div class="footer-col"><h5>Support</h5><ul class="footer-links"><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Account</h5><ul class="footer-links"><li><a href="account.html">My Account</a></li><li><a href="login.html">Sign In</a></li></ul></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-inner"><p class="footer-copy">&copy; 2025 <a href="index.html">Nexara</a>. All rights reserved.</p><div class="payment-methods"><span class="payment-method">VISA</span><span class="payment-method">MC</span><span class="payment-method">AMEX</span><span class="payment-method">PayPal</span></div></div></div></div>
+</footer>
+
+<script src="assets/js/theme.js"></script>
+</body>
+</html>

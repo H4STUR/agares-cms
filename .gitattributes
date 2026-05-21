@@ -1,0 +1,15 @@
+* text=auto eol=lf
+
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
+
+# Keep client-specific frontend files during merges from update branch
+resources/views/pages/frontend/** merge=ours
+public/assets/frontend/** merge=ours

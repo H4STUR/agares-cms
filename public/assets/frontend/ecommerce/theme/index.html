@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nexara — Premium Dark eCommerce Store. Discover curated electronics, fashion, and more." />
+  <title>Nexara — Premium Dark Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+
+    <!-- Logo -->
+    <a href="index.html" class="logo" aria-label="Nexara Home">
+      <span class="logo-icon">N</span>
+      <span class="logo-text">Nexara</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li class="has-dropdown">
+          <a href="category.html">Shop</a>
+          <div class="nav-dropdown">
+            <a href="category.html">
+              <span class="nav-dropdown-icon" style="background:rgba(124,58,237,.12);color:#7c3aed;">
+                <i class="bi bi-grid-fill"></i>
+              </span>
+              All Products
+            </a>
+            <a href="category.html?c=electronics">
+              <span class="nav-dropdown-icon" style="background:rgba(59,130,246,.12);color:#3b82f6;">
+                <i class="bi bi-cpu-fill"></i>
+              </span>
+              Electronics
+            </a>
+            <a href="category.html?c=fashion">
+              <span class="nav-dropdown-icon" style="background:rgba(236,72,153,.12);color:#ec4899;">
+                <i class="bi bi-bag-fill"></i>
+              </span>
+              Fashion
+            </a>
+            <a href="category.html?c=home">
+              <span class="nav-dropdown-icon" style="background:rgba(16,185,129,.12);color:#10b981;">
+                <i class="bi bi-house-fill"></i>
+              </span>
+              Home & Living
+            </a>
+            <a href="category.html?c=sale" style="color:#ef4444;">
+              <span class="nav-dropdown-icon" style="background:rgba(239,68,68,.12);color:#ef4444;">
+                <i class="bi bi-lightning-fill"></i>
+              </span>
+              Sale
+            </a>
+          </div>
+        </li>
+        <li><a href="category.html?c=new">New Arrivals</a></li>
+        <li><a href="category.html?c=sale">Sale</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Open search" aria-expanded="false">
+        <i class="bi bi-search" style="font-size:18px;"></i>
+      </button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist (3 items)">
+        <i class="bi bi-heart" style="font-size:18px;"></i>
+        <span class="badge">3</span>
+      </a>
+      <a href="account.html" class="icon-btn" aria-label="My Account">
+        <i class="bi bi-person" style="font-size:18px;"></i>
+      </a>
+      <button class="icon-btn cart-btn" id="cartToggle" aria-label="Shopping cart (2 items)" aria-expanded="false">
+        <i class="bi bi-bag" style="font-size:18px;"></i>
+        <span class="badge">2</span>
+      </button>
+      <button class="icon-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false">
+        <i class="bi bi-list" style="font-size:22px;"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="header-search" id="headerSearch" aria-label="Site search">
+    <div class="container">
+      <form class="search-form" role="search">
+        <input type="search" placeholder="Search for products, brands, categories…" aria-label="Search" autocomplete="off" />
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="closeSearch">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mini Cart Dropdown -->
+  <div class="mini-cart" id="miniCart" role="dialog" aria-label="Shopping cart preview">
+    <div class="mini-cart-header">
+      <h4>Shopping Cart <span class="badge badge-primary" style="margin-left:6px;">2</span></h4>
+      <button class="icon-btn" aria-label="Close cart" onclick="document.getElementById('miniCart').classList.remove('open')">
+        <i class="bi bi-x" style="font-size:18px;"></i>
+      </button>
+    </div>
+    <div class="mini-cart-items">
+      <div class="mini-cart-item">
+        <div class="mini-cart-item-img">
+          <img src="https://picsum.photos/seed/prod1/120/120" alt="Wireless Headphones" loading="lazy" />
+        </div>
+        <div class="mini-cart-item-info">
+          <h5>Wireless Pro Headphones</h5>
+          <span class="variant">Color: Midnight Black</span>
+          <div class="mini-cart-item-price">
+            <span class="price">$129.00</span>
+            <span class="text-muted text-xs">×1</span>
+          </div>
+        </div>
+        <button class="cart-remove-btn" aria-label="Remove item">
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+      <div class="mini-cart-item">
+        <div class="mini-cart-item-img">
+          <img src="https://picsum.photos/seed/prod2/120/120" alt="Smart Watch" loading="lazy" />
+        </div>
+        <div class="mini-cart-item-info">
+          <h5>NX Smart Watch Ultra</h5>
+          <span class="variant">Size: 44mm</span>
+          <div class="mini-cart-item-price">
+            <span class="price">$249.00</span>
+            <span class="text-muted text-xs">×1</span>
+          </div>
+        </div>
+        <button class="cart-remove-btn" aria-label="Remove item">
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+    </div>
+    <div class="mini-cart-footer">
+      <div class="mini-cart-total">
+        <span>Subtotal</span>
+        <span style="color:var(--primary);font-weight:800;">$378.00</span>
+      </div>
+      <div class="mini-cart-actions">
+        <a href="cart.html" class="btn btn-secondary btn-full">View Cart</a>
+        <a href="checkout.html" class="btn btn-primary btn-full">Checkout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="active"><i class="bi bi-house"></i> Home</a></li>
+      <li><a href="category.html"><i class="bi bi-grid"></i> Shop</a></li>
+      <li><a href="category.html?c=new"><i class="bi bi-stars"></i> New Arrivals</a></li>
+      <li><a href="category.html?c=sale"><i class="bi bi-lightning"></i> Sale</a></li>
+      <li><a href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+      <div class="mobile-nav-divider"></div>
+      <li><a href="wishlist.html"><i class="bi bi-heart"></i> Wishlist</a></li>
+      <li><a href="account.html"><i class="bi bi-person"></i> My Account</a></li>
+      <li><a href="cart.html"><i class="bi bi-bag"></i> Cart (2)</a></li>
+    </ul>
+    <div class="mobile-nav-actions">
+      <a href="login.html" class="btn btn-secondary btn-full">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-full">Register</a>
+    </div>
+  </nav>
+</header>
+<!-- ===== /HEADER ===== -->
+
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero" aria-label="Hero banner">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-orb hero-bg-orb-1"></div>
+  <div class="hero-bg-orb hero-bg-orb-2"></div>
+
+  <!-- Hero visual background image -->
+  <div class="hero-visual" aria-hidden="true">
+    <img src="https://picsum.photos/seed/hero1/900/700" alt="" class="hero-img" loading="eager" />
+    <div class="hero-img-overlay"></div>
+  </div>
+
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="hero-content">
+      <span class="hero-tag">
+        <i class="bi bi-lightning-charge-fill"></i>
+        New Season Collection
+      </span>
+      <h1>
+        Gear Up for <span class="grad-text">Next Level</span><br />Living
+      </h1>
+      <p class="hero-desc">
+        Discover premium tech, fashion, and lifestyle products curated for the modern explorer. Free shipping on orders over $99.
+      </p>
+      <div class="hero-actions">
+        <a href="category.html" class="btn btn-primary btn-xl">
+          <i class="bi bi-grid-fill"></i>
+          Shop Now
+        </a>
+        <a href="category.html?c=sale" class="btn btn-ghost btn-xl">
+          View Sale <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="hero-stat-num">50K+</span>
+          <span class="hero-stat-label">Happy Customers</span>
+        </div>
+        <div>
+          <span class="hero-stat-num">2K+</span>
+          <span class="hero-stat-label">Products</span>
+        </div>
+        <div>
+          <span class="hero-stat-num">4.9★</span>
+          <span class="hero-stat-label">Avg Rating</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== /HERO ===== -->
+
+
+<!-- ===== INFO BAR ===== -->
+<div class="info-bar" aria-label="Store benefits">
+  <div class="container">
+    <div class="info-bar-grid">
+      <div class="info-bar-item">
+        <div class="info-bar-icon purple"><i class="bi bi-truck"></i></div>
+        <div class="info-bar-text">
+          <h5>Free Shipping</h5>
+          <p>On all orders over $99</p>
+        </div>
+      </div>
+      <div class="info-bar-item">
+        <div class="info-bar-icon blue"><i class="bi bi-shield-check"></i></div>
+        <div class="info-bar-text">
+          <h5>2-Year Warranty</h5>
+          <p>Full manufacturer coverage</p>
+        </div>
+      </div>
+      <div class="info-bar-item">
+        <div class="info-bar-icon green"><i class="bi bi-arrow-counterclockwise"></i></div>
+        <div class="info-bar-text">
+          <h5>30-Day Returns</h5>
+          <p>Hassle-free return policy</p>
+        </div>
+      </div>
+      <div class="info-bar-item">
+        <div class="info-bar-icon yellow"><i class="bi bi-headset"></i></div>
+        <div class="info-bar-text">
+          <h5>24/7 Support</h5>
+          <p>Expert help anytime</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ===== /INFO BAR ===== -->
+
+
+<!-- ===== FEATURED CATEGORIES ===== -->
+<section class="section" aria-labelledby="categories-title">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Browse by Category</span>
+      <h2 id="categories-title">Shop Our <span class="grad-text">Top Categories</span></h2>
+      <p>From cutting-edge tech to everyday essentials — curated collections for every lifestyle.</p>
+    </div>
+
+    <div class="categories-grid">
+      <a href="category.html?c=electronics" class="category-card">
+        <img src="https://picsum.photos/seed/cat-elec/600/450" alt="Electronics category" class="category-card-img" loading="lazy" />
+        <div class="category-card-overlay">
+          <h3 class="category-card-name">Electronics</h3>
+          <p class="category-card-count">486 products</p>
+        </div>
+        <span class="category-card-arrow"><i class="bi bi-arrow-right" style="font-size:13px;"></i></span>
+      </a>
+      <a href="category.html?c=fashion" class="category-card">
+        <img src="https://picsum.photos/seed/cat-fash/600/450" alt="Fashion category" class="category-card-img" loading="lazy" />
+        <div class="category-card-overlay">
+          <h3 class="category-card-name">Fashion</h3>
+          <p class="category-card-count">1,240 products</p>
+        </div>
+        <span class="category-card-arrow"><i class="bi bi-arrow-right" style="font-size:13px;"></i></span>
+      </a>
+      <a href="category.html?c=home" class="category-card">
+        <img src="https://picsum.photos/seed/cat-home/600/450" alt="Home & Living category" class="category-card-img" loading="lazy" />
+        <div class="category-card-overlay">
+          <h3 class="category-card-name">Home & Living</h3>
+          <p class="category-card-count">723 products</p>
+        </div>
+        <span class="category-card-arrow"><i class="bi bi-arrow-right" style="font-size:13px;"></i></span>
+      </a>
+      <a href="category.html?c=sports" class="category-card">
+        <img src="https://picsum.photos/seed/cat-sport/600/450" alt="Sports & Outdoors category" class="category-card-img" loading="lazy" />
+        <div class="category-card-overlay">
+          <h3 class="category-card-name">Sports & Outdoors</h3>
+          <p class="category-card-count">318 products</p>
+        </div>
+        <span class="category-card-arrow"><i class="bi bi-arrow-right" style="font-size:13px;"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- ===== /FEATURED CATEGORIES ===== -->
+
+
+<!-- ===== FEATURED PRODUCTS ===== -->
+<section class="section" style="padding-top:0;" aria-labelledby="featured-title">
+  <div class="container">
+    <div class="section-header flex justify-between items-center" style="text-align:left;margin-bottom:32px;">
+      <div>
+        <span class="label">Handpicked for You</span>
+        <h2 id="featured-title">Featured <span class="grad-text">Products</span></h2>
+      </div>
+      <a href="category.html" class="btn btn-ghost">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="products-grid">
+      <!-- Product Card 1 -->
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/p1/400/400" alt="Wireless Pro Headphones" loading="lazy" />
+          <div class="product-badge-wrap">
+            <span class="badge badge-danger">-25%</span>
+          </div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Add to wishlist" title="Wishlist">
+              <i class="bi bi-heart"></i>
+            </button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view" title="Quick View">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Electronics</span>
+          <a href="product.html" class="product-card-title">Wireless Pro Headphones X1</a>
+          <div class="product-card-rating rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(248)</span>
+          </div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap">
+              <span class="product-price">$97.00</span>
+              <span class="product-price-old">$129.00</span>
+            </div>
+            <button class="product-cart-btn" data-add-cart="Wireless Pro Headphones X1" aria-label="Add to cart">
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product Card 2 -->
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/p2/400/400" alt="NX Smart Watch Ultra" loading="lazy" />
+          <div class="product-badge-wrap">
+            <span class="badge badge-primary">New</span>
+          </div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Add to wishlist">
+              <i class="bi bi-heart"></i>
+            </button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Wearables</span>
+          <a href="product.html" class="product-card-title">NX Smart Watch Ultra 44mm</a>
+          <div class="product-card-rating rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(182)</span>
+          </div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap">
+              <span class="product-price">$249.00</span>
+            </div>
+            <button class="product-cart-btn" data-add-cart="NX Smart Watch Ultra" aria-label="Add to cart">
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product Card 3 -->
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/p3/400/400" alt="Mechanical Keyboard" loading="lazy" />
+          <div class="product-badge-wrap">
+            <span class="badge badge-warning">Hot</span>
+          </div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Add to wishlist">
+              <i class="bi bi-heart"></i>
+            </button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Peripherals</span>
+          <a href="product.html" class="product-card-title">Apex TKL Mechanical Keyboard RGB</a>
+          <div class="product-card-rating rating">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-count">(97)</span>
+          </div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap">
+              <span class="product-price">$89.99</span>
+              <span class="product-price-old">$119.00</span>
+            </div>
+            <button class="product-cart-btn" data-add-cart="Apex TKL Keyboard" aria-label="Add to cart">
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product Card 4 -->
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/p4/400/400" alt="4K Webcam" loading="lazy" />
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Add to wishlist">
+              <i class="bi bi-heart"></i>
+            </button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Cameras</span>
+          <a href="product.html" class="product-card-title">StreamPro 4K Webcam with Auto-Focus</a>
+          <div class="product-card-rating rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(341)</span>
+          </div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap">
+              <span class="product-price">$149.00</span>
+            </div>
+            <button class="product-cart-btn" data-add-cart="StreamPro 4K Webcam" aria-label="Add to cart">
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- ===== /FEATURED PRODUCTS ===== -->
+
+
+<!-- ===== PROMO BANNERS ===== -->
+<section class="section" style="padding-top:0;" aria-label="Promotions">
+  <div class="container">
+    <div class="promo-grid">
+      <div class="promo-banner">
+        <div class="promo-banner-bg"></div>
+        <img src="https://picsum.photos/seed/promo1/700/350" alt="" class="promo-banner-img" loading="lazy" />
+        <div class="promo-banner-content">
+          <span class="label">Limited Time</span>
+          <h3>Up to 40% Off<br />Electronics</h3>
+          <p>Upgrade your setup with the latest tech at unbeatable prices.</p>
+          <a href="category.html?c=electronics" class="btn btn-primary">Shop Now <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="promo-banner">
+        <div class="promo-banner-bg" style="background:var(--primary-grad-r);"></div>
+        <img src="https://picsum.photos/seed/promo2/700/350" alt="" class="promo-banner-img" loading="lazy" />
+        <div class="promo-banner-content">
+          <span class="label">New Collection</span>
+          <h3>Premium Fashion<br />for Every Occasion</h3>
+          <p>Discover styles designed for the modern wardrobe.</p>
+          <a href="category.html?c=fashion" class="btn btn-outline">Explore <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== /PROMO BANNERS ===== -->
+
+
+<!-- ===== NEW ARRIVALS ===== -->
+<section class="section" style="background:var(--bg-soft);padding-top:72px;padding-bottom:72px;" aria-labelledby="new-arrivals-title">
+  <div class="container">
+    <div class="section-header flex justify-between items-center" style="text-align:left;margin-bottom:32px;">
+      <div>
+        <span class="label">Just Dropped</span>
+        <h2 id="new-arrivals-title">New <span class="grad-text">Arrivals</span></h2>
+      </div>
+      <a href="category.html?c=new" class="btn btn-ghost">See All <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="products-grid">
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/na1/400/400" alt="Ergonomic Chair" loading="lazy" />
+          <div class="product-badge-wrap"><span class="badge badge-info">New</span></div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Furniture</span>
+          <a href="product.html" class="product-card-title">ErgoMax Pro Office Chair</a>
+          <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(45)</span></div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap"><span class="product-price">$389.00</span></div>
+            <button class="product-cart-btn" data-add-cart="ErgoMax Chair" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/na2/400/400" alt="Running Shoes" loading="lazy" />
+          <div class="product-badge-wrap"><span class="badge badge-info">New</span></div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Footwear</span>
+          <a href="product.html" class="product-card-title">Vortex Air Running Shoes</a>
+          <div class="product-card-rating rating"><span class="stars">★★★★☆</span><span class="rating-count">(22)</span></div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap"><span class="product-price">$119.00</span></div>
+            <button class="product-cart-btn" data-add-cart="Vortex Air Shoes" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/na3/400/400" alt="Portable Speaker" loading="lazy" />
+          <div class="product-badge-wrap"><span class="badge badge-info">New</span></div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Audio</span>
+          <a href="product.html" class="product-card-title">BoomBox Pro Bluetooth Speaker</a>
+          <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(76)</span></div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap"><span class="product-price">$79.99</span></div>
+            <button class="product-cart-btn" data-add-cart="BoomBox Pro Speaker" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/na4/400/400" alt="Sunglasses" loading="lazy" />
+          <div class="product-badge-wrap"><span class="badge badge-info">New</span></div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Accessories</span>
+          <a href="product.html" class="product-card-title">Apex UV400 Polarized Sunglasses</a>
+          <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(130)</span></div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap"><span class="product-price">$59.00</span><span class="product-price-old">$79.00</span></div>
+            <button class="product-cart-btn" data-add-cart="Apex Sunglasses" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- ===== /NEW ARRIVALS ===== -->
+
+
+<!-- ===== BEST SELLERS ===== -->
+<section class="section" aria-labelledby="bestsellers-title">
+  <div class="container">
+    <div class="section-header flex justify-between items-center" style="text-align:left;margin-bottom:32px;">
+      <div>
+        <span class="label">Customer Favourites</span>
+        <h2 id="bestsellers-title">Best <span class="grad-text">Sellers</span></h2>
+      </div>
+      <a href="category.html?sort=bestsellers" class="btn btn-ghost">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="products-grid">
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/bs1/400/400" alt="Laptop Stand" loading="lazy" />
+          <div class="product-badge-wrap"><span class="badge badge-success">Best Seller</span></div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Accessories</span>
+          <a href="product.html" class="product-card-title">VertX Aluminum Laptop Stand</a>
+          <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(892)</span></div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap"><span class="product-price">$44.99</span></div>
+            <button class="product-cart-btn" data-add-cart="VertX Laptop Stand" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/bs2/400/400" alt="Desk Lamp" loading="lazy" />
+          <div class="product-badge-wrap"><span class="badge badge-success">Best Seller</span></div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Lighting</span>
+          <a href="product.html" class="product-card-title">Lumos LED Smart Desk Lamp</a>
+          <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(543)</span></div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap"><span class="product-price">$34.99</span><span class="product-price-old">$49.00</span></div>
+            <button class="product-cart-btn" data-add-cart="Lumos Desk Lamp" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/bs3/400/400" alt="Backpack" loading="lazy" />
+          <div class="product-badge-wrap"><span class="badge badge-success">Best Seller</span></div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Bags</span>
+          <a href="product.html" class="product-card-title">TechCarry Urban 30L Backpack</a>
+          <div class="product-card-rating rating"><span class="stars">★★★★☆</span><span class="rating-count">(408)</span></div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap"><span class="product-price">$69.00</span></div>
+            <button class="product-cart-btn" data-add-cart="TechCarry Backpack" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card">
+        <div class="product-card-img">
+          <img src="https://picsum.photos/seed/bs4/400/400" alt="Mouse Pad" loading="lazy" />
+          <div class="product-badge-wrap"><span class="badge badge-success">Best Seller</span></div>
+          <div class="product-card-actions">
+            <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <span class="product-card-category">Peripherals</span>
+          <a href="product.html" class="product-card-title">GlideX XXL RGB Mouse Pad</a>
+          <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(1.2K)</span></div>
+          <div class="product-card-footer">
+            <div class="product-price-wrap"><span class="product-price">$29.99</span></div>
+            <button class="product-cart-btn" data-add-cart="GlideX Mouse Pad" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- ===== /BEST SELLERS ===== -->
+
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="section-sm" aria-labelledby="newsletter-title">
+  <div class="container">
+    <div class="newsletter">
+      <div class="newsletter-bg" aria-hidden="true"></div>
+      <span class="label" style="margin-bottom:10px;display:block;">Stay in the Loop</span>
+      <h2 id="newsletter-title">Get Exclusive Deals & <span class="grad-text">Early Access</span></h2>
+      <p>Join 40,000+ subscribers and be the first to know about drops, discounts, and new collections.</p>
+      <form class="newsletter-form" novalidate>
+        <input type="email" placeholder="Enter your email address…" aria-label="Email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-hint">
+        <i class="bi bi-lock-fill"></i> No spam. Unsubscribe at any time.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- ===== /NEWSLETTER ===== -->
+
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div class="footer-col-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-icon">N</span>
+            <span class="logo-text">Nexara</span>
+          </a>
+          <p class="footer-brand-desc">
+            Premium dark eCommerce experience. Curated products, fast shipping, and world-class support — all in one place.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="footer-social-link" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="footer-social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="footer-social-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="footer-social-link" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Shop Links -->
+        <div class="footer-col">
+          <h5>Shop</h5>
+          <ul class="footer-links">
+            <li><a href="category.html">All Products</a></li>
+            <li><a href="category.html?c=new">New Arrivals</a></li>
+            <li><a href="category.html?c=sale">Sale Items</a></li>
+            <li><a href="category.html?c=electronics">Electronics</a></li>
+            <li><a href="category.html?c=fashion">Fashion</a></li>
+            <li><a href="category.html?sort=bestsellers">Best Sellers</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Service -->
+        <div class="footer-col">
+          <h5>Support</h5>
+          <ul class="footer-links">
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">Track Your Order</a></li>
+            <li><a href="#">Size Guide</a></li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div class="footer-col">
+          <h5>Account</h5>
+          <ul class="footer-links">
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="account.html#orders">Order History</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="login.html">Sign In</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="#">Loyalty Program</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <p class="footer-copy">
+          &copy; 2025 <a href="index.html">Nexara</a>. All rights reserved.
+          &bull; <a href="#">Privacy Policy</a>
+          &bull; <a href="#">Terms of Service</a>
+        </p>
+        <div class="payment-methods" aria-label="Accepted payment methods">
+          <span class="payment-method">VISA</span>
+          <span class="payment-method">MC</span>
+          <span class="payment-method">AMEX</span>
+          <span class="payment-method">PayPal</span>
+          <span class="payment-method">Apple Pay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ===== /FOOTER ===== -->
+
+
+<!-- ===== QUICK VIEW MODAL ===== -->
+<div class="modal-overlay" id="quickViewModal" role="dialog" aria-modal="true" aria-label="Quick product view">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close modal">
+      <i class="bi bi-x-lg" style="font-size:14px;"></i>
+    </button>
+    <div class="modal-body">
+      <div class="modal-product-grid">
+        <div>
+          <div class="gallery-main" style="aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--bg-soft);">
+            <img src="https://picsum.photos/seed/qv1/500/500" alt="Quick view product" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-card-category">Electronics</span>
+          <h2 class="product-detail-title" style="margin-bottom:12px;">Wireless Pro Headphones X1</h2>
+          <div class="product-rating-bar rating" style="margin-bottom:16px;">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">(248 reviews)</span>
+          </div>
+          <div class="product-pricing" style="margin-bottom:20px;">
+            <span class="price-current">$97.00</span>
+            <span class="price-old-lg">$129.00</span>
+            <span class="price-save">Save $32</span>
+          </div>
+          <div class="variant-group" style="margin-bottom:16px;">
+            <span class="variant-label">Color: <span>Midnight Black</span></span>
+            <div class="variant-color-options">
+              <button class="variant-color-btn active" style="background:#1a1a1a;" aria-label="Midnight Black"></button>
+              <button class="variant-color-btn" style="background:#c0c0c0;" aria-label="Silver"></button>
+              <button class="variant-color-btn" style="background:#7c3aed;" aria-label="Purple"></button>
+            </div>
+          </div>
+          <div class="quantity-wrap" style="margin-bottom:20px;">
+            <div class="quantity-ctrl">
+              <button class="qty-btn" data-qty="dec" aria-label="Decrease quantity">−</button>
+              <input class="qty-input" type="number" value="1" min="1" max="10" aria-label="Quantity" />
+              <button class="qty-btn" data-qty="inc" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn btn-primary" data-add-cart="Wireless Pro Headphones X1" style="flex:1;">
+              <i class="bi bi-bag-plus"></i> Add to Cart
+            </button>
+          </div>
+          <a href="product.html" class="btn btn-ghost btn-full">
+            View Full Details <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ===== /MODAL ===== -->
+
+<script src="assets/js/theme.js"></script>
+</body>
+</html>

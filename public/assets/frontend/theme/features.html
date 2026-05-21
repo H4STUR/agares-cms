@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore all the powerful features of Agares CMS including visual page editor, blog system, analytics dashboard, and more.">
+  <title>Features - Agares CMS</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .features-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+    
+    .features-sidebar {
+      position: sticky;
+      top: 100px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+    }
+    
+    .features-nav {
+      list-style: none;
+    }
+    
+    .features-nav a {
+      display: block;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      color: var(--color-text-secondary);
+      transition: all var(--transition-base);
+      font-size: var(--text-sm);
+    }
+    
+    .features-nav a:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+    
+    .features-nav a.active {
+      background: var(--color-accent-primary);
+      color: white;
+    }
+    
+    .feature-section {
+      margin-bottom: var(--space-4xl);
+      scroll-margin-top: 100px;
+    }
+    
+    .feature-screenshot {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-3xl);
+      margin: var(--space-xl) 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      color: var(--color-text-tertiary);
+    }
+    
+    @media (max-width: 968px) {
+      .features-layout {
+        grid-template-columns: 1fr;
+      }
+      
+      .features-sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#logo-gradient)"/>
+          <path d="M16 8L24 20H8L16 8Z" fill="white"/>
+          <defs>
+            <linearGradient id="logo-gradient" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        Agares CMS
+      </a>
+      
+      <ul class="navbar-menu">
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="demo.html">Demo</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li class="navbar-dropdown">
+          <span class="navbar-dropdown-toggle">
+            Resources
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+          </span>
+          <div class="navbar-dropdown-menu">
+            <a href="docs.html">Documentation</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </li>
+        <li><a href="#" class="btn btn-primary btn-sm">Get Started</a></li>
+      </ul>
+      
+      <button class="navbar-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+  
+  <!-- Hero -->
+  <section class="section-sm" style="background: var(--color-bg-secondary);">
+    <div class="container text-center">
+      <span class="badge badge-primary">Features</span>
+      <h1 style="margin-top: var(--space-lg); margin-bottom: var(--space-md);">Everything You Need to Build and Manage Your Website</h1>
+      <p style="font-size: var(--text-lg); max-width: 700px; margin: 0 auto;">Agares CMS provides a comprehensive suite of tools designed to make content management effortless and powerful.</p>
+    </div>
+  </section>
+  
+  <!-- Features Content -->
+  <section>
+    <div class="container">
+      <div class="features-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="features-sidebar">
+          <h3 style="margin-bottom: var(--space-lg); font-size: var(--text-lg);">Features</h3>
+          <ul class="features-nav">
+            <li><a href="#page-editor" data-scroll-spy>Page Editor</a></li>
+            <li><a href="#blog-system" data-scroll-spy>Blog System</a></li>
+            <li><a href="#analytics" data-scroll-spy>Analytics Dashboard</a></li>
+            <li><a href="#custom-fields" data-scroll-spy>Custom Fields</a></li>
+            <li><a href="#media-gallery" data-scroll-spy>Media Gallery</a></li>
+            <li><a href="#user-roles" data-scroll-spy>User Roles</a></li>
+            <li><a href="#custom-code" data-scroll-spy>Custom Code</a></li>
+            <li><a href="#coming-soon" data-scroll-spy>Coming Soon</a></li>
+          </ul>
+        </aside>
+        
+        <!-- Main Content -->
+        <div class="features-content">
+          
+          <!-- Page Editor -->
+          <div class="feature-section" id="page-editor" data-section>
+            <span class="badge badge-primary">Core Feature</span>
+            <h2 style="margin-top: var(--space-md);">Visual Page Editor & Site Tree</h2>
+            <p style="font-size: var(--text-lg); color: var(--color-text-secondary);">Build beautiful pages with our intuitive visual editor. Create complex layouts, add content blocks, and customize every detail without touching code.</p>
+            
+            <div class="feature-screenshot">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+              </svg>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: var(--space-2xl);">
+              <div class="card">
+                <h4>Drag & Drop Interface</h4>
+                <p>Arrange content blocks with simple drag-and-drop. No technical skills required to create professional layouts.</p>
+              </div>
+              <div class="card">
+                <h4>Site Tree Management</h4>
+                <p>Organize your pages in a hierarchical structure. Easily manage navigation and page relationships.</p>
+              </div>
+              <div class="card">
+                <h4>Real-time Preview</h4>
+                <p>See your changes instantly as you edit. Switch between desktop, tablet, and mobile views.</p>
+              </div>
+              <div class="card">
+                <h4>Template Library</h4>
+                <p>Start with professionally designed templates or create your own reusable layouts.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Blog System -->
+          <div class="feature-section" id="blog-system" data-section>
+            <span class="badge badge-primary">Core Feature</span>
+            <h2 style="margin-top: var(--space-md);">Complete Blog & Content Management</h2>
+            <p style="font-size: var(--text-lg); color: var(--color-text-secondary);">Launch a professional blog with full category management, tagging system, SEO optimization, and scheduled publishing capabilities.</p>
+            
+            <div class="feature-screenshot">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="8" y1="13" x2="16" y2="13"/>
+                <line x1="8" y1="17" x2="16" y2="17"/>
+              </svg>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: var(--space-2xl);">
+              <div class="card">
+                <h4>Categories & Tags</h4>
+                <p>Organize content with unlimited categories and tags. Create a logical structure for easy navigation.</p>
+              </div>
+              <div class="card">
+                <h4>Rich Text Editor</h4>
+                <p>Write with a powerful editor that supports formatting, images, code blocks, and embedded media.</p>
+              </div>
+              <div class="card">
+                <h4>SEO Optimization</h4>
+                <p>Built-in SEO tools including meta tags, descriptions, social sharing previews, and URL customization.</p>
+              </div>
+              <div class="card">
+                <h4>Scheduled Publishing</h4>
+                <p>Schedule posts to publish at specific dates and times. Perfect for content calendar planning.</p>
+              </div>
+            </div>
+            
+            <div class="alert alert-info" style="margin-top: var(--space-2xl);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4M12 8h.01"/>
+              </svg>
+              <div>
+                <strong>Pro Tip:</strong> Use categories for broad topics and tags for specific keywords to maximize your content discoverability.
+              </div>
+            </div>
+          </div>
+          
+          <!-- Analytics -->
+          <div class="feature-section" id="analytics" data-section>
+            <span class="badge badge-primary">Core Feature</span>
+            <h2 style="margin-top: var(--space-md);">Integrated Analytics Dashboard</h2>
+            <p style="font-size: var(--text-lg); color: var(--color-text-secondary);">Track your website performance with seamlessly integrated Google Analytics. View all your important metrics without leaving the CMS.</p>
+            
+            <div class="feature-screenshot">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M18 20V10M12 20V4M6 20v-6"/>
+              </svg>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: var(--space-2xl);">
+              <div class="card">
+                <h4>Google Analytics Integration</h4>
+                <p>Connect your GA account with one click. View real-time and historical data directly in your dashboard.</p>
+              </div>
+              <div class="card">
+                <h4>Visual Reports</h4>
+                <p>Beautiful charts and graphs make it easy to understand your traffic patterns and user behavior.</p>
+              </div>
+              <div class="card">
+                <h4>Key Metrics</h4>
+                <p>Monitor page views, unique visitors, bounce rates, session duration, and conversion goals.</p>
+              </div>
+              <div class="card">
+                <h4>Custom Date Ranges</h4>
+                <p>Analyze data for any time period. Compare different date ranges to track growth and trends.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Custom Fields -->
+          <div class="feature-section" id="custom-fields" data-section>
+            <span class="badge badge-success">Powerful</span>
+            <h2 style="margin-top: var(--space-md);">Unlimited Custom Fields</h2>
+            <p style="font-size: var(--text-lg); color: var(--color-text-secondary);">Add as many custom fields as you need to any page or post. Build complex data structures with multiple input types.</p>
+            
+            <div class="feature-screenshot">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              </svg>
+            </div>
+            
+            <h3 style="margin-top: var(--space-3xl);">Available Field Types</h3>
+            <div class="grid grid-3" style="margin-top: var(--space-xl);">
+              <div class="card">
+                <h4>Text Fields</h4>
+                <ul style="color: var(--color-text-secondary); padding-left: var(--space-lg);">
+                  <li>Single line text</li>
+                  <li>Multi-line textarea</li>
+                  <li>Rich text editor</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h4>Number & Dates</h4>
+                <ul style="color: var(--color-text-secondary); padding-left: var(--space-lg);">
+                  <li>Number input</li>
+                  <li>Date picker</li>
+                  <li>Time picker</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h4>Media Fields</h4>
+                <ul style="color: var(--color-text-secondary); padding-left: var(--space-lg);">
+                  <li>Single file upload</li>
+                  <li>Multi-file gallery</li>
+                  <li>Image with crop</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h4>Selection Fields</h4>
+                <ul style="color: var(--color-text-secondary); padding-left: var(--space-lg);">
+                  <li>Dropdown select</li>
+                  <li>Radio buttons</li>
+                  <li>Checkboxes</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h4>Boolean & Toggles</h4>
+                <ul style="color: var(--color-text-secondary); padding-left: var(--space-lg);">
+                  <li>True/false toggle</li>
+                  <li>Yes/no radio</li>
+                  <li>Conditional logic</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h4>Advanced Types</h4>
+                <ul style="color: var(--color-text-secondary); padding-left: var(--space-lg);">
+                  <li>Repeater fields</li>
+                  <li>Relationship fields</li>
+                  <li>JSON data</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Media Gallery -->
+          <div class="feature-section" id="media-gallery" data-section>
+            <span class="badge badge-primary">Core Feature</span>
+            <h2 style="margin-top: var(--space-md);">Global Media Gallery</h2>
+            <p style="font-size: var(--text-lg); color: var(--color-text-secondary);">Centralize all your media files in one powerful library. Organize, search, and reuse assets across your entire website.</p>
+            
+            <div class="feature-screenshot">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: var(--space-2xl);">
+              <div class="card">
+                <h4>Organized Collections</h4>
+                <p>Create folders and collections to keep your media organized. Tag files for easy discovery.</p>
+              </div>
+              <div class="card">
+                <h4>Powerful Search</h4>
+                <p>Find any file instantly with full-text search, filters by type, date, size, and custom tags.</p>
+              </div>
+              <div class="card">
+                <h4>Automatic Optimization</h4>
+                <p>Images are automatically optimized for web delivery. Generate multiple sizes for responsive design.</p>
+              </div>
+              <div class="card">
+                <h4>File Management</h4>
+                <p>Bulk upload, rename, move, and delete files. Track which pages use each media file.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- User Roles -->
+          <div class="feature-section" id="user-roles" data-section>
+            <span class="badge badge-primary">Core Feature</span>
+            <h2 style="margin-top: var(--space-md);">User Roles & Permissions</h2>
+            <p style="font-size: var(--text-lg); color: var(--color-text-secondary);">Control access with granular permission settings. Create custom roles that match your team structure and workflow.</p>
+            
+            <div class="feature-screenshot">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            
+            <h3 style="margin-top: var(--space-3xl);">Default Roles</h3>
+            <div class="grid grid-2" style="margin-top: var(--space-xl);">
+              <div class="card">
+                <div class="flex justify-between items-center" style="margin-bottom: var(--space-md);">
+                  <h4 style="margin: 0;">Administrator</h4>
+                  <span class="badge badge-error">Full Access</span>
+                </div>
+                <p>Complete control over all aspects of the CMS including settings, users, and content management.</p>
+              </div>
+              <div class="card">
+                <div class="flex justify-between items-center" style="margin-bottom: var(--space-md);">
+                  <h4 style="margin: 0;">Editor</h4>
+                  <span class="badge badge-primary">Content</span>
+                </div>
+                <p>Can create, edit, publish, and delete all content. Cannot access system settings or manage users.</p>
+              </div>
+              <div class="card">
+                <div class="flex justify-between items-center" style="margin-bottom: var(--space-md);">
+                  <h4 style="margin: 0;">Author</h4>
+                  <span class="badge badge-success">Own Content</span>
+                </div>
+                <p>Can create and publish their own posts. Cannot edit content created by other users.</p>
+              </div>
+              <div class="card">
+                <div class="flex justify-between items-center" style="margin-bottom: var(--space-md);">
+                  <h4 style="margin: 0;">Contributor</h4>
+                  <span class="badge badge-warning">Draft Only</span>
+                </div>
+                <p>Can create and edit their own drafts but cannot publish. Content requires editor approval.</p>
+              </div>
+            </div>
+            
+            <div class="alert alert-success" style="margin-top: var(--space-2xl);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              <div>
+                <strong>Custom Roles:</strong> Create unlimited custom roles with specific permission combinations to match your exact workflow needs.
+              </div>
+            </div>
+          </div>
+          
+          <!-- Custom Code -->
+          <div class="feature-section" id="custom-code" data-section>
+            <span class="badge badge-success">Developer Friendly</span>
+            <h2 style="margin-top: var(--space-md);">Custom Scripts & Styles Editor</h2>
+            <p style="font-size: var(--text-lg); color: var(--color-text-secondary);">Add custom CSS and JavaScript to your pages. Perfect for integrations, custom styling, and advanced functionality.</p>
+            
+            <div class="feature-screenshot">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            
+            <div class="grid grid-2" style="margin-top: var(--space-2xl);">
+              <div class="card">
+                <h4>Code Editor</h4>
+                <p>Syntax highlighting, auto-completion, and error detection for CSS and JavaScript.</p>
+              </div>
+              <div class="card">
+                <h4>Global & Page-Specific</h4>
+                <p>Add code globally or to individual pages. Perfect balance of flexibility and control.</p>
+              </div>
+              <div class="card">
+                <h4>Third-Party Integrations</h4>
+                <p>Easily add tracking pixels, chat widgets, analytics tools, and custom fonts.</p>
+              </div>
+              <div class="card">
+                <h4>Version Control</h4>
+                <p>Track changes to your custom code with built-in version history and rollback.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Coming Soon -->
+          <div class="feature-section" id="coming-soon" data-section>
+            <span class="badge badge-warning">Coming Soon</span>
+            <h2 style="margin-top: var(--space-md);">Future Features</h2>
+            <p style="font-size: var(--text-lg); color: var(--color-text-secondary);">We're constantly improving Agares CMS. Here's what's on the roadmap.</p>
+            
+            <div class="grid grid-2" style="margin-top: var(--space-2xl);">
+              <div class="card card-glass">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-accent-primary); margin-bottom: var(--space-lg);">
+                  <circle cx="9" cy="21" r="1"/>
+                  <circle cx="20" cy="21" r="1"/>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                <h3>Ecommerce Platform</h3>
+                <p>Sell products directly from your CMS with inventory management, payment processing, shipping integration, and order tracking.</p>
+                <span class="badge badge-warning" style="margin-top: var(--space-md);">Q2 2026</span>
+              </div>
+              
+              <div class="card card-glass">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-accent-secondary); margin-bottom: var(--space-lg);">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <h3>Community Forum</h3>
+                <p>Build engaged communities with discussion forums, user profiles, private messaging, and reputation systems.</p>
+                <span class="badge badge-warning" style="margin-top: var(--space-md);">Q3 2026</span>
+              </div>
+            </div>
+            
+            <div class="alert alert-info" style="margin-top: var(--space-2xl);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4M12 8h.01"/>
+              </svg>
+              <div>
+                <strong>Want to influence our roadmap?</strong> Join our community and vote on features you'd like to see next!
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA -->
+  <section style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to Experience These Features?</h2>
+        <p style="max-width: 600px; margin: 0 auto var(--space-2xl);">Start your free trial and explore everything Agares CMS has to offer.</p>
+        <div class="flex justify-center gap-lg" style="flex-wrap: wrap;">
+          <a href="#" class="btn btn-secondary btn-lg">Start Free Trial</a>
+          <a href="demo.html" class="btn btn-ghost btn-lg" style="color: white;">Try the Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="navbar-logo" style="margin-bottom: var(--space-lg);">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="url(#logo-gradient-footer)"/>
+              <path d="M16 8L24 20H8L16 8Z" fill="white"/>
+              <defs>
+                <linearGradient id="logo-gradient-footer" x1="0" y1="0" x2="32" y2="32">
+                  <stop offset="0%" stop-color="#7c3aed"/>
+                  <stop offset="100%" stop-color="#06b6d4"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            Agares CMS
+          </div>
+          <p style="color: var(--color-text-tertiary);">The modern content management system for developers and creators.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="features.html">Features</a></li>
+            <li><a href="demo.html">Demo</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">API Reference</a></li>
+            <li><a href="contact.html">Support</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Press Kit</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">GDPR</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p style="color: var(--color-text-tertiary); margin: 0;">&copy; 2026 Agares CMS. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

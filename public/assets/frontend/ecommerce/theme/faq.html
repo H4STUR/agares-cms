@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — Nexara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown"><a href="category.html">Shop</a><div class="nav-dropdown"><a href="category.html"><span class="nav-dropdown-icon" style="background:rgba(124,58,237,.12);color:#7c3aed;"><i class="bi bi-grid-fill"></i></span>All Products</a></div></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><i class="bi bi-search" style="font-size:18px;"></i></button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"><i class="bi bi-heart" style="font-size:18px;"></i><span class="badge">3</span></a>
+      <a href="account.html" class="icon-btn" aria-label="Account"><i class="bi bi-person" style="font-size:18px;"></i></a>
+      <button class="icon-btn cart-btn" id="cartToggle" aria-label="Cart"><i class="bi bi-bag" style="font-size:18px;"></i><span class="badge">2</span></button>
+      <button class="icon-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Menu"><i class="bi bi-list" style="font-size:22px;"></i></button>
+    </div>
+  </div>
+  <div class="header-search" id="headerSearch"><div class="container"><form class="search-form" role="search"><input type="search" placeholder="Search…" aria-label="Search" /><button type="submit" class="btn btn-primary btn-sm">Search</button><button type="button" class="btn btn-ghost btn-sm" id="closeSearch"><i class="bi bi-x-lg"></i></button></form></div></div>
+  <div class="mini-cart" id="miniCart"><div class="mini-cart-header"><h4>Cart</h4><button class="icon-btn" onclick="document.getElementById('miniCart').classList.remove('open')"><i class="bi bi-x" style="font-size:18px;"></i></button></div><div class="mini-cart-footer"><div class="mini-cart-actions"><a href="cart.html" class="btn btn-secondary btn-full">View Cart</a><a href="checkout.html" class="btn btn-primary btn-full">Checkout</a></div></div></div>
+  <nav class="mobile-nav" id="mobileNav"><ul class="mobile-nav-list"><li><a href="index.html"><i class="bi bi-house"></i> Home</a></li><li><a href="category.html"><i class="bi bi-grid"></i> Shop</a></li><li><a href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li></ul><div class="mobile-nav-actions"><a href="login.html" class="btn btn-secondary btn-full">Sign In</a></div></nav>
+</header>
+
+<main>
+  <!-- PAGE HEADER -->
+  <div style="background:var(--bg-soft);border-bottom:1px solid var(--border);padding-block:56px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(124,58,237,.1),transparent 60%);pointer-events:none;" aria-hidden="true"></div>
+    <div class="container" style="position:relative;">
+      <span class="label" style="margin-bottom:10px;display:block;">Knowledge Base</span>
+      <h1 style="font-size:clamp(1.75rem,4vw,3rem);font-weight:900;margin-bottom:12px;">Frequently Asked <span class="grad-text">Questions</span></h1>
+      <p style="color:var(--text-soft);max-width:480px;margin-inline:auto;margin-bottom:28px;">Can't find your answer below? Our support team is ready to help.</p>
+      <!-- FAQ Search -->
+      <div style="max-width:480px;margin-inline:auto;">
+        <div class="search-bar-lg" style="border-radius:var(--radius);">
+          <input type="search" placeholder="Search FAQ…" aria-label="Search frequently asked questions" />
+          <button type="button"><i class="bi bi-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <!-- Stats row -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+        <p style="font-size:2rem;font-weight:900;background:var(--primary-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">98%</p>
+        <p style="font-size:0.82rem;color:var(--muted);">Issues resolved on first contact</p>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+        <p style="font-size:2rem;font-weight:900;background:var(--primary-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">&lt;2h</p>
+        <p style="font-size:0.82rem;color:var(--muted);">Average email response time</p>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;">
+        <p style="font-size:2rem;font-weight:900;background:var(--primary-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">24/7</p>
+        <p style="font-size:0.82rem;color:var(--muted);">Live chat available</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:start;">
+      <!-- Category sidebar -->
+      <aside aria-label="FAQ categories">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;position:sticky;top:calc(var(--header-h) + 16px);">
+          <h4 style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:14px;">Categories</h4>
+          <div class="faq-categories" style="flex-direction:column;gap:4px;margin-bottom:0;">
+            <button class="faq-cat-btn active" style="text-align:left;border-radius:var(--radius-sm);">
+              <i class="bi bi-list-ul" style="margin-right:8px;"></i> All Questions
+            </button>
+            <button class="faq-cat-btn" style="text-align:left;border-radius:var(--radius-sm);">
+              <i class="bi bi-bag" style="margin-right:8px;"></i> Orders
+            </button>
+            <button class="faq-cat-btn" style="text-align:left;border-radius:var(--radius-sm);">
+              <i class="bi bi-truck" style="margin-right:8px;"></i> Shipping
+            </button>
+            <button class="faq-cat-btn" style="text-align:left;border-radius:var(--radius-sm);">
+              <i class="bi bi-arrow-counterclockwise" style="margin-right:8px;"></i> Returns
+            </button>
+            <button class="faq-cat-btn" style="text-align:left;border-radius:var(--radius-sm);">
+              <i class="bi bi-credit-card" style="margin-right:8px;"></i> Payments
+            </button>
+            <button class="faq-cat-btn" style="text-align:left;border-radius:var(--radius-sm);">
+              <i class="bi bi-person" style="margin-right:8px;"></i> Account
+            </button>
+            <button class="faq-cat-btn" style="text-align:left;border-radius:var(--radius-sm);">
+              <i class="bi bi-box" style="margin-right:8px;"></i> Products
+            </button>
+          </div>
+          <div style="border-top:1px solid var(--border);margin-top:16px;padding-top:16px;">
+            <p style="font-size:0.8rem;color:var(--muted);margin-bottom:10px;">Still have questions?</p>
+            <a href="contact.html" class="btn btn-primary btn-sm btn-full">
+              <i class="bi bi-envelope"></i> Contact Us
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- FAQ Accordion -->
+      <div>
+        <!-- Orders Section -->
+        <div style="margin-bottom:36px;">
+          <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px;color:var(--text-soft);">
+            <i class="bi bi-bag" style="color:var(--primary);"></i> Orders
+          </h2>
+          <div class="faq-accordion">
+            <div class="faq-item open">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="true">
+                <span>How do I track my order?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Once your order ships, you'll receive an email with a tracking number and a link to track your package in real-time. You can also track your order by logging into your account and visiting the <a href="account.html#orders" style="color:var(--primary);">Order History</a> page. Tracking updates are typically available within 24 hours of shipment.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>Can I change or cancel my order after placing it?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  You can modify or cancel your order within 1 hour of placing it. After that, orders are processed for shipping and cannot be changed. To cancel or modify, contact our support team immediately via live chat or email at support@nexara.com with your order number.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>What do I do if I received the wrong item?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  We're sorry for the inconvenience! Please contact us within 30 days of delivery. Take a photo of the item you received and email it to support@nexara.com along with your order number. We'll arrange for the correct item to be sent and provide a prepaid label for the return of the wrong item — completely free of charge.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Section -->
+        <div style="margin-bottom:36px;">
+          <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px;color:var(--text-soft);">
+            <i class="bi bi-truck" style="color:var(--primary);"></i> Shipping & Delivery
+          </h2>
+          <div class="faq-accordion">
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>How long does shipping take?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <ul style="display:flex;flex-direction:column;gap:6px;">
+                    <li><strong>Standard Shipping:</strong> 5–7 business days (free on orders $99+)</li>
+                    <li><strong>Express Shipping:</strong> 2–3 business days ($9.99)</li>
+                    <li><strong>Overnight:</strong> Next business day ($24.99)</li>
+                  </ul>
+                  <p style="margin-top:10px;">All orders placed before 2pm EST on business days are processed the same day.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>Do you ship internationally?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Yes! We ship to over 50 countries worldwide. International shipping rates and delivery times vary by destination. You can see the exact shipping cost at checkout after entering your delivery address. Please note that customs fees and import duties may apply in some countries and are the buyer's responsibility.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>What happens if my package is lost or damaged?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  All orders are insured against loss and damage. If your package arrives damaged or is lost in transit, contact us immediately at support@nexara.com. We'll work with the carrier to file a claim and either send a replacement or issue a full refund within 5 business days.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Returns Section -->
+        <div style="margin-bottom:36px;">
+          <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px;color:var(--text-soft);">
+            <i class="bi bi-arrow-counterclockwise" style="color:var(--primary);"></i> Returns & Refunds
+          </h2>
+          <div class="faq-accordion">
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>What is your return policy?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  We offer a 30-day hassle-free return policy. Items must be in original condition (unused, with all original packaging and tags). To start a return, log into your account, go to Order History, and click "Return Item." You'll receive a prepaid shipping label via email within 24 hours.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>When will I receive my refund?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Once we receive your return and inspect the item (usually within 2 business days), we'll process your refund. The refund will appear on your original payment method within 3–5 business days. You'll receive an email confirmation when the refund is initiated.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Section -->
+        <div style="margin-bottom:36px;">
+          <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px;color:var(--text-soft);">
+            <i class="bi bi-credit-card" style="color:var(--primary);"></i> Payments & Pricing
+          </h2>
+          <div class="faq-accordion">
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>What payment methods do you accept?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  We accept all major credit and debit cards (Visa, Mastercard, American Express, Discover), PayPal, Apple Pay, Google Pay, and Shop Pay. All transactions are secured with 256-bit SSL encryption. We never store your full card details on our servers.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>Do you offer buy-now-pay-later options?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Yes! We partner with Klarna and Afterpay to offer flexible instalment plans. You can split your purchase into 4 interest-free payments. Simply select Klarna or Afterpay at checkout. Approval is subject to eligibility.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>How do I use a coupon or promo code?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  During checkout, you'll find a "Coupon Code" field in your order summary. Enter your code and click "Apply" — the discount will be deducted from your total automatically. Only one coupon code can be applied per order. Codes are case-insensitive.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Account Section -->
+        <div style="margin-bottom:36px;">
+          <h2 style="font-size:1.1rem;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px;color:var(--text-soft);">
+            <i class="bi bi-person" style="color:var(--primary);"></i> Account & Privacy
+          </h2>
+          <div class="faq-accordion">
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>How do I reset my password?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Click "Forgot password?" on the <a href="login.html" style="color:var(--primary);">Sign In page</a>. Enter your email address and we'll send a password reset link within a few minutes. The link expires after 24 hours. If you don't see the email, check your spam folder.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                <span>How is my data used and protected?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  We take your privacy seriously. Your data is encrypted, never sold to third parties, and only used to process orders and improve your shopping experience. You can request deletion of your account and all associated data at any time by contacting support. Full details in our <a href="#" style="color:var(--primary);">Privacy Policy</a>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Still need help CTA -->
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;text-align:center;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(124,58,237,.08),transparent 70%);pointer-events:none;" aria-hidden="true"></div>
+          <div style="position:relative;">
+            <div style="width:56px;height:56px;border-radius:50%;background:rgba(124,58,237,.12);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px;color:var(--primary);"><i class="bi bi-headset"></i></div>
+            <h3 style="font-size:1.25rem;font-weight:800;margin-bottom:8px;">Still have questions?</h3>
+            <p style="color:var(--text-soft);max-width:360px;margin-inline:auto;margin-bottom:20px;font-size:0.9rem;">Our expert support team is available around the clock to help you with anything.</p>
+            <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+              <a href="contact.html" class="btn btn-primary"><i class="bi bi-envelope"></i> Email Support</a>
+              <button class="btn btn-secondary"><i class="bi bi-chat-dots"></i> Live Chat</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-col-brand"><a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a><p class="footer-brand-desc">Premium dark eCommerce experience.</p></div>
+    <div class="footer-col"><h5>Shop</h5><ul class="footer-links"><li><a href="category.html">All Products</a></li><li><a href="category.html?c=sale">Sale</a></li></ul></div>
+    <div class="footer-col"><h5>Support</h5><ul class="footer-links"><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Account</h5><ul class="footer-links"><li><a href="login.html">Sign In</a></li><li><a href="register.html">Register</a></li></ul></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-inner"><p class="footer-copy">&copy; 2025 <a href="index.html">Nexara</a>. All rights reserved.</p><div class="payment-methods"><span class="payment-method">VISA</span><span class="payment-method">MC</span><span class="payment-method">PayPal</span></div></div></div></div>
+</footer>
+
+<script src="assets/js/theme.js"></script>
+</body>
+</html>

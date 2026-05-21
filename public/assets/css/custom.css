@@ -1,0 +1,47 @@
+/* =========================================
+   DOCUMENT PAGE TYPOGRAPHY
+   ========================================= */
+
+.cms-content {
+  max-width: 820px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* Page title (NOT hero) */
+.cms-title {
+  font-size: 2.1rem;       /* instead of 3–4rem */
+  margin-bottom: 1.5rem;
+  line-height: 1.25;
+}
+
+/* Content headings */
+.cms-content h2 {
+  font-size: 1.6rem;
+  margin: 2.2rem 0 1rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.3rem;
+}
+
+.cms-content h3 {
+  font-size: 1.3rem;
+  margin: 1.8rem 0 0.8rem;
+}
+
+.cms-content h4 {
+  font-size: 1.15rem;
+  margin: 1.4rem 0 0.6rem;
+}
+
+/* Paragraphs */
+.cms-content p {
+  color: var(--color-text-secondary);
+  margin-bottom: 1.1rem;
+}
+
+/* Lists */
+.cms-content ul,
+.cms-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.2rem;
+}

@@ -1,0 +1,98 @@
+/* ============================
+   Admin Bar (WordPress-like)
+   ============================ */
+
+.adminbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 44px;
+  z-index: 2000;
+
+  background: rgba(10, 14, 26, 0.72);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.adminbar-inner {
+  max-width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.adminbar-left,
+.adminbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.adminbar-brand {
+  font-weight: var(--font-weight-bold);
+  background: var(--color-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.adminbar-link {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.adminbar-link:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.adminbar-muted {
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adminbar-sep {
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm);
+}
+
+.adminbar-logout {
+  margin: 0;
+}
+
+.adminbar-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+
+
+/* On small screens: hide some links */
+@media (max-width: 768px) {
+  .adminbar-inner {
+    padding: 0 var(--space-md);
+  }
+  .adminbar-muted {
+    display: none;
+  }
+  .adminbar-right a.adminbar-link:nth-child(n+3):nth-child(-n+6) {
+    display: none; /* hides some middle links on mobile */
+  }
+}

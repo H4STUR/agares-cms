@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse all products in the Nexara shop. Filter by category, price, brand, and rating." />
+  <title>Shop — Nexara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a href="index.html" class="logo" aria-label="Nexara Home">
+      <span class="logo-icon">N</span>
+      <span class="logo-text">Nexara</span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown">
+          <a href="category.html" class="active">Shop</a>
+          <div class="nav-dropdown">
+            <a href="category.html"><span class="nav-dropdown-icon" style="background:rgba(124,58,237,.12);color:#7c3aed;"><i class="bi bi-grid-fill"></i></span>All Products</a>
+            <a href="category.html?c=electronics"><span class="nav-dropdown-icon" style="background:rgba(59,130,246,.12);color:#3b82f6;"><i class="bi bi-cpu-fill"></i></span>Electronics</a>
+            <a href="category.html?c=fashion"><span class="nav-dropdown-icon" style="background:rgba(236,72,153,.12);color:#ec4899;"><i class="bi bi-bag-fill"></i></span>Fashion</a>
+            <a href="category.html?c=home"><span class="nav-dropdown-icon" style="background:rgba(16,185,129,.12);color:#10b981;"><i class="bi bi-house-fill"></i></span>Home & Living</a>
+            <a href="category.html?c=sale" style="color:#ef4444;"><span class="nav-dropdown-icon" style="background:rgba(239,68,68,.12);color:#ef4444;"><i class="bi bi-lightning-fill"></i></span>Sale</a>
+          </div>
+        </li>
+        <li><a href="category.html?c=new">New Arrivals</a></li>
+        <li><a href="category.html?c=sale">Sale</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><i class="bi bi-search" style="font-size:18px;"></i></button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"><i class="bi bi-heart" style="font-size:18px;"></i><span class="badge">3</span></a>
+      <a href="account.html" class="icon-btn" aria-label="Account"><i class="bi bi-person" style="font-size:18px;"></i></a>
+      <button class="icon-btn cart-btn" id="cartToggle" aria-label="Cart"><i class="bi bi-bag" style="font-size:18px;"></i><span class="badge">2</span></button>
+      <button class="icon-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Menu"><i class="bi bi-list" style="font-size:22px;"></i></button>
+    </div>
+  </div>
+  <div class="header-search" id="headerSearch">
+    <div class="container">
+      <form class="search-form" role="search">
+        <input type="search" placeholder="Search products…" aria-label="Search" />
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="closeSearch"><i class="bi bi-x-lg"></i></button>
+      </form>
+    </div>
+  </div>
+  <div class="mini-cart" id="miniCart">
+    <div class="mini-cart-header">
+      <h4>Cart <span class="badge badge-primary" style="margin-left:6px;">2</span></h4>
+      <button class="icon-btn" onclick="document.getElementById('miniCart').classList.remove('open')"><i class="bi bi-x" style="font-size:18px;"></i></button>
+    </div>
+    <div class="mini-cart-items">
+      <div class="mini-cart-item">
+        <div class="mini-cart-item-img"><img src="https://picsum.photos/seed/prod1/120/120" alt="Headphones" /></div>
+        <div class="mini-cart-item-info"><h5>Wireless Pro Headphones</h5><span class="variant">Midnight Black</span><div class="mini-cart-item-price"><span class="price">$129.00</span><span class="text-muted text-xs">×1</span></div></div>
+        <button class="cart-remove-btn" aria-label="Remove"><i class="bi bi-x"></i></button>
+      </div>
+    </div>
+    <div class="mini-cart-footer">
+      <div class="mini-cart-total"><span>Subtotal</span><span style="color:var(--primary);font-weight:800;">$129.00</span></div>
+      <div class="mini-cart-actions">
+        <a href="cart.html" class="btn btn-secondary btn-full">View Cart</a>
+        <a href="checkout.html" class="btn btn-primary btn-full">Checkout</a>
+      </div>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html"><i class="bi bi-house"></i> Home</a></li>
+      <li><a href="category.html" class="active"><i class="bi bi-grid"></i> Shop</a></li>
+      <li><a href="category.html?c=new"><i class="bi bi-stars"></i> New Arrivals</a></li>
+      <li><a href="category.html?c=sale"><i class="bi bi-lightning"></i> Sale</a></li>
+      <div class="mobile-nav-divider"></div>
+      <li><a href="wishlist.html"><i class="bi bi-heart"></i> Wishlist</a></li>
+      <li><a href="account.html"><i class="bi bi-person"></i> My Account</a></li>
+    </ul>
+    <div class="mobile-nav-actions">
+      <a href="login.html" class="btn btn-secondary btn-full">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-full">Register</a>
+    </div>
+  </nav>
+</header>
+<!-- /HEADER -->
+
+
+<main>
+  <!-- BREADCRUMB -->
+  <div style="background:var(--bg-soft);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <svg class="breadcrumb-sep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="breadcrumb-current">Shop</span>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container section">
+    <!-- Shop Title -->
+    <div style="margin-bottom:28px;">
+      <h1 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:6px;">All Products</h1>
+      <p style="color:var(--muted);font-size:0.9rem;">Showing 1–16 of 248 results</p>
+    </div>
+
+    <!-- FILTER BACKDROP (mobile) -->
+    <div class="filter-backdrop" aria-hidden="true"></div>
+
+    <div class="shop-layout">
+      <!-- ===== SIDEBAR FILTERS ===== -->
+      <aside class="filter-sidebar" aria-label="Product filters">
+        <div class="filter-sidebar-header">
+          <h3><i class="bi bi-sliders"></i> Filters</h3>
+          <button class="btn btn-ghost btn-sm">Clear All</button>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-title">Category</span>
+            <span class="filter-group-toggle">▲</span>
+          </div>
+          <ul class="filter-list">
+            <li class="filter-item">
+              <label class="filter-item-left">
+                <input type="checkbox" checked style="accent-color:var(--primary);" /> All Products
+              </label>
+              <span class="filter-item-count">248</span>
+            </li>
+            <li class="filter-item">
+              <label class="filter-item-left">
+                <input type="checkbox" style="accent-color:var(--primary);" /> Electronics
+              </label>
+              <span class="filter-item-count">86</span>
+            </li>
+            <li class="filter-item">
+              <label class="filter-item-left">
+                <input type="checkbox" style="accent-color:var(--primary);" /> Fashion
+              </label>
+              <span class="filter-item-count">124</span>
+            </li>
+            <li class="filter-item">
+              <label class="filter-item-left">
+                <input type="checkbox" style="accent-color:var(--primary);" /> Home & Living
+              </label>
+              <span class="filter-item-count">72</span>
+            </li>
+            <li class="filter-item">
+              <label class="filter-item-left">
+                <input type="checkbox" style="accent-color:var(--primary);" /> Sports
+              </label>
+              <span class="filter-item-count">38</span>
+            </li>
+            <li class="filter-item">
+              <label class="filter-item-left">
+                <input type="checkbox" style="accent-color:var(--primary);" /> Accessories
+              </label>
+              <span class="filter-item-count">54</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-title">Price Range</span>
+            <span class="filter-group-toggle">▲</span>
+          </div>
+          <div class="price-range">
+            <input type="range" min="0" max="1000" value="500" aria-label="Maximum price" />
+            <div class="price-range-labels">
+              <span>$0</span>
+              <span>$500</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brand Filter -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-title">Brand</span>
+            <span class="filter-group-toggle">▲</span>
+          </div>
+          <ul class="filter-list">
+            <li class="filter-item"><label class="filter-item-left"><input type="checkbox" style="accent-color:var(--primary);" /> Nexara</label><span class="filter-item-count">34</span></li>
+            <li class="filter-item"><label class="filter-item-left"><input type="checkbox" style="accent-color:var(--primary);" /> ApexTech</label><span class="filter-item-count">28</span></li>
+            <li class="filter-item"><label class="filter-item-left"><input type="checkbox" style="accent-color:var(--primary);" /> VertX</label><span class="filter-item-count">19</span></li>
+            <li class="filter-item"><label class="filter-item-left"><input type="checkbox" style="accent-color:var(--primary);" /> Lumos</label><span class="filter-item-count">15</span></li>
+            <li class="filter-item"><label class="filter-item-left"><input type="checkbox" style="accent-color:var(--primary);" /> GlideX</label><span class="filter-item-count">22</span></li>
+          </ul>
+        </div>
+
+        <!-- Color Filter -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-title">Color</span>
+            <span class="filter-group-toggle">▲</span>
+          </div>
+          <div class="color-swatches">
+            <button class="color-swatch active" style="background:#1a1a2e;" aria-label="Midnight" title="Midnight"></button>
+            <button class="color-swatch" style="background:#c0c0c0;" aria-label="Silver" title="Silver"></button>
+            <button class="color-swatch" style="background:#7c3aed;" aria-label="Purple" title="Purple"></button>
+            <button class="color-swatch" style="background:#3b82f6;" aria-label="Blue" title="Blue"></button>
+            <button class="color-swatch" style="background:#ef4444;" aria-label="Red" title="Red"></button>
+            <button class="color-swatch" style="background:#10b981;" aria-label="Green" title="Green"></button>
+            <button class="color-swatch" style="background:#f59e0b;" aria-label="Gold" title="Gold"></button>
+            <button class="color-swatch" style="background:#fff;" aria-label="White" title="White"></button>
+          </div>
+        </div>
+
+        <!-- Rating Filter -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-title">Rating</span>
+            <span class="filter-group-toggle">▲</span>
+          </div>
+          <div class="rating-filter">
+            <label class="rating-filter-item"><input type="radio" name="rating" style="accent-color:var(--primary);" checked /> <span class="stars" style="font-size:12px;">★★★★★</span> <span>& Up (182)</span></label>
+            <label class="rating-filter-item"><input type="radio" name="rating" style="accent-color:var(--primary);" /> <span class="stars" style="font-size:12px;">★★★★☆</span> <span>& Up (226)</span></label>
+            <label class="rating-filter-item"><input type="radio" name="rating" style="accent-color:var(--primary);" /> <span class="stars" style="font-size:12px;">★★★☆☆</span> <span>& Up (240)</span></label>
+            <label class="rating-filter-item"><input type="radio" name="rating" style="accent-color:var(--primary);" /> <span class="stars" style="font-size:12px;">★★☆☆☆</span> <span>& Up (248)</span></label>
+          </div>
+        </div>
+
+        <!-- Availability -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-title">Availability</span>
+            <span class="filter-group-toggle">▲</span>
+          </div>
+          <ul class="filter-list">
+            <li class="filter-item"><label class="filter-item-left"><input type="checkbox" checked style="accent-color:var(--primary);" /> In Stock</label><span class="filter-item-count">230</span></li>
+            <li class="filter-item"><label class="filter-item-left"><input type="checkbox" style="accent-color:var(--primary);" /> On Sale</label><span class="filter-item-count">48</span></li>
+          </ul>
+        </div>
+
+        <button class="btn btn-primary btn-full" style="margin-top:16px;">
+          <i class="bi bi-check-lg"></i> Apply Filters
+        </button>
+      </aside>
+      <!-- /SIDEBAR -->
+
+      <!-- ===== PRODUCTS MAIN ===== -->
+      <div>
+        <!-- Toolbar -->
+        <div class="shop-toolbar">
+          <div class="shop-toolbar-left">
+            <button class="btn btn-ghost btn-sm mobile-filter-btn">
+              <i class="bi bi-sliders"></i> Filters
+            </button>
+            <p class="result-count"><strong>248</strong> products found</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="view-btns">
+              <button class="view-btn active" data-view="grid" aria-label="Grid view">
+                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              </button>
+              <button class="view-btn" data-view="list" aria-label="List view">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+              </button>
+            </div>
+            <select class="sort-select" aria-label="Sort products">
+              <option>Sort: Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest First</option>
+              <option>Best Rating</option>
+              <option>Most Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Active Filter Tags -->
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+          <span style="padding:5px 12px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);border-radius:99px;font-size:0.78rem;color:var(--primary);display:flex;align-items:center;gap:6px;">
+            ★★★★★ & Up <button style="background:none;border:none;cursor:pointer;color:inherit;line-height:1;" aria-label="Remove filter">×</button>
+          </span>
+          <span style="padding:5px 12px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);border-radius:99px;font-size:0.78rem;color:var(--primary);display:flex;align-items:center;gap:6px;">
+            In Stock <button style="background:none;border:none;cursor:pointer;color:inherit;line-height:1;" aria-label="Remove filter">×</button>
+          </span>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="products-grid" role="list">
+          <!-- 8 product cards -->
+          <!-- Row 1 -->
+          <article class="product-card" role="listitem">
+            <div class="product-card-img">
+              <img src="https://picsum.photos/seed/c1/400/400" alt="Wireless Pro Headphones" loading="lazy" />
+              <div class="product-badge-wrap"><span class="badge badge-danger">-25%</span></div>
+              <div class="product-card-actions">
+                <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <span class="product-card-category">Electronics</span>
+              <a href="product.html" class="product-card-title">Wireless Pro Headphones X1</a>
+              <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(248)</span></div>
+              <div class="product-card-footer">
+                <div class="product-price-wrap"><span class="product-price">$97.00</span><span class="product-price-old">$129.00</span></div>
+                <button class="product-cart-btn" data-add-cart="Wireless Pro Headphones" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" role="listitem">
+            <div class="product-card-img">
+              <img src="https://picsum.photos/seed/c2/400/400" alt="Smart Watch" loading="lazy" />
+              <div class="product-badge-wrap"><span class="badge badge-primary">New</span></div>
+              <div class="product-card-actions">
+                <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <span class="product-card-category">Wearables</span>
+              <a href="product.html" class="product-card-title">NX Smart Watch Ultra 44mm</a>
+              <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(182)</span></div>
+              <div class="product-card-footer">
+                <div class="product-price-wrap"><span class="product-price">$249.00</span></div>
+                <button class="product-cart-btn" data-add-cart="Smart Watch Ultra" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" role="listitem">
+            <div class="product-card-img">
+              <img src="https://picsum.photos/seed/c3/400/400" alt="Keyboard" loading="lazy" />
+              <div class="product-card-actions">
+                <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <span class="product-card-category">Peripherals</span>
+              <a href="product.html" class="product-card-title">Apex TKL Mechanical Keyboard RGB</a>
+              <div class="product-card-rating rating"><span class="stars">★★★★☆</span><span class="rating-count">(97)</span></div>
+              <div class="product-card-footer">
+                <div class="product-price-wrap"><span class="product-price">$89.99</span><span class="product-price-old">$119.00</span></div>
+                <button class="product-cart-btn" data-add-cart="Apex Keyboard" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" role="listitem">
+            <div class="product-card-img">
+              <img src="https://picsum.photos/seed/c4/400/400" alt="Webcam" loading="lazy" />
+              <div class="product-card-actions">
+                <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <span class="product-card-category">Cameras</span>
+              <a href="product.html" class="product-card-title">StreamPro 4K Webcam Auto-Focus</a>
+              <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(341)</span></div>
+              <div class="product-card-footer">
+                <div class="product-price-wrap"><span class="product-price">$149.00</span></div>
+                <button class="product-cart-btn" data-add-cart="StreamPro Webcam" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" role="listitem">
+            <div class="product-card-img">
+              <img src="https://picsum.photos/seed/c5/400/400" alt="Laptop Stand" loading="lazy" />
+              <div class="product-badge-wrap"><span class="badge badge-success">Best Seller</span></div>
+              <div class="product-card-actions">
+                <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <span class="product-card-category">Accessories</span>
+              <a href="product.html" class="product-card-title">VertX Aluminum Laptop Stand</a>
+              <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(892)</span></div>
+              <div class="product-card-footer">
+                <div class="product-price-wrap"><span class="product-price">$44.99</span></div>
+                <button class="product-cart-btn" data-add-cart="VertX Laptop Stand" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" role="listitem">
+            <div class="product-card-img">
+              <img src="https://picsum.photos/seed/c6/400/400" alt="Desk Lamp" loading="lazy" />
+              <div class="product-card-actions">
+                <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <span class="product-card-category">Lighting</span>
+              <a href="product.html" class="product-card-title">Lumos LED Smart Desk Lamp</a>
+              <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(543)</span></div>
+              <div class="product-card-footer">
+                <div class="product-price-wrap"><span class="product-price">$34.99</span><span class="product-price-old">$49.00</span></div>
+                <button class="product-cart-btn" data-add-cart="Lumos Desk Lamp" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" role="listitem">
+            <div class="product-card-img">
+              <img src="https://picsum.photos/seed/c7/400/400" alt="Backpack" loading="lazy" />
+              <div class="product-card-actions">
+                <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <span class="product-card-category">Bags</span>
+              <a href="product.html" class="product-card-title">TechCarry Urban 30L Backpack</a>
+              <div class="product-card-rating rating"><span class="stars">★★★★☆</span><span class="rating-count">(408)</span></div>
+              <div class="product-card-footer">
+                <div class="product-price-wrap"><span class="product-price">$69.00</span></div>
+                <button class="product-cart-btn" data-add-cart="TechCarry Backpack" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" role="listitem">
+            <div class="product-card-img">
+              <img src="https://picsum.photos/seed/c8/400/400" alt="Mouse Pad" loading="lazy" />
+              <div class="product-card-actions">
+                <button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+                <button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-card-body">
+              <span class="product-card-category">Peripherals</span>
+              <a href="product.html" class="product-card-title">GlideX XXL RGB Mouse Pad</a>
+              <div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(1.2K)</span></div>
+              <div class="product-card-footer">
+                <div class="product-price-wrap"><span class="product-price">$29.99</span></div>
+                <button class="product-cart-btn" data-add-cart="GlideX Mouse Pad" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="pagination" aria-label="Product pages">
+          <a href="#" class="page-btn" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a>
+          <a href="#" class="page-btn active" aria-current="page">1</a>
+          <a href="#" class="page-btn">2</a>
+          <a href="#" class="page-btn">3</a>
+          <span class="page-btn" style="pointer-events:none;opacity:0.5;">…</span>
+          <a href="#" class="page-btn">16</a>
+          <a href="#" class="page-btn" aria-label="Next page"><i class="bi bi-chevron-right"></i></a>
+        </nav>
+      </div>
+      <!-- /PRODUCTS MAIN -->
+    </div>
+  </div>
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a>
+          <p class="footer-brand-desc">Premium dark eCommerce experience. Curated products, fast shipping, and world-class support.</p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="footer-social-link" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="footer-social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="footer-social-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col"><h5>Shop</h5><ul class="footer-links"><li><a href="category.html">All Products</a></li><li><a href="category.html?c=new">New Arrivals</a></li><li><a href="category.html?c=sale">Sale</a></li><li><a href="category.html?c=electronics">Electronics</a></li><li><a href="category.html?c=fashion">Fashion</a></li></ul></div>
+        <div class="footer-col"><h5>Support</h5><ul class="footer-links"><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="#">Shipping Info</a></li><li><a href="#">Returns</a></li></ul></div>
+        <div class="footer-col"><h5>Account</h5><ul class="footer-links"><li><a href="account.html">My Account</a></li><li><a href="wishlist.html">Wishlist</a></li><li><a href="login.html">Sign In</a></li><li><a href="register.html">Register</a></li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <p class="footer-copy">&copy; 2025 <a href="index.html">Nexara</a>. All rights reserved. &bull; <a href="#">Privacy</a> &bull; <a href="#">Terms</a></p>
+        <div class="payment-methods"><span class="payment-method">VISA</span><span class="payment-method">MC</span><span class="payment-method">AMEX</span><span class="payment-method">PayPal</span></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- QUICK VIEW MODAL -->
+<div class="modal-overlay" id="quickViewModal" role="dialog" aria-modal="true" aria-label="Quick product view">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close"><i class="bi bi-x-lg" style="font-size:14px;"></i></button>
+    <div class="modal-body">
+      <div class="modal-product-grid">
+        <div><div style="aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--bg-soft);"><img src="https://picsum.photos/seed/qv1/500/500" alt="Quick view" style="width:100%;height:100%;object-fit:cover;" /></div></div>
+        <div class="product-info">
+          <span class="product-card-category">Electronics</span>
+          <h2 class="product-detail-title" style="margin-bottom:12px;">Wireless Pro Headphones X1</h2>
+          <div class="rating" style="margin-bottom:16px;"><span class="stars">★★★★★</span><span class="rating-count">(248 reviews)</span></div>
+          <div class="product-pricing" style="margin-bottom:20px;"><span class="price-current">$97.00</span><span class="price-old-lg">$129.00</span><span class="price-save">Save $32</span></div>
+          <div class="quantity-wrap" style="margin-bottom:20px;">
+            <div class="quantity-ctrl"><button class="qty-btn" data-qty="dec">−</button><input class="qty-input" type="number" value="1" min="1" /><button class="qty-btn" data-qty="inc">+</button></div>
+            <button class="btn btn-primary" data-add-cart="Wireless Pro Headphones" style="flex:1;"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+          </div>
+          <a href="product.html" class="btn btn-ghost btn-full">View Full Details <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Wireless Pro Headphones X1 — Premium audio with active noise cancellation. Shop at Nexara." />
+  <title>Wireless Pro Headphones X1 — Nexara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown"><a href="category.html" class="active">Shop</a>
+          <div class="nav-dropdown">
+            <a href="category.html"><span class="nav-dropdown-icon" style="background:rgba(124,58,237,.12);color:#7c3aed;"><i class="bi bi-grid-fill"></i></span>All Products</a>
+            <a href="category.html?c=electronics"><span class="nav-dropdown-icon" style="background:rgba(59,130,246,.12);color:#3b82f6;"><i class="bi bi-cpu-fill"></i></span>Electronics</a>
+            <a href="category.html?c=fashion"><span class="nav-dropdown-icon" style="background:rgba(236,72,153,.12);color:#ec4899;"><i class="bi bi-bag-fill"></i></span>Fashion</a>
+          </div>
+        </li>
+        <li><a href="category.html?c=new">New Arrivals</a></li>
+        <li><a href="category.html?c=sale">Sale</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><i class="bi bi-search" style="font-size:18px;"></i></button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"><i class="bi bi-heart" style="font-size:18px;"></i><span class="badge">3</span></a>
+      <a href="account.html" class="icon-btn" aria-label="Account"><i class="bi bi-person" style="font-size:18px;"></i></a>
+      <button class="icon-btn cart-btn" id="cartToggle" aria-label="Cart"><i class="bi bi-bag" style="font-size:18px;"></i><span class="badge">2</span></button>
+      <button class="icon-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Menu"><i class="bi bi-list" style="font-size:22px;"></i></button>
+    </div>
+  </div>
+  <div class="header-search" id="headerSearch"><div class="container"><form class="search-form" role="search"><input type="search" placeholder="Search…" aria-label="Search" /><button type="submit" class="btn btn-primary btn-sm">Search</button><button type="button" class="btn btn-ghost btn-sm" id="closeSearch"><i class="bi bi-x-lg"></i></button></form></div></div>
+  <div class="mini-cart" id="miniCart">
+    <div class="mini-cart-header"><h4>Cart</h4><button class="icon-btn" onclick="document.getElementById('miniCart').classList.remove('open')"><i class="bi bi-x" style="font-size:18px;"></i></button></div>
+    <div class="mini-cart-items"><div class="mini-cart-item"><div class="mini-cart-item-img"><img src="https://picsum.photos/seed/prod1/120/120" alt="Headphones" /></div><div class="mini-cart-item-info"><h5>Wireless Pro Headphones</h5><span class="variant">Midnight Black</span><div class="mini-cart-item-price"><span class="price">$129.00</span></div></div><button class="cart-remove-btn" aria-label="Remove"><i class="bi bi-x"></i></button></div></div>
+    <div class="mini-cart-footer"><div class="mini-cart-total"><span>Subtotal</span><span style="color:var(--primary);font-weight:800;">$129.00</span></div><div class="mini-cart-actions"><a href="cart.html" class="btn btn-secondary btn-full">View Cart</a><a href="checkout.html" class="btn btn-primary btn-full">Checkout</a></div></div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav-list"><li><a href="index.html"><i class="bi bi-house"></i> Home</a></li><li><a href="category.html" class="active"><i class="bi bi-grid"></i> Shop</a></li><li><a href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li><div class="mobile-nav-divider"></div><li><a href="wishlist.html"><i class="bi bi-heart"></i> Wishlist</a></li><li><a href="account.html"><i class="bi bi-person"></i> My Account</a></li></ul>
+    <div class="mobile-nav-actions"><a href="login.html" class="btn btn-secondary btn-full">Sign In</a><a href="register.html" class="btn btn-primary btn-full">Register</a></div>
+  </nav>
+</header>
+
+<main>
+  <!-- BREADCRUMB -->
+  <div style="background:var(--bg-soft);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <svg class="breadcrumb-sep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="category.html">Shop</a>
+        <svg class="breadcrumb-sep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="category.html?c=electronics">Electronics</a>
+        <svg class="breadcrumb-sep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="breadcrumb-current">Wireless Pro Headphones X1</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL -->
+  <div class="container">
+    <div class="product-detail">
+
+      <!-- ===== PRODUCT GALLERY ===== -->
+      <div class="product-gallery">
+        <div class="gallery-main" aria-label="Product image">
+          <img src="https://picsum.photos/seed/prod-main/600/600" alt="Wireless Pro Headphones X1 — main view" id="galleryMainImg" />
+        </div>
+        <div class="gallery-thumbs" role="list" aria-label="Product images">
+          <button class="gallery-thumb active" data-full="https://picsum.photos/seed/prod-main/600/600" aria-label="View image 1">
+            <img src="https://picsum.photos/seed/prod-main/150/150" alt="Headphones front view" />
+          </button>
+          <button class="gallery-thumb" data-full="https://picsum.photos/seed/prod-t1/600/600" aria-label="View image 2">
+            <img src="https://picsum.photos/seed/prod-t1/150/150" alt="Headphones side view" />
+          </button>
+          <button class="gallery-thumb" data-full="https://picsum.photos/seed/prod-t2/600/600" aria-label="View image 3">
+            <img src="https://picsum.photos/seed/prod-t2/150/150" alt="Headphones detail" />
+          </button>
+          <button class="gallery-thumb" data-full="https://picsum.photos/seed/prod-t3/600/600" aria-label="View image 4">
+            <img src="https://picsum.photos/seed/prod-t3/150/150" alt="Headphones case" />
+          </button>
+          <button class="gallery-thumb" data-full="https://picsum.photos/seed/prod-t4/600/600" aria-label="View image 5">
+            <img src="https://picsum.photos/seed/prod-t4/150/150" alt="In-ear fit" />
+          </button>
+        </div>
+      </div>
+      <!-- /GALLERY -->
+
+      <!-- ===== PRODUCT INFO ===== -->
+      <div class="product-info">
+        <div class="product-brand">
+          <span class="badge badge-muted">ApexTech</span>
+          <span class="stock-indicator in-stock"><span class="stock-dot"></span> In Stock — 14 left</span>
+        </div>
+
+        <h1 class="product-detail-title">Wireless Pro Headphones X1</h1>
+
+        <div class="product-rating-bar">
+          <div class="rating">
+            <span class="stars" style="font-size:16px;">★★★★★</span>
+            <span class="rating-count">4.9 (248 reviews)</span>
+          </div>
+          <a href="#reviews" class="review-link">Read all reviews</a>
+          <span style="font-size:0.8rem;color:var(--muted);">|</span>
+          <span style="font-size:0.82rem;color:var(--muted);">1,204 sold</span>
+        </div>
+
+        <div class="product-pricing">
+          <span class="price-current">$97.00</span>
+          <span class="price-old-lg">$129.00</span>
+          <span class="price-save">Save $32 (25% off)</span>
+        </div>
+
+        <p style="font-size:0.92rem;color:var(--text-soft);line-height:1.7;padding:16px;background:var(--bg-soft);border-radius:var(--radius-sm);border-left:3px solid var(--primary);">
+          Premium over-ear headphones with 40-hour battery life, Active Noise Cancellation, and spatial audio. Studio-grade sound meets all-day comfort.
+        </p>
+
+        <!-- Color Selector -->
+        <div class="variant-group">
+          <span class="variant-label">Color: <span>Midnight Black</span></span>
+          <div class="variant-color-options">
+            <button class="variant-color-btn active" style="background:#1a1a2e;border-color:#fff;" aria-label="Midnight Black" title="Midnight Black"></button>
+            <button class="variant-color-btn" style="background:#c0c0c0;" aria-label="Silver" title="Silver"></button>
+            <button class="variant-color-btn" style="background:#7c3aed;" aria-label="Ultraviolet" title="Ultraviolet"></button>
+            <button class="variant-color-btn" style="background:#166534;" aria-label="Forest" title="Forest"></button>
+          </div>
+        </div>
+
+        <!-- Size Selector (headphones = earcup size) -->
+        <div class="variant-group">
+          <span class="variant-label">Edition: <span>Standard</span></span>
+          <div class="variant-size-options">
+            <button class="variant-size-btn active">Standard</button>
+            <button class="variant-size-btn">Pro</button>
+            <button class="variant-size-btn">Pro Max</button>
+          </div>
+        </div>
+
+        <!-- Quantity & Add to Cart -->
+        <div class="quantity-wrap">
+          <div class="quantity-ctrl">
+            <button class="qty-btn" data-qty="dec" aria-label="Decrease">−</button>
+            <input class="qty-input" type="number" value="1" min="1" max="10" aria-label="Quantity" />
+            <button class="qty-btn" data-qty="inc" aria-label="Increase">+</button>
+          </div>
+        </div>
+
+        <div class="product-cta-row">
+          <button class="btn btn-primary btn-xl" style="flex:1;" data-add-cart="Wireless Pro Headphones X1">
+            <i class="bi bi-bag-plus"></i> Add to Cart
+          </button>
+          <a href="checkout.html" class="btn btn-secondary btn-xl" style="flex:1;">
+            <i class="bi bi-lightning-fill"></i> Buy Now
+          </a>
+          <button class="btn-wishlist" aria-label="Add to wishlist" title="Add to Wishlist">
+            <i class="bi bi-heart"></i>
+          </button>
+        </div>
+
+        <!-- Trust Badges -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px;">
+          <div style="text-align:center;padding:12px;background:var(--bg-soft);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <i class="bi bi-truck" style="color:var(--primary);font-size:18px;"></i>
+            <p style="font-size:0.72rem;color:var(--muted);margin-top:4px;">Free Shipping</p>
+          </div>
+          <div style="text-align:center;padding:12px;background:var(--bg-soft);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <i class="bi bi-arrow-counterclockwise" style="color:var(--success);font-size:18px;"></i>
+            <p style="font-size:0.72rem;color:var(--muted);margin-top:4px;">30-Day Return</p>
+          </div>
+          <div style="text-align:center;padding:12px;background:var(--bg-soft);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <i class="bi bi-shield-check" style="color:var(--info);font-size:18px;"></i>
+            <p style="font-size:0.72rem;color:var(--muted);margin-top:4px;">2-Year Warranty</p>
+          </div>
+        </div>
+
+        <!-- Share -->
+        <div style="display:flex;align-items:center;gap:10px;padding-top:8px;border-top:1px solid var(--border);">
+          <span style="font-size:0.82rem;color:var(--muted);font-weight:600;">Share:</span>
+          <a href="#" class="social-link" aria-label="Share on Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-link" aria-label="Share on Twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-link" aria-label="Copy link"><i class="bi bi-link-45deg"></i></a>
+        </div>
+      </div>
+      <!-- /PRODUCT INFO -->
+    </div>
+
+    <!-- ===== PRODUCT TABS ===== -->
+    <div class="product-tabs" data-tabs>
+      <div class="tab-nav" role="tablist">
+        <button class="tab-btn active" data-tab="description" role="tab" aria-selected="true">Description</button>
+        <button class="tab-btn" data-tab="specs" role="tab" aria-selected="false">Specifications</button>
+        <button class="tab-btn" data-tab="reviews" role="tab" aria-selected="false">
+          Reviews <span class="badge badge-primary" style="margin-left:4px;">248</span>
+        </button>
+        <button class="tab-btn" data-tab="shipping" role="tab" aria-selected="false">Shipping & Returns</button>
+      </div>
+
+      <!-- Description Panel -->
+      <div class="tab-panel active" data-tab-panel="description" role="tabpanel">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+          <div>
+            <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:14px;">About This Product</h3>
+            <p style="color:var(--text-soft);line-height:1.8;margin-bottom:14px;">
+              The Wireless Pro Headphones X1 redefine what premium audio means. Featuring ApexTech's proprietary 40mm Planar drivers and our signature Spatial Sound Engine™, every note is reproduced with stunning clarity and depth.
+            </p>
+            <p style="color:var(--text-soft);line-height:1.8;margin-bottom:20px;">
+              The adaptive ANC system intelligently monitors your environment 50,000 times per second, blocking distractions while preserving the sounds you want to hear. With 40 hours of battery life and fast charging (15 min = 5 hrs), this headphone is built for the modern lifestyle.
+            </p>
+            <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;">Key Features</h4>
+            <ul style="color:var(--text-soft);line-height:1.9;display:flex;flex-direction:column;gap:6px;">
+              <li style="display:flex;align-items:flex-start;gap:10px;"><i class="bi bi-check-circle-fill" style="color:var(--success);margin-top:3px;flex-shrink:0;"></i> 40mm Planar Magnetic Drivers with Spatial Sound Engine™</li>
+              <li style="display:flex;align-items:flex-start;gap:10px;"><i class="bi bi-check-circle-fill" style="color:var(--success);margin-top:3px;flex-shrink:0;"></i> Adaptive Active Noise Cancellation (ANC)</li>
+              <li style="display:flex;align-items:flex-start;gap:10px;"><i class="bi bi-check-circle-fill" style="color:var(--success);margin-top:3px;flex-shrink:0;"></i> 40-hour battery / 15-min fast charge (USB-C)</li>
+              <li style="display:flex;align-items:flex-start;gap:10px;"><i class="bi bi-check-circle-fill" style="color:var(--success);margin-top:3px;flex-shrink:0;"></i> Multipoint Bluetooth 5.3 — connect to 2 devices</li>
+              <li style="display:flex;align-items:flex-start;gap:10px;"><i class="bi bi-check-circle-fill" style="color:var(--success);margin-top:3px;flex-shrink:0;"></i> Premium memory foam ear cushions, protein leather</li>
+              <li style="display:flex;align-items:flex-start;gap:10px;"><i class="bi bi-check-circle-fill" style="color:var(--success);margin-top:3px;flex-shrink:0;"></i> Built-in EQ presets + companion app (iOS/Android)</li>
+            </ul>
+          </div>
+          <div>
+            <img src="https://picsum.photos/seed/prod-desc/600/400" alt="Headphones lifestyle shot" style="border-radius:var(--radius);width:100%;object-fit:cover;" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Specs Panel -->
+      <div class="tab-panel" data-tab-panel="specs" role="tabpanel">
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:20px;">Technical Specifications</h3>
+        <table class="specs-table">
+          <tbody>
+            <tr><td>Driver Size</td><td>40mm Planar Magnetic</td></tr>
+            <tr><td>Frequency Response</td><td>20Hz – 20kHz</td></tr>
+            <tr><td>Impedance</td><td>32Ω</td></tr>
+            <tr><td>Sensitivity</td><td>103 dB/mW</td></tr>
+            <tr><td>Connectivity</td><td>Bluetooth 5.3 / 3.5mm jack</td></tr>
+            <tr><td>Codec Support</td><td>aptX HD, AAC, SBC, LDAC</td></tr>
+            <tr><td>Battery Life</td><td>40h (ANC on) / 60h (ANC off)</td></tr>
+            <tr><td>Charging</td><td>USB-C, 15 min = 5h playback</td></tr>
+            <tr><td>Weight</td><td>255g</td></tr>
+            <tr><td>Foldable</td><td>Yes — travel case included</td></tr>
+            <tr><td>Microphone</td><td>4-mic array with beamforming</td></tr>
+            <tr><td>Water Resistance</td><td>IPX4 splash-proof</td></tr>
+            <tr><td>App Compatibility</td><td>iOS 14+, Android 8+</td></tr>
+            <tr><td>Colors</td><td>Midnight Black, Silver, Ultraviolet, Forest</td></tr>
+            <tr><td>Warranty</td><td>2 years manufacturer</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Reviews Panel -->
+      <div class="tab-panel" data-tab-panel="reviews" role="tabpanel" id="reviews">
+        <!-- Summary -->
+        <div class="reviews-summary">
+          <div class="rating-big">
+            <div class="rating-num grad-text">4.9</div>
+            <div class="stars" style="justify-content:center;margin-block:6px;">★★★★★</div>
+            <p style="font-size:0.78rem;color:var(--muted);">248 reviews</p>
+          </div>
+          <div class="rating-bars">
+            <div class="rating-bar-row"><span style="min-width:18px;">5★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:88%;"></div></div><span>218</span></div>
+            <div class="rating-bar-row"><span style="min-width:18px;">4★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:8%;"></div></div><span>20</span></div>
+            <div class="rating-bar-row"><span style="min-width:18px;">3★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:2%;"></div></div><span>6</span></div>
+            <div class="rating-bar-row"><span style="min-width:18px;">2★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:1%;"></div></div><span>3</span></div>
+            <div class="rating-bar-row"><span style="min-width:18px;">1★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%;"></div></div><span>1</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <p style="font-size:0.88rem;color:var(--muted);">Showing 3 of 248 reviews</p>
+          <select class="sort-select" aria-label="Sort reviews"><option>Most Helpful</option><option>Newest</option><option>Highest Rating</option><option>Lowest Rating</option></select>
+        </div>
+
+        <div class="reviews-list">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer">
+                <div class="reviewer-avatar">JM</div>
+                <div><div class="reviewer-name">James M.</div><div class="reviewer-date">March 12, 2025</div></div>
+              </div>
+              <div style="text-align:right;">
+                <div class="stars" style="font-size:13px;justify-content:flex-end;">★★★★★</div>
+                <div class="review-verified"><i class="bi bi-patch-check-fill"></i> Verified Purchase</div>
+              </div>
+            </div>
+            <p class="review-text">Absolutely incredible sound quality. I've tried Sony, Bose, and Apple — these beat them all at this price point. The ANC is just as good as the XM5s. Battery life is phenomenal. Will 100% buy again when mine wear out.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer">
+                <div class="reviewer-avatar">SK</div>
+                <div><div class="reviewer-name">Sofia K.</div><div class="reviewer-date">February 28, 2025</div></div>
+              </div>
+              <div style="text-align:right;">
+                <div class="stars" style="font-size:13px;justify-content:flex-end;">★★★★★</div>
+                <div class="review-verified"><i class="bi bi-patch-check-fill"></i> Verified Purchase</div>
+              </div>
+            </div>
+            <p class="review-text">I work from home and these are a game changer. The mic quality on calls is crystal clear. Super comfortable even after 8 hours of wear. The carrying case is premium quality. Highly recommend!</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer">
+                <div class="reviewer-avatar">RP</div>
+                <div><div class="reviewer-name">Raj P.</div><div class="reviewer-date">January 15, 2025</div></div>
+              </div>
+              <div style="text-align:right;">
+                <div class="stars" style="font-size:13px;justify-content:flex-end;">★★★★☆</div>
+                <div class="review-verified"><i class="bi bi-patch-check-fill"></i> Verified Purchase</div>
+              </div>
+            </div>
+            <p class="review-text">Minus one star because the companion app could use some polish, but everything else is stellar. Sound is warm and detailed, ANC works brilliantly, and 40 hours of battery means I charge once a week.</p>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:28px;">
+          <button class="btn btn-secondary">Load More Reviews</button>
+        </div>
+      </div>
+
+      <!-- Shipping Panel -->
+      <div class="tab-panel" data-tab-panel="shipping" role="tabpanel">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div style="background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
+            <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;"><i class="bi bi-truck" style="color:var(--primary);"></i> Shipping Options</h4>
+            <ul style="display:flex;flex-direction:column;gap:10px;font-size:0.88rem;color:var(--text-soft);">
+              <li style="display:flex;justify-content:space-between;"><span>Standard (5–7 days)</span><span style="color:var(--success);font-weight:600;">Free</span></li>
+              <li style="display:flex;justify-content:space-between;"><span>Express (2–3 days)</span><span style="font-weight:600;">$9.99</span></li>
+              <li style="display:flex;justify-content:space-between;"><span>Overnight (Next day)</span><span style="font-weight:600;">$24.99</span></li>
+            </ul>
+          </div>
+          <div style="background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
+            <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;"><i class="bi bi-arrow-counterclockwise" style="color:var(--success);"></i> Returns Policy</h4>
+            <p style="font-size:0.88rem;color:var(--text-soft);line-height:1.75;">30-day hassle-free returns. Item must be in original condition with all packaging. Return shipping is covered by Nexara for defective items. Full refund processed within 5 business days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /TABS -->
+
+    <!-- RELATED PRODUCTS -->
+    <div style="margin-top:72px;">
+      <div class="section-header left">
+        <span class="label">You Might Also Like</span>
+        <h2>Related <span class="grad-text">Products</span></h2>
+      </div>
+      <div class="products-grid">
+        <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/rel1/400/400" alt="In-ear buds" loading="lazy" /><div class="product-card-actions"><button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button><button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button></div></div><div class="product-card-body"><span class="product-card-category">Audio</span><a href="product.html" class="product-card-title">AirBuds Pro 3 TWS Earbuds</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(182)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$79.00</span><span class="product-price-old">$99.00</span></div><button class="product-cart-btn" data-add-cart="AirBuds Pro 3" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+        <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/rel2/400/400" alt="Speaker" loading="lazy" /></div><div class="product-card-body"><span class="product-card-category">Audio</span><a href="product.html" class="product-card-title">BoomBox Pro Bluetooth Speaker</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(76)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$79.99</span></div><button class="product-cart-btn" data-add-cart="BoomBox Pro" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+        <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/rel3/400/400" alt="Smart Watch" loading="lazy" /><div class="product-badge-wrap"><span class="badge badge-primary">New</span></div></div><div class="product-card-body"><span class="product-card-category">Wearables</span><a href="product.html" class="product-card-title">NX Smart Watch Ultra 44mm</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(182)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$249.00</span></div><button class="product-cart-btn" data-add-cart="NX Smart Watch" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+        <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/rel4/400/400" alt="Webcam" loading="lazy" /></div><div class="product-card-body"><span class="product-card-category">Cameras</span><a href="product.html" class="product-card-title">StreamPro 4K Webcam Auto-Focus</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(341)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$149.00</span></div><button class="product-cart-btn" data-add-cart="StreamPro Webcam" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-col-brand"><a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a><p class="footer-brand-desc">Premium dark eCommerce experience. Curated products, fast shipping, world-class support.</p><div class="footer-social"><a href="#" class="footer-social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a href="#" class="footer-social-link" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a><a href="#" class="footer-social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a></div></div>
+    <div class="footer-col"><h5>Shop</h5><ul class="footer-links"><li><a href="category.html">All Products</a></li><li><a href="category.html?c=new">New Arrivals</a></li><li><a href="category.html?c=sale">Sale</a></li></ul></div>
+    <div class="footer-col"><h5>Support</h5><ul class="footer-links"><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li><li><a href="#">Returns</a></li></ul></div>
+    <div class="footer-col"><h5>Account</h5><ul class="footer-links"><li><a href="account.html">My Account</a></li><li><a href="wishlist.html">Wishlist</a></li><li><a href="login.html">Sign In</a></li></ul></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-inner"><p class="footer-copy">&copy; 2025 <a href="index.html">Nexara</a>. All rights reserved.</p><div class="payment-methods"><span class="payment-method">VISA</span><span class="payment-method">MC</span><span class="payment-method">AMEX</span><span class="payment-method">PayPal</span></div></div></div></div>
+</footer>
+
+<script src="assets/js/theme.js"></script>
+</body>
+</html>

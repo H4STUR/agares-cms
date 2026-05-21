@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account — Nexara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown"><a href="category.html">Shop</a><div class="nav-dropdown"><a href="category.html"><span class="nav-dropdown-icon" style="background:rgba(124,58,237,.12);color:#7c3aed;"><i class="bi bi-grid-fill"></i></span>All Products</a></div></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><i class="bi bi-search" style="font-size:18px;"></i></button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"><i class="bi bi-heart" style="font-size:18px;"></i><span class="badge">3</span></a>
+      <a href="account.html" class="icon-btn active" aria-label="Account" style="color:var(--primary);"><i class="bi bi-person-fill" style="font-size:18px;"></i></a>
+      <button class="icon-btn cart-btn" id="cartToggle" aria-label="Cart"><i class="bi bi-bag" style="font-size:18px;"></i><span class="badge">2</span></button>
+      <button class="icon-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Menu"><i class="bi bi-list" style="font-size:22px;"></i></button>
+    </div>
+  </div>
+  <div class="header-search" id="headerSearch"><div class="container"><form class="search-form" role="search"><input type="search" placeholder="Search…" aria-label="Search" /><button type="submit" class="btn btn-primary btn-sm">Search</button><button type="button" class="btn btn-ghost btn-sm" id="closeSearch"><i class="bi bi-x-lg"></i></button></form></div></div>
+  <div class="mini-cart" id="miniCart"><div class="mini-cart-header"><h4>Cart</h4><button class="icon-btn" onclick="document.getElementById('miniCart').classList.remove('open')"><i class="bi bi-x" style="font-size:18px;"></i></button></div><div class="mini-cart-footer"><div class="mini-cart-actions"><a href="cart.html" class="btn btn-secondary btn-full">View Cart</a><a href="checkout.html" class="btn btn-primary btn-full">Checkout</a></div></div></div>
+  <nav class="mobile-nav" id="mobileNav"><ul class="mobile-nav-list"><li><a href="index.html"><i class="bi bi-house"></i> Home</a></li><li><a href="category.html"><i class="bi bi-grid"></i> Shop</a></li></ul><div class="mobile-nav-actions"><a href="login.html" class="btn btn-secondary btn-full">Sign In</a><a href="register.html" class="btn btn-primary btn-full">Register</a></div></nav>
+</header>
+
+<main>
+  <!-- PAGE HEADER -->
+  <div style="background:var(--bg-soft);border-bottom:1px solid var(--border);padding-block:28px;">
+    <div class="container">
+      <h1 style="font-size:1.5rem;font-weight:800;">My Account</h1>
+      <p style="color:var(--muted);font-size:0.88rem;margin-top:4px;">Welcome back, <strong style="color:var(--text);">James Morrison</strong></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="account-layout">
+
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="account-sidebar" aria-label="Account navigation">
+        <!-- Avatar -->
+        <div class="account-avatar">
+          <div class="avatar-img" style="background:var(--primary-grad);" aria-hidden="true">JM</div>
+          <h4>James Morrison</h4>
+          <p>james@example.com</p>
+        </div>
+
+        <!-- Nav -->
+        <nav class="account-nav" aria-label="Account sections">
+          <a href="account.html" class="active">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </a>
+          <a href="account.html#orders">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4z"/></svg>
+            Order History
+          </a>
+          <a href="wishlist.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Wishlist <span class="badge badge-primary" style="margin-left:auto;">3</span>
+          </a>
+          <a href="account.html#addresses">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Addresses
+          </a>
+          <a href="account.html#profile">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profile Settings
+          </a>
+          <a href="account.html#security">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Security
+          </a>
+          <a href="account.html#notifications">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            Notifications
+          </a>
+          <div style="height:1px;background:var(--border);margin-block:6px;"></div>
+          <a href="login.html" class="sign-out">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign Out
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ===== ACCOUNT CONTENT ===== -->
+      <div class="account-content">
+
+        <!-- Dashboard Stats -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <span style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);">Total Orders</span>
+              <span style="width:36px;height:36px;border-radius:9px;background:rgba(124,58,237,.12);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:16px;"><i class="bi bi-bag-check"></i></span>
+            </div>
+            <p style="font-size:2rem;font-weight:900;">18</p>
+            <p style="font-size:0.78rem;color:var(--muted);">2 in progress</p>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <span style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);">Total Spent</span>
+              <span style="width:36px;height:36px;border-radius:9px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;color:var(--success);font-size:16px;"><i class="bi bi-currency-dollar"></i></span>
+            </div>
+            <p style="font-size:2rem;font-weight:900;">$2,847</p>
+            <p style="font-size:0.78rem;color:var(--muted);">Lifetime value</p>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <span style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);">Saved Items</span>
+              <span style="width:36px;height:36px;border-radius:9px;background:rgba(239,68,68,.12);display:flex;align-items:center;justify-content:center;color:var(--danger);font-size:16px;"><i class="bi bi-heart-fill"></i></span>
+            </div>
+            <p style="font-size:2rem;font-weight:900;">3</p>
+            <p style="font-size:0.78rem;color:var(--muted);"><a href="wishlist.html" style="color:var(--primary);">View wishlist</a></p>
+          </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="account-card" id="orders">
+          <div class="account-card-header">
+            <h3>Recent Orders</h3>
+            <a href="#" class="btn btn-ghost btn-sm">View All</a>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="order-table" aria-label="Order history">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Date</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight:700;color:var(--text);">#NX-4821</td>
+                  <td>Apr 18, 2025</td>
+                  <td>3 items</td>
+                  <td style="font-weight:600;color:var(--text);">$346.00</td>
+                  <td><span class="badge badge-info">In Transit</span></td>
+                  <td><a href="#" class="btn btn-ghost btn-sm">Track</a></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;color:var(--text);">#NX-4756</td>
+                  <td>Mar 29, 2025</td>
+                  <td>1 item</td>
+                  <td style="font-weight:600;color:var(--text);">$97.00</td>
+                  <td><span class="badge badge-success">Delivered</span></td>
+                  <td><a href="#" class="btn btn-ghost btn-sm">View</a></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;color:var(--text);">#NX-4701</td>
+                  <td>Mar 12, 2025</td>
+                  <td>2 items</td>
+                  <td style="font-weight:600;color:var(--text);">$199.99</td>
+                  <td><span class="badge badge-success">Delivered</span></td>
+                  <td><a href="#" class="btn btn-ghost btn-sm">View</a></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;color:var(--text);">#NX-4623</td>
+                  <td>Feb 08, 2025</td>
+                  <td>4 items</td>
+                  <td style="font-weight:600;color:var(--text);">$524.00</td>
+                  <td><span class="badge badge-success">Delivered</span></td>
+                  <td><a href="#" class="btn btn-ghost btn-sm">View</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Saved Addresses -->
+        <div class="account-card" id="addresses">
+          <div class="account-card-header">
+            <h3>Saved Addresses</h3>
+            <button class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> Add New</button>
+          </div>
+          <div class="address-grid">
+            <div class="address-card default">
+              <span class="default-badge">Default</span>
+              <p style="font-size:0.88rem;font-weight:700;">James Morrison</p>
+              <p style="font-size:0.85rem;color:var(--text-soft);line-height:1.6;">123 Main Street, Apt 4B<br/>New York, NY 10001<br/>United States</p>
+              <p style="font-size:0.82rem;color:var(--muted);">+1 (555) 123-4567</p>
+              <div class="address-card-actions">
+                <button class="btn btn-ghost btn-sm"><i class="bi bi-pencil"></i> Edit</button>
+                <button class="btn btn-ghost btn-sm" style="color:var(--danger);"><i class="bi bi-trash3"></i></button>
+              </div>
+            </div>
+            <div class="address-card">
+              <p style="font-size:0.88rem;font-weight:700;">James Morrison</p>
+              <p style="font-size:0.85rem;color:var(--text-soft);line-height:1.6;">456 Oak Avenue<br/>Brooklyn, NY 11201<br/>United States</p>
+              <p style="font-size:0.82rem;color:var(--muted);">+1 (555) 987-6543</p>
+              <div class="address-card-actions">
+                <button class="btn btn-ghost btn-sm"><i class="bi bi-pencil"></i> Edit</button>
+                <button class="btn btn-ghost btn-sm"><i class="bi bi-check-circle"></i> Set Default</button>
+                <button class="btn btn-ghost btn-sm" style="color:var(--danger);"><i class="bi bi-trash3"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wishlist Preview -->
+        <div class="account-card">
+          <div class="account-card-header">
+            <h3>Wishlist Preview</h3>
+            <a href="wishlist.html" class="btn btn-ghost btn-sm">View All (3)</a>
+          </div>
+          <div class="products-grid products-grid-3" style="grid-template-columns:repeat(3,1fr);">
+            <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/wl1/400/400" alt="Product" loading="lazy" /></div><div class="product-card-body"><span class="product-card-category">Audio</span><a href="product.html" class="product-card-title">Wireless Pro Headphones</a><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$97.00</span></div><button class="product-cart-btn" data-add-cart="Wireless Pro Headphones" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+            <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/wl2/400/400" alt="Product" loading="lazy" /></div><div class="product-card-body"><span class="product-card-category">Wearables</span><a href="product.html" class="product-card-title">NX Smart Watch Ultra</a><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$249.00</span></div><button class="product-cart-btn" data-add-cart="NX Smart Watch" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+            <article class="product-card"><div class="product-card-img"><img src="https://picsum.photos/seed/wl3/400/400" alt="Product" loading="lazy" /></div><div class="product-card-body"><span class="product-card-category">Peripherals</span><a href="product.html" class="product-card-title">Apex TKL Keyboard RGB</a><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$89.99</span></div><button class="product-cart-btn" data-add-cart="Apex Keyboard" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div></article>
+          </div>
+        </div>
+
+        <!-- Profile Settings -->
+        <div class="account-card" id="profile">
+          <div class="account-card-header">
+            <h3>Profile Settings</h3>
+            <button class="btn btn-primary btn-sm"><i class="bi bi-check-lg"></i> Save Changes</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" for="profFirst">First Name</label><input class="form-control" id="profFirst" type="text" value="James" /></div>
+              <div class="form-group"><label class="form-label" for="profLast">Last Name</label><input class="form-control" id="profLast" type="text" value="Morrison" /></div>
+            </div>
+            <div class="form-group"><label class="form-label" for="profEmail">Email Address</label><input class="form-control" id="profEmail" type="email" value="james@example.com" /></div>
+            <div class="form-group"><label class="form-label" for="profPhone">Phone Number</label><input class="form-control" id="profPhone" type="tel" value="+1 (555) 123-4567" /></div>
+            <div class="form-group"><label class="form-label" for="profBday">Date of Birth</label><input class="form-control" id="profBday" type="date" value="1990-05-15" /></div>
+          </div>
+        </div>
+
+        <!-- Security -->
+        <div class="account-card" id="security">
+          <div class="account-card-header"><h3>Security</h3></div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="form-group">
+              <label class="form-label" for="currPass">Current Password</label>
+              <div class="input-icon-wrap">
+                <input class="form-control" id="currPass" type="password" placeholder="Enter current password" />
+                <button class="input-icon" data-password-toggle="currPass" aria-label="Toggle password visibility">
+                  <span class="eye-icon"><i class="bi bi-eye"></i></span>
+                  <span class="eye-off-icon" style="display:none;"><i class="bi bi-eye-slash"></i></span>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="newPass">New Password</label>
+              <div class="input-icon-wrap">
+                <input class="form-control" id="newPass" type="password" placeholder="Enter new password" />
+                <button class="input-icon" data-password-toggle="newPass" aria-label="Toggle password visibility">
+                  <span class="eye-icon"><i class="bi bi-eye"></i></span>
+                  <span class="eye-off-icon" style="display:none;"><i class="bi bi-eye-slash"></i></span>
+                </button>
+              </div>
+              <div class="strength-bar"><div class="strength-fill" style="width:60%;background:var(--warning);"></div></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="confPass">Confirm New Password</label>
+              <input class="form-control" id="confPass" type="password" placeholder="Confirm new password" />
+            </div>
+            <button class="btn btn-primary" style="align-self:flex-start;">Update Password</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-col-brand"><a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a><p class="footer-brand-desc">Premium dark eCommerce experience.</p></div>
+    <div class="footer-col"><h5>Shop</h5><ul class="footer-links"><li><a href="category.html">All Products</a></li><li><a href="category.html?c=new">New Arrivals</a></li><li><a href="category.html?c=sale">Sale</a></li></ul></div>
+    <div class="footer-col"><h5>Support</h5><ul class="footer-links"><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Account</h5><ul class="footer-links"><li><a href="account.html">Dashboard</a></li><li><a href="wishlist.html">Wishlist</a></li><li><a href="login.html">Sign In</a></li></ul></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-inner"><p class="footer-copy">&copy; 2025 <a href="index.html">Nexara</a>. All rights reserved.</p><div class="payment-methods"><span class="payment-method">VISA</span><span class="payment-method">MC</span><span class="payment-method">AMEX</span><span class="payment-method">PayPal</span></div></div></div></div>
+</footer>
+
+<script src="assets/js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agares
+    container_name: agares
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8006:80"
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www:cached
+      #- /var/www/node_modules  # To persist node_modules and avoid conflicts with the host machine
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8.0
+    container_name: agares-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: agares
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - app-network
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: agares-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8086:80" 
+    networks:
+      - app-network
+
+volumes:
+  dbdata:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

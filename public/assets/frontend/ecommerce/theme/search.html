@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results — Nexara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown"><a href="category.html">Shop</a><div class="nav-dropdown"><a href="category.html"><span class="nav-dropdown-icon" style="background:rgba(124,58,237,.12);color:#7c3aed;"><i class="bi bi-grid-fill"></i></span>All Products</a></div></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search" style="color:var(--primary);"><i class="bi bi-search" style="font-size:18px;"></i></button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"><i class="bi bi-heart" style="font-size:18px;"></i><span class="badge">3</span></a>
+      <a href="account.html" class="icon-btn" aria-label="Account"><i class="bi bi-person" style="font-size:18px;"></i></a>
+      <button class="icon-btn cart-btn" id="cartToggle" aria-label="Cart"><i class="bi bi-bag" style="font-size:18px;"></i><span class="badge">2</span></button>
+      <button class="icon-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Menu"><i class="bi bi-list" style="font-size:22px;"></i></button>
+    </div>
+  </div>
+  <div class="header-search" id="headerSearch"><div class="container"><form class="search-form" role="search"><input type="search" placeholder="Search…" aria-label="Search" value="wireless headphones" /><button type="submit" class="btn btn-primary btn-sm">Search</button><button type="button" class="btn btn-ghost btn-sm" id="closeSearch"><i class="bi bi-x-lg"></i></button></form></div></div>
+  <div class="mini-cart" id="miniCart"><div class="mini-cart-header"><h4>Cart</h4><button class="icon-btn" onclick="document.getElementById('miniCart').classList.remove('open')"><i class="bi bi-x" style="font-size:18px;"></i></button></div><div class="mini-cart-footer"><div class="mini-cart-actions"><a href="cart.html" class="btn btn-secondary btn-full">View Cart</a><a href="checkout.html" class="btn btn-primary btn-full">Checkout</a></div></div></div>
+  <nav class="mobile-nav" id="mobileNav"><ul class="mobile-nav-list"><li><a href="index.html"><i class="bi bi-house"></i> Home</a></li><li><a href="category.html"><i class="bi bi-grid"></i> Shop</a></li></ul><div class="mobile-nav-actions"><a href="login.html" class="btn btn-secondary btn-full">Sign In</a></div></nav>
+</header>
+
+<main>
+  <!-- SEARCH HERO -->
+  <section class="search-hero" aria-label="Search">
+    <div class="container">
+      <div class="search-hero-inner">
+        <h1>Search Results</h1>
+        <p>Showing results for <strong style="color:var(--text);">"wireless headphones"</strong></p>
+
+        <form class="search-bar-lg" role="search" aria-label="Product search">
+          <input type="search" value="wireless headphones" placeholder="Search products, brands, categories…" aria-label="Search query" />
+          <button type="submit">
+            <i class="bi bi-search"></i> Search
+          </button>
+        </form>
+
+        <div class="search-tags" aria-label="Popular searches">
+          <span style="font-size:0.78rem;color:var(--muted);">Popular:</span>
+          <a href="search.html?q=headphones" class="search-tag">Headphones</a>
+          <a href="search.html?q=keyboard" class="search-tag">Keyboard</a>
+          <a href="search.html?q=smart+watch" class="search-tag">Smart Watch</a>
+          <a href="search.html?q=laptop+stand" class="search-tag">Laptop Stand</a>
+          <a href="search.html?q=gaming+mouse" class="search-tag">Gaming Mouse</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container section">
+    <!-- Toolbar -->
+    <div class="shop-toolbar">
+      <div class="shop-toolbar-left">
+        <p class="result-count"><strong>12</strong> results for "wireless headphones"</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="view-btns">
+          <button class="view-btn active" data-view="grid" aria-label="Grid view">
+            <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </button>
+          <button class="view-btn" data-view="list" aria-label="List view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+          </button>
+        </div>
+        <select class="sort-select" aria-label="Sort results">
+          <option>Most Relevant</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Best Rating</option>
+          <option>Newest</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- RESULTS GRID -->
+    <div class="products-grid" role="list" aria-label="Search results">
+      <article class="product-card" role="listitem">
+        <div class="product-card-img"><img src="https://picsum.photos/seed/sr1/400/400" alt="Wireless Headphones" loading="lazy" /><div class="product-badge-wrap"><span class="badge badge-danger">-25%</span></div><div class="product-card-actions"><button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button><button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button></div></div>
+        <div class="product-card-body"><span class="product-card-category">Electronics</span><a href="product.html" class="product-card-title">Wireless Pro Headphones X1</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(248)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$97.00</span><span class="product-price-old">$129.00</span></div><button class="product-cart-btn" data-add-cart="Wireless Pro Headphones X1" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div>
+      </article>
+      <article class="product-card" role="listitem">
+        <div class="product-card-img"><img src="https://picsum.photos/seed/sr2/400/400" alt="ANC Headphones" loading="lazy" /><div class="product-card-actions"><button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button><button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button></div></div>
+        <div class="product-card-body"><span class="product-card-category">Electronics</span><a href="product.html" class="product-card-title">SilentWave ANC Wireless Headphones</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(134)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$149.00</span></div><button class="product-cart-btn" data-add-cart="SilentWave ANC" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div>
+      </article>
+      <article class="product-card" role="listitem">
+        <div class="product-card-img"><img src="https://picsum.photos/seed/sr3/400/400" alt="Gaming Headset" loading="lazy" /><div class="product-badge-wrap"><span class="badge badge-warning">Hot</span></div><div class="product-card-actions"><button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button><button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button></div></div>
+        <div class="product-card-body"><span class="product-card-category">Gaming</span><a href="product.html" class="product-card-title">NovaCast 7.1 Wireless Gaming Headset</a><div class="product-card-rating rating"><span class="stars">★★★★☆</span><span class="rating-count">(86)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$89.99</span></div><button class="product-cart-btn" data-add-cart="NovaCast Gaming Headset" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div>
+      </article>
+      <article class="product-card" role="listitem">
+        <div class="product-card-img"><img src="https://picsum.photos/seed/sr4/400/400" alt="TWS Earbuds" loading="lazy" /><div class="product-card-actions"><button class="product-card-action-btn btn-wishlist" aria-label="Wishlist"><i class="bi bi-heart"></i></button><button class="product-card-action-btn" data-quick-view aria-label="Quick view"><i class="bi bi-eye"></i></button></div></div>
+        <div class="product-card-body"><span class="product-card-category">Audio</span><a href="product.html" class="product-card-title">AirBuds Pro 3 True Wireless Earbuds</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(182)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$79.00</span><span class="product-price-old">$99.00</span></div><button class="product-cart-btn" data-add-cart="AirBuds Pro 3" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div>
+      </article>
+      <article class="product-card" role="listitem">
+        <div class="product-card-img"><img src="https://picsum.photos/seed/sr5/400/400" alt="Over-ear" loading="lazy" /></div>
+        <div class="product-card-body"><span class="product-card-category">Audio</span><a href="product.html" class="product-card-title">Velodyne Pure Over-Ear Headphones</a><div class="product-card-rating rating"><span class="stars">★★★★☆</span><span class="rating-count">(57)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$199.00</span></div><button class="product-cart-btn" data-add-cart="Velodyne Pure" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div>
+      </article>
+      <article class="product-card" role="listitem">
+        <div class="product-card-img"><img src="https://picsum.photos/seed/sr6/400/400" alt="Budget headphones" loading="lazy" /></div>
+        <div class="product-card-body"><span class="product-card-category">Audio</span><a href="product.html" class="product-card-title">ClipAir Lite Wireless Ear Clips</a><div class="product-card-rating rating"><span class="stars">★★★★☆</span><span class="rating-count">(302)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$39.99</span></div><button class="product-cart-btn" data-add-cart="ClipAir Lite" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div>
+      </article>
+      <article class="product-card" role="listitem">
+        <div class="product-card-img"><img src="https://picsum.photos/seed/sr7/400/400" alt="Sports headphones" loading="lazy" /></div>
+        <div class="product-card-body"><span class="product-card-category">Sports</span><a href="product.html" class="product-card-title">RunMax Sport Wireless Headphones</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(142)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$59.00</span><span class="product-price-old">$79.00</span></div><button class="product-cart-btn" data-add-cart="RunMax Sport" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div>
+      </article>
+      <article class="product-card" role="listitem">
+        <div class="product-card-img"><img src="https://picsum.photos/seed/sr8/400/400" alt="Studio headphones" loading="lazy" /></div>
+        <div class="product-card-body"><span class="product-card-category">Professional</span><a href="product.html" class="product-card-title">StudioMaster V2 Reference Headphones</a><div class="product-card-rating rating"><span class="stars">★★★★★</span><span class="rating-count">(29)</span></div><div class="product-card-footer"><div class="product-price-wrap"><span class="product-price">$329.00</span></div><button class="product-cart-btn" data-add-cart="StudioMaster V2" aria-label="Add to cart"><i class="bi bi-bag-plus"></i></button></div></div>
+      </article>
+    </div>
+
+    <!-- No Results State (shown via JS when no results) -->
+    <div class="empty-state" id="noResultsState" style="display:none;">
+      <div class="empty-state-icon"><i class="bi bi-search"></i></div>
+      <h3>No results found</h3>
+      <p>We couldn't find any products matching your search. Try different keywords or browse our categories.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="category.html" class="btn btn-primary"><i class="bi bi-grid-fill"></i> Browse All Products</a>
+        <a href="contact.html" class="btn btn-ghost">Contact Support</a>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <nav class="pagination" aria-label="Search result pages">
+      <a href="#" class="page-btn" aria-label="Previous"><i class="bi bi-chevron-left"></i></a>
+      <a href="#" class="page-btn active" aria-current="page">1</a>
+      <a href="#" class="page-btn">2</a>
+      <a href="#" class="page-btn" aria-label="Next"><i class="bi bi-chevron-right"></i></a>
+    </nav>
+  </div>
+</main>
+
+<!-- QUICK VIEW MODAL -->
+<div class="modal-overlay" id="quickViewModal" role="dialog" aria-modal="true" aria-label="Quick product view">
+  <div class="modal-box"><button class="modal-close" aria-label="Close"><i class="bi bi-x-lg" style="font-size:14px;"></i></button><div class="modal-body"><div class="modal-product-grid"><div><div style="aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--bg-soft);"><img src="https://picsum.photos/seed/qv1/500/500" alt="Quick view" style="width:100%;height:100%;object-fit:cover;" /></div></div><div class="product-info"><h2 class="product-detail-title" style="margin-bottom:12px;">Wireless Pro Headphones X1</h2><div class="product-pricing" style="margin-bottom:20px;"><span class="price-current">$97.00</span><span class="price-old-lg">$129.00</span></div><div class="quantity-wrap" style="margin-bottom:20px;"><div class="quantity-ctrl"><button class="qty-btn" data-qty="dec">−</button><input class="qty-input" type="number" value="1" min="1" /><button class="qty-btn" data-qty="inc">+</button></div><button class="btn btn-primary" data-add-cart="Wireless Pro Headphones" style="flex:1;"><i class="bi bi-bag-plus"></i> Add to Cart</button></div><a href="product.html" class="btn btn-ghost btn-full">View Full Details <i class="bi bi-arrow-right"></i></a></div></div></div></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-col-brand"><a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexara</span></a><p class="footer-brand-desc">Premium dark eCommerce.</p></div>
+    <div class="footer-col"><h5>Shop</h5><ul class="footer-links"><li><a href="category.html">All Products</a></li><li><a href="category.html?c=sale">Sale</a></li></ul></div>
+    <div class="footer-col"><h5>Support</h5><ul class="footer-links"><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Account</h5><ul class="footer-links"><li><a href="login.html">Sign In</a></li><li><a href="register.html">Register</a></li></ul></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-inner"><p class="footer-copy">&copy; 2025 <a href="index.html">Nexara</a>. All rights reserved.</p><div class="payment-methods"><span class="payment-method">VISA</span><span class="payment-method">MC</span><span class="payment-method">PayPal</span></div></div></div></div>
+</footer>
+
+<script src="assets/js/theme.js"></script>
+</body>
+</html>

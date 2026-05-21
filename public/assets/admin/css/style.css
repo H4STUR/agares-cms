@@ -1,0 +1,591 @@
+/* Define default (light theme) colors */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    /* Add more custom properties as needed */
+}
+
+/* Define dark theme colors */
+[data-theme="dark"] {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    /* Add more custom properties as needed */
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* The switch - the box around the slider */
+.cms-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default checkbox */
+.cms-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.cms-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.cms-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .cms-slider {
+    background-color: rgb(79, 70, 229);
+}
+
+input:focus + .cms-slider {
+    box-shadow: 0 0 1px rgb(79, 70, 229);
+}
+
+input:checked + .cms-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.cms-slider.round {
+    border-radius: 34px;
+}
+
+.cms-slider.round:before {
+    border-radius: 50%;
+}
+
+.accordion {
+    --bs-accordion-border-color: rgb(79, 70, 229);
+}
+/* Accordion Header Styles */
+.accordion-header {
+    width: 100%;
+    border: 2px solid rgb(79, 70, 229) !important;
+    color: white !important;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
+}
+
+.accordion-header:hover,
+.accordion-header:not(.collapsed) {
+    background-color: rgb(79, 70, 229) !important;
+    color: white !important;
+}
+
+.accordion-body {
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
+    color: white;
+}
+
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.user-item {
+    border: 2px solid rgb(79, 70, 229);
+    padding: 0.5rem;
+    position: relative;
+}
+
+.edit-btn,
+.delete-btn {
+    margin-top: 0.5rem;
+    display: block;
+    width: 100%;
+}
+
+.edit-btn {
+    background-color: rgb(79, 70, 229);
+    color: white;
+    border-color: rgb(79, 70, 229);
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border-color: red;
+}
+
+/* Additional styling for hover effects if needed */
+.edit-btn:hover,
+.delete-btn:hover {
+    opacity: 0.9;
+}
+
+.user-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+.delete-btn {
+    background-color: red;
+    color: white;
+}
+
+a.page-link {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    font-weight: normal;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: white;
+}
+
+.active-link {
+    color: rgb(79, 70, 229);
+    font-weight: 800;
+}
+
+.active-link::before {
+    content: "• ";
+    color: rgb(79, 70, 229);
+    font-weight: 800;
+}
+
+.label-info {
+    background-color: #909090;
+}
+
+.label {
+    display: inline;
+    padding: 0.2em 0.6em 0.3em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25em;
+}
+
+.settings-label {
+    margin: 8px 0px;
+}
+
+/* CkEditor styling */
+.cke_source {
+    background-color: #f0f0f0; /* Light grey background */
+    color: #333; /* Darker text */
+}
+
+/* Toast Notification Custom Styles */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050; /* Ensure it's above other content */
+}
+
+.toast {
+    min-width: 250px;
+}
+
+.toast-success {
+    background-color: #4caf50; /* Green */
+    color: white;
+}
+.toast-success > .toast-header {
+    background-color: #4caf50; /* Green */
+    color: white;
+}
+
+.toast-error {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+.toast-error > .toast-header {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+.toast-header .btn-close {
+    color: white;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remove {
+    margin-right: 20px;
+}
+
+.list-group {
+    background-color: rgb(17 24 39) !important;
+    padding: 10px;
+    border-radius: 0px;
+}
+
+.list-group-item {
+    background-color: rgb(31 41 55);
+    color: white;
+    border: unset;
+    border-radius: 10px !important;
+}
+
+.border-radius-10 {
+    border-radius: 10px !important;
+}
+
+.text-green-500 {
+    color: #22c55e;
+}
+
+.draggable {
+    cursor: grab;
+}
+
+.font-size-20 {
+    font-size: 20px;
+}
+
+.font-size-40 {
+    font-size: 40px;
+}
+s .font-size-50 {
+    font-size: 50px;
+}
+
+input.readonly-input {
+    background-color: #f0f0f0;
+    color: #6c757d;
+    border: 1px solid #ced4da;
+    cursor: not-allowed;
+}
+
+@media (prefers-color-scheme: light) {
+    .accordion-header {
+        background-color: rgb(238 238 238) !important;
+        color: initial !important;
+    }
+    .accordion-body {
+        background-color: rgb(238 238 238) !important;
+        color: initial !important;
+    }
+    .menu-item {
+        color: initial !important;
+    }
+    .list-group-item {
+        background-color: rgb(238 238 238) !important;
+        color: initial !important;
+    }
+    .list-group {
+        background-color: initial !important;
+    }
+}
+
+
+/* Toast Notification Custom Styles */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050; /* Ensure it's above other content */
+}
+
+.toast {
+    min-width: 250px;
+}
+
+.toast-success {
+    background-color: #4caf50; /* Green */
+    color: white;
+}
+.toast-success > .toast-header {
+    background-color: #4caf50; /* Green */
+    color: white;
+}
+
+.toast-error {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+.toast-error > .toast-header {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+.toast-header .btn-close {
+    color: white;
+}
+
+
+/* resources/css/custom.css */
+.bg-custom-green {
+    background-color: #4CAF50; /* Custom Green */
+}
+
+.bg-custom-green:hover {
+    background-color: #45a049; /* Darker Green for hover */
+}
+
+.bg-custom-red {
+    background-color: #d60000; /* Custom Green */
+}
+
+.bg-custom-red:hover {
+    background-color: #f80000; /* Darker Green for hover */
+}
+
+.text-custom-green {
+    color: #4CAF50; /* Custom Green Text */
+}
+
+
+
+/* Ensure sidebar and main content layout */
+.flex {
+    display: flex;
+}
+
+.w-64 {
+    width: 16rem; /* Sidebar width */
+}
+
+.ml-64 {
+    margin-left: 16rem; /* Matches sidebar width */
+}
+
+/* Main content should not have horizontal scrolling */
+body, html {
+    overflow-x: hidden;
+}
+
+main {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .w-64 {
+        width: 100%; /* Sidebar full-width on mobile */
+    }
+
+    .ml-64 {
+        margin-left: 0; /* Remove margin on smaller screens */
+    }
+}
+
+
+/* Ensure sidebar and main content layout */
+.flex {
+    display: flex;
+}
+
+.w-64 {
+    width: 250px; /* Sidebar width */
+}
+
+.ml-64 {
+    margin-left: 250px; /* Matches sidebar width */
+}
+
+.h-full
+{
+    height: 100%;
+}
+
+/* Main content should not have horizontal scrolling */
+body, html {
+    overflow-x: hidden;
+}
+
+/* Mobile: Sidebar and hidden classes */
+@media (max-width: 768px) {
+    .w-64 {
+        width: 100%; /* Sidebar full-width on mobile */
+    }
+
+    .ml-64 {
+        margin-left: 0; /* Remove margin on smaller screens */
+    }
+}
+
+/* Sidebar Padding and Link Styling */
+nav {
+    padding-top: 1.5rem; /* Adjust top padding */
+    width: 250px; /* Sidebar width for alignment */
+    height: 100%;
+}
+
+/* Sidebar Links */
+nav a {
+    display: block;
+    padding: 12px;
+    margin-bottom: 0.5rem; /* Space between nav items */
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    background-color: #f3f4f6;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+}
+
+/* Sidebar for mobile */
+@media (max-width: 768px) {
+    nav {
+        position: absolute;
+        left: -250px; /* Initially hide on mobile */
+        transition: left 0.3s ease;
+    }
+
+    nav[x-show="open"] {
+        left: 0; /* Show sidebar when open */
+    }
+
+    .sm\:hidden {
+        display: none;
+    }
+
+    .sm\:block {
+        display: block;
+    }
+}
+
+
+/* Base tab button styling */
+.tab-button {
+    color: #4b5563; /* gray-600 */
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button:hover {
+    color: #3b82f6; /* blue-500 */
+    border-bottom-color: #3b82f6; /* blue-500 */
+}
+
+/* Active tab styling */
+.tab-button.active {
+    color: #2563eb; /* blue-600 */
+    border-bottom-color: #2563eb; /* blue-600 */
+    font-weight: 600; /* Make active tab bold */
+}
+
+.dark .tab-button.active {
+    color: #93c5fd; /* lighter blue for dark mode */
+    border-bottom-color: #93c5fd; /* lighter blue for dark mode */
+}
+
+
+/* Custom responsive grid for thumbnails */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Default to 1 column */
+    gap: 1rem; /* Space between grid items */
+}
+
+@media (min-width: 640px) {
+    .media-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+    }
+}
+
+@media (min-width: 768px) {
+    .media-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+    }
+}
+
+@media (min-width: 1024px) {
+    .media-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
+    }
+}
+
+/* Sizing for modal images */
+.modal-image {
+    max-width: 100%;
+    max-height: 16rem; /* Restrict height */
+    object-fit: contain; /* Ensure the image fits without cropping */
+    border-radius: 0.5rem; /* Consistent rounding */
+}
+
+/* Modal Grid Layout */
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default: Single column */
+    gap: 1rem; /* Space between columns */
+}
+
+@media (min-width: 1024px) {
+    .modal-grid {
+        grid-template-columns: 1fr 1fr; /* Two columns on large screens */
+    }
+}
+
+/* Modal Image */
+.modal-image {
+    max-width: 100%;
+    max-height: 16rem; /* Restrict the height */
+    object-fit: contain; /* Ensure the image fits properly */
+    border-radius: 0.5rem;
+}
+
+/* Consistent height for buttons and inputs */
+.file-upload-container label[for="file"],
+.file-upload-container button {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.pointer-events-none {
+    pointer-events: none;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
