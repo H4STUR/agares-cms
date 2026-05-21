@@ -360,21 +360,6 @@
         </div>
       </div>
 
-      {{-- All PCML thumbs --}}
-      <div class="case-thumbs">
-        @foreach([
-          ['pcml-home.jpg',     'Homepage'],
-          ['pcml-hotel.jpg',    'Hotel'],
-          ['pcml-oferta.jpg',   'Offer'],
-          ['pcml-omnie.jpg',    'About'],
-          ['pcml-petcamp.jpg',  'Pet Camp'],
-        ] as $thumb)
-          <div class="case-thumb reveal">
-            <img src="{{ asset('assets/frontend/images/' . $thumb[0]) }}" alt="{{ $thumb[1] }} page of PiesCiMordeLizal" loading="lazy">
-            <span class="case-thumb-label">{{ $thumb[1] }}</span>
-          </div>
-        @endforeach
-      </div>
     </div>
   </section>
 
@@ -441,29 +426,9 @@
           </div>
 
           <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: var(--space-lg);">
-            <a href="https://www.api.agares.co.uk" target="_blank" rel="noopener" class="btn btn-secondary btn-icon-after">
-              Visit the platform
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
             <a href="/api" class="btn btn-ghost">How CMS talks to it →</a>
           </div>
         </div>
-      </div>
-
-      {{-- SaaS thumbs --}}
-      <div class="case-thumbs">
-        @foreach([
-          ['saas-dashboard.jpg', 'Dashboard'],
-          ['saas-tenants.jpg',   'Tenants'],
-          ['saas-rag.jpg',       'RAG Chatbot'],
-          ['saas-agents.jpg',    'AI Agents'],
-          ['saas-cookies.jpg',   'Cookie Scanner'],
-        ] as $thumb)
-          <div class="case-thumb reveal">
-            <img src="{{ asset('assets/frontend/images/' . $thumb[0]) }}" alt="{{ $thumb[1] }} screen on the Agares SaaS platform" loading="lazy">
-            <span class="case-thumb-label">{{ $thumb[1] }}</span>
-          </div>
-        @endforeach
       </div>
     </div>
   </section>
@@ -513,7 +478,6 @@
               Play the game
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </a>
-            <a href="https://www.panel.bender.agares.co.uk" target="_blank" rel="noopener" class="btn btn-ghost">Admin panel →</a>
           </div>
         </div>
 
@@ -539,23 +503,6 @@
         </div>
       </div>
 
-      {{-- Bender thumbs --}}
-      <div class="case-thumbs">
-        @foreach([
-          ['bender_home_raw.jpg',             'Home'],
-          ['bender_landing_raw.jpg',          'Landing'],
-          ['bender_nhie_raw.jpg',             'NHIE'],
-          ['bender_tod_raw.jpg',              'Truth or Dare'],
-          ['bender_nhie_card_raw.jpg',        'Card flip'],
-          ['bender_admin_raw.jpg',            'Admin'],
-          ['bender_admin_questions_raw.jpg',  'Questions'],
-        ] as $thumb)
-          <div class="case-thumb reveal">
-            <img src="{{ asset('assets/frontend/images/' . $thumb[0]) }}" alt="Bender — {{ $thumb[1] }}" loading="lazy">
-            <span class="case-thumb-label">{{ $thumb[1] }}</span>
-          </div>
-        @endforeach
-      </div>
     </div>
   </section>
 

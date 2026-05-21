@@ -502,12 +502,9 @@ class SettingsTableSeeder extends Seeder
             //CUSTOM
         ];
 
-        // Insert each setting into the database
+        // Insert each setting into the database (skip keys that already exist)
         foreach ($settings as $setting) {
-            DB::table('settings')->updateOrInsert(
-                ['key' => $setting['key']],
-                $setting
-            );
+            DB::table('settings')->insertOrIgnore($setting);
         }
 
     }
