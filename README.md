@@ -1,21 +1,48 @@
 # Agares CMS
 
-A modern, multi-site content management system built with Laravel 13.
+A modern, multi-site content management system built with Laravel 13 — with a full ecommerce module, two-factor authentication, AI-assisted SEO, REST API, and per-site role-based access control.
 
 ## Features
 
+### Content & Sites
 - **Multi-Site Management** — Manage multiple websites from a single admin dashboard
-- **Hierarchical Content** — Organize content with Sites → Categories → Articles structure
-- **Publishing Workflow** — Draft, scheduled, published, and private content states
-- **Custom Fields** — Flexible input system to add custom fields to any content type
-- **Role-Based Access Control** — Granular permissions with site-scoped roles
-- **REST API** — Full API access with scoped API key authentication
-- **Media Library** — Centralized file and image management with galleries
-- **Dynamic Forms** — Build custom forms with configurable fields
-- **Cookie Compliance** — GDPR-ready cookie consent management
-- **Custom Code Injection** — Add custom CSS/JS per site
-- **Google Analytics** — GA4 integration for dashboard analytics
+- **Hierarchical Content** — Sites → Categories → Articles with soft-delete and scheduled publishing
+- **Publishing Workflow** — `draft`, `scheduled`, `published`, `private` states with public-content query scope
+- **Custom Fields (Input System)** — Polymorphic templates (text, textarea, gallery, file, form, …) attachable to any content type via `InputInstance`
+- **Dynamic Forms** — Build custom forms with configurable fields; submissions stored per-form
+- **Media Library** — Centralised file and image management with galleries and MIME-type allowlisting
+- **Menus** — Recursive menu builder with caching (`MenuTree` service)
+- **Custom Code Injection** — Per-site CSS/JS injection; Monaco-editor-powered admin UI
+
+### Ecommerce (feature-gated)
+- **Products with variants, categories, tags, attributes**
+- **Orders** with status history and admin status updates
+- **4 payment gateways** — Stripe (Checkout Sessions), PayU (OAuth2), Przelewy24 (SHA384-signed), PayPal (Orders API v2), plus COD
+- **Signature-verified webhooks** for every gateway; idempotent capture/fail transitions
+- **Guest checkout** with optional account creation at checkout
+- **Coupons, shipping methods, tax rules**
+- **Transactional emails** — order confirmation, status change, new-order admin alert
+
+### Security & Access Control
+- **Two-Factor Authentication** — TOTP (authenticator app) + email-OTP fallback + one-time recovery codes
+- **2FA enforcement** — globally, per-role (CSV), or per-user; force-setup middleware
+- **OAuth + 2FA coverage** — Google and Facebook callbacks route through 2FA challenge when enrolled
+- **Security audit log** — `security_audit_log` table records 2FA events (enrolment, disable, admin-reset, challenges, recovery-code use); visible on user profile
+- **Role-Based Access Control** — Spatie permissions with `view X` / `manage X` convention; site-scoped overrides via `RoleSitePermission`
+- **Defense-in-depth authorization** — Route middleware + per-controller `HasMiddleware` gates
+- **Roles** — `owner` (full access via `Gate::before`), `admin`, `moderator`, `viewer` (read-only demo mode), `user`, `customer`
+- **REST API** — scoped API key authentication (`X-API-Key` header)
+- **HTML sanitisation** — `safe_html()` / `safe_label()` helpers strip event handlers and `javascript:`/`data:` URIs from admin-authored rich text
+
+### Other
+- **AI SEO** — Generate SEO metadata for articles, products, and categories via the Agares SaaS; side-by-side diff with per-field accept
+- **Cookie Consent** — GDPR-ready consent management with cookie scanner integration
+- **Newsletter** — Subscribers and lists with GDPR consent capture, token-based unsubscribe, campaign drafts and templates, external-API delegation for bulk send (queue-free CMS)
+- **Settings-based feature flags** — `EnsureSetting` middleware gates routes by key/value settings
+- **Google Analytics** — GA4 integration (summary, traffic timeline, realtime active users) with 30-min / 10-s caching
 - **Social Authentication** — Login with Google or Facebook
+- **QR Generator** — Admin tool for generating QR codes
+- **Maintenance Mode** — Per-site maintenance guard
 
 ## Tech Stack
 
@@ -23,10 +50,12 @@ A modern, multi-site content management system built with Laravel 13.
 |-------|------------|
 | Backend | Laravel 13, PHP 8.3+ |
 | Database | MySQL 8.0 |
-| Frontend | Tailwind CSS, Alpine.js, Bootstrap 5 |
-| Build | Vite |
-| Auth | Laravel Breeze, Socialite |
+| Frontend | Tailwind CSS 3, Alpine.js 3, Bootstrap 5.3, Bootstrap Icons, Sass |
+| Editors | Monaco Editor (custom code), TinyMCE (rich text) |
+| Build | Vite 5, Axios 1.6 |
+| Auth | Laravel Breeze, Socialite, `pragmarx/google2fa`, `bacon/bacon-qr-code` |
 | Permissions | Spatie Laravel Permission |
+| Payments | `stripe/stripe-php`, native PayU / P24 / PayPal HTTP clients |
 
 ## Requirements
 
@@ -56,8 +85,9 @@ docker exec -it agares composer install
 # Generate application key
 docker exec -it agares php artisan key:generate
 
-# Run migrations
+# Run migrations + seed roles/permissions + settings
 docker exec -it agares php artisan migrate
+docker exec -it agares php artisan db:seed
 
 # Build frontend assets
 docker exec -it agares npm install
@@ -81,6 +111,7 @@ php artisan key:generate
 
 # Configure your database in .env, then:
 php artisan migrate
+php artisan db:seed
 
 # Build assets
 npm run build
@@ -119,6 +150,8 @@ GA4_PROPERTY_ID=
 GA4_CREDENTIALS_PATH=
 ```
 
+Most behaviour is configured at runtime through the admin **Settings** page (key-value table), not the `.env` file — this includes feature flags (`enable_ecommerce`, `enable_api`, `enable_newsletter`, `2FA_enabled`, `2FA_required`, `2FA_method`, …), payment provider credentials, AI SEO config, and brand metadata.
+
 ## Development
 
 ### Commands
@@ -142,32 +175,58 @@ php artisan config:clear
 php artisan view:clear
 ```
 
+### Custom Artisan Commands
+
+```bash
+# Create an API key (plaintext shown once, prefix: ak_)
+php artisan api-key:create "My Key" --abilities="content:read" --abilities="preview:read"
+php artisan api-key:create "Full Access" --abilities="*" --site_id=1 --expires=2026-12-31
+```
+
 ### Project Structure
 
 ```
 app/
 ├── Http/Controllers/
-│   ├── Admin/          # Admin panel controllers
-│   ├── Api/V1/         # REST API endpoints
-│   └── Frontend/       # Public pages
-├── Models/             # Eloquent models
-└── Services/           # Business logic
+│   ├── Admin/                # Admin panel controllers
+│   │   ├── Ecommerce/        # Products, orders, payments, coupons, …
+│   │   ├── Forum/            # Forum roles, badges (partial)
+│   │   ├── Newsletter/       # Subscribers, lists, campaigns, templates
+│   │   └── Tools/            # QR generator
+│   ├── Api/V1/               # REST API endpoints
+│   ├── Auth/                 # Login, registration, 2FA, OAuth
+│   └── Frontend/             # Public pages
+│       └── Ecommerce/        # Checkout, payment return, webhooks
+├── Models/                   # Eloquent models
+│   ├── Ecommerce/
+│   └── Newsletter/
+├── Services/                 # Business logic
+│   ├── Payment/Gateways/     # Stripe, PayU, P24, PayPal
+│   ├── Payment/Webhooks/     # Signature-verified webhook handlers
+│   └── Newsletter/           # Sender drivers, payload builders, HTTP client
+├── Support/
+│   ├── helpers.php           # safe_html, input_value, is_viewer, …
+│   └── Permissions.php       # Single source of truth for permissions
+└── Mail/                     # Order emails, newsletter test, 2FA challenge
 
 resources/views/
-├── pages/admin/        # Admin templates
-├── pages/frontend/     # Public templates
-├── components/         # Blade components
-└── layouts/            # Master layouts
+├── pages/admin/              # Admin templates
+├── pages/frontend/           # Public templates
+├── pages/auth/               # 2FA setup, challenge, recovery codes
+├── emails/                   # Transactional email templates
+├── components/               # Blade components
+└── layouts/                  # Master layouts
 
 routes/
-├── web.php             # Web routes
-├── api/v1.php          # API v1 routes
-└── auth.php            # Authentication routes
+├── web.php                   # Web routes
+├── api/v1.php                # API v1 routes
+├── auth.php                  # Authentication + 2FA routes
+└── newsletter.admin.php      # Newsletter admin routes
 ```
 
 ## API
 
-The REST API requires authentication via `X-API-Key` header. API keys can be created in the admin panel with specific scopes:
+The REST API is feature-gated by the `enable_api` setting and requires authentication via the `X-API-Key` header. API keys can be created in the admin panel or via Artisan with specific scopes:
 
 | Scope | Access |
 |-------|--------|
